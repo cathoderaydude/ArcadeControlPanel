@@ -48,12 +48,6 @@ namespace kioskControlPanel
             buttonLights = new Button[] { btnStatus1, btnStatus2, btnStatus3, btnStatus4 };
         }
 
-        // Delete me
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             // Buffer for pin status
