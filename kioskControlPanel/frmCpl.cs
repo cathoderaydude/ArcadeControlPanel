@@ -14,26 +14,67 @@ namespace kioskControlPanel
 {
     public partial class frmCpl : Form
     {
+        /*
+         * TODO:
+         * 
+         * - Add method to fire off test events from button status indicators
+         * - Add sound effect when button test event fires (add "bool soundEffect" flag in buttonInfo)
+         * - Add sound effect when button needs to be held for a while to trigger, and then effect when it does trigger?
+         */
+
+
         // Device driver object and response code storage
         public FTDI ftdi;
         public FTDI.FT_STATUS ft_status;
 
         // Bit values for each button
         public byte[] btnBits;
-        // Currently-pressed buttons
-        public bool[] buttonsDown;
         
-        // Building new way to store button info to be applied after this commit
-        private struct buttonInfo
+        // Struct to store button state and milliseconds until it should take effect
+        private class buttonInfo
         {
             public bool state;
             public int delay;
+            public bool soundEffect;
+
+            /*public override bool Equals(object obj)
+            {
+                var other = obj as bool;
+
+                if (obj.GetType() == Boolean)
+                {
+                    return (this.state == (bool) obj);
+                } else
+                {
+                    return false;
+                }
+            }*/
+
+            public static bool operator ==(buttonInfo x, bool y)
+            {
+                return (x.state == y);
+            }
+            public static bool operator !=(buttonInfo x, bool y)
+            {
+                return (x.state != y);
+            }
+
+            public buttonInfo()
+            {
+                this.state = false;
+                this.delay = 0;
+                this.soundEffect = false;
+            }
         }
         
-        private KeyValuePair<byte, buttonInfo> buttonState;
+        private Dictionary<int, buttonInfo> buttonState;
         
         // Array of button status display controls
         private Button[] buttonLights;
+
+        // Arrays of action fields
+        private TextBox[] actionStrings;
+        private TextBox[] delayValues;
 
         public frmCpl()
         {
@@ -65,10 +106,21 @@ namespace kioskControlPanel
 
             // Initialize button bit values
             btnBits = new byte[] { 16, 32, 64, 128 };
-            // Initialize button state
-            buttonsDown = new bool[] {false, false, false, false};
             // Initialize button status control array
             buttonLights = new Button[] { btnStatus1, btnStatus2, btnStatus3, btnStatus4 };
+            // Initialize action and delay values
+            actionStrings = new TextBox[] { txtButton1, txtButton2, txtButton3, txtButton4 };
+            delayValues = new TextBox[] { txtDelay1, txtDelay2, txtDelay3, txtDelay4 };
+
+            // Initialize button state (obsolete)
+            // buttonsDown = new bool[] {false, false, false, false};
+
+            // Initialize button state array
+            buttonState = new Dictionary<int, buttonInfo>();
+            buttonState.Add(0, new buttonInfo());
+            buttonState.Add(1, new buttonInfo());
+            buttonState.Add(2, new buttonInfo());
+            buttonState.Add(3, new buttonInfo());
 
             dbgW("Initialization complete, ready to go.");
         }
@@ -128,28 +180,28 @@ namespace kioskControlPanel
             for(int i=0;i<btnBits.Length;i++)
             {
                 // Check for bit for this button, and make sure the button isn't already pressed
-                if (((((int)readData[0]) & btnBits[i]) != 0) && buttonsDown[i] == false)
+                if (((((int)readData[0]) & btnBits[i]) != 0) && buttonState[i] == false)
                 {
                     // Button was pressed
                     // Set flag in button status table
-                    buttonsDown[i] = true;
+                    buttonState[i].state = true;
                     // Turn diagnostic light green
                     buttonLights[i].BackColor = Color.LimeGreen;
                     // Log event
                     dbgW("Button "+i.ToString()+" pressed");
                 }
-                else if (((((int)readData[0]) & btnBits[i]) == 0) && buttonsDown[i] == true)
+                else if (((((int)readData[0]) & btnBits[i]) == 0) && buttonState[i] == true)
                 {
+                    // Button was not pressed
                     // Clear flag in button status table
-                    buttonsDown[i] = false;
+                    buttonState[i].state = false;
                     // Clear diagnostic light
                     buttonLights[i].BackColor = Color.Maroon;
                     // Log event
                     dbgW("Button " + i.ToString() + " released");
                 }
+                // No action is taken if the button state hasn't changed, so there's no else
             }
-
-            // TODO: Loop to take action based on the value of each button - or should this be in the master loop?
         }
     }
 }

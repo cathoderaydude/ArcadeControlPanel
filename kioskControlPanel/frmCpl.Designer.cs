@@ -43,13 +43,13 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.txtDelay4 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtDelay3 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtDelay2 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtDelay1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtButton4 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -193,13 +193,13 @@
             // 
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Controls.Add(this.textBox9);
+            this.groupBox4.Controls.Add(this.txtDelay4);
             this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Controls.Add(this.textBox8);
+            this.groupBox4.Controls.Add(this.txtDelay3);
             this.groupBox4.Controls.Add(this.label6);
-            this.groupBox4.Controls.Add(this.textBox7);
+            this.groupBox4.Controls.Add(this.txtDelay2);
             this.groupBox4.Controls.Add(this.label5);
-            this.groupBox4.Controls.Add(this.textBox6);
+            this.groupBox4.Controls.Add(this.txtDelay1);
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.txtButton4);
             this.groupBox4.Controls.Add(this.label3);
@@ -236,13 +236,13 @@
             this.label8.TabIndex = 16;
             this.label8.Text = "Delay";
             // 
-            // textBox9
+            // txtDelay4
             // 
-            this.textBox9.Location = new System.Drawing.Point(112, 224);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(64, 20);
-            this.textBox9.TabIndex = 15;
-            this.textBox9.Text = "0";
+            this.txtDelay4.Location = new System.Drawing.Point(112, 224);
+            this.txtDelay4.Name = "txtDelay4";
+            this.txtDelay4.Size = new System.Drawing.Size(64, 20);
+            this.txtDelay4.TabIndex = 15;
+            this.txtDelay4.Text = "0";
             // 
             // label7
             // 
@@ -253,13 +253,13 @@
             this.label7.TabIndex = 14;
             this.label7.Text = "Delay";
             // 
-            // textBox8
+            // txtDelay3
             // 
-            this.textBox8.Location = new System.Drawing.Point(112, 168);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(64, 20);
-            this.textBox8.TabIndex = 13;
-            this.textBox8.Text = "500";
+            this.txtDelay3.Location = new System.Drawing.Point(112, 168);
+            this.txtDelay3.Name = "txtDelay3";
+            this.txtDelay3.Size = new System.Drawing.Size(64, 20);
+            this.txtDelay3.TabIndex = 13;
+            this.txtDelay3.Text = "500";
             // 
             // label6
             // 
@@ -270,13 +270,13 @@
             this.label6.TabIndex = 12;
             this.label6.Text = "Delay";
             // 
-            // textBox7
+            // txtDelay2
             // 
-            this.textBox7.Location = new System.Drawing.Point(112, 112);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(64, 20);
-            this.textBox7.TabIndex = 11;
-            this.textBox7.Text = "500";
+            this.txtDelay2.Location = new System.Drawing.Point(112, 112);
+            this.txtDelay2.Name = "txtDelay2";
+            this.txtDelay2.Size = new System.Drawing.Size(64, 20);
+            this.txtDelay2.TabIndex = 11;
+            this.txtDelay2.Text = "500";
             // 
             // label5
             // 
@@ -287,13 +287,13 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Delay";
             // 
-            // textBox6
+            // txtDelay1
             // 
-            this.textBox6.Location = new System.Drawing.Point(112, 56);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(64, 20);
-            this.textBox6.TabIndex = 9;
-            this.textBox6.Text = "0";
+            this.txtDelay1.Location = new System.Drawing.Point(112, 56);
+            this.txtDelay1.Name = "txtDelay1";
+            this.txtDelay1.Size = new System.Drawing.Size(64, 20);
+            this.txtDelay1.TabIndex = 9;
+            this.txtDelay1.Text = "0";
             // 
             // label4
             // 
@@ -430,13 +430,13 @@
         private System.Windows.Forms.Button btnStatus1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox txtDelay4;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtDelay3;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtDelay2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtDelay1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtButton4;
         private System.Windows.Forms.Label label3;
