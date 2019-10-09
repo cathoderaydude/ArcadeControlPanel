@@ -352,7 +352,7 @@
             this.txtButton2.Name = "txtButton2";
             this.txtButton2.Size = new System.Drawing.Size(100, 20);
             this.txtButton2.TabIndex = 3;
-            this.txtButton2.Text = "{Alt-F4}";
+            this.txtButton2.Text = "%{F4}";
             // 
             // label1
             // 

@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FTD2XX_NET;
 using System.IO;
+using System.Media;
+using WMPLib;
 
 namespace kioskControlPanel
 {
@@ -20,6 +22,7 @@ namespace kioskControlPanel
          * - Add method to fire off test events from button status indicators
          * - Add sound effect when button test event fires (add "bool soundEffect" flag in buttonInfo)
          * - Add sound effect when button needs to be held for a while to trigger, and then effect when it does trigger?
+         * - Add support for multiple sounds and a way to select them
          */
 
 
@@ -38,6 +41,7 @@ namespace kioskControlPanel
             public int remaining;
             public bool soundEffect;
 
+            // These allow you to do "if buttonState[i] == true" instead of needing to include .state
             public static bool operator ==(buttonInfo x, bool y)
             {
                 return (x.state == y);
@@ -52,7 +56,7 @@ namespace kioskControlPanel
                 this.state = false;
                 this.delay = 0;
                 this.remaining = 0;
-                this.soundEffect = false;
+                this.soundEffect = true;
             }
         }
         
@@ -64,6 +68,11 @@ namespace kioskControlPanel
         // Arrays of action fields
         private TextBox[] actionStrings;
         private TextBox[] delayValues;
+
+        private WMPLib.WindowsMediaPlayer CoinInSound;
+        private WMPLib.WindowsMediaPlayer ExitSound;
+
+        // ================================================================================
 
         public frmCpl()
         {
@@ -112,6 +121,20 @@ namespace kioskControlPanel
             validateDelay(1);
             validateDelay(2);
             validateDelay(3);
+
+            // Initialize media player
+            try
+            {
+                CoinInSound = new WindowsMediaPlayer();
+                CoinInSound.settings.autoStart = false;
+                CoinInSound.URL = "coin in.mp3";
+
+                // TODO: Add other sound effect initializers.
+            } catch (Exception err)
+            {
+                dbgW("Unable to initialize sound: " + err.ToString());
+                dbgW("There will be no sound effects.");
+            }
 
             dbgW("Initialization complete, ready to go.");
         }
@@ -244,7 +267,8 @@ namespace kioskControlPanel
         private void buttonEvent(int index)
         {
             dbgW("Sending keys: " + actionStrings[index].Text);
-            SendKeys.Send(actionStrings[index].Text);
+            if (buttonState[index].soundEffect == true) PlaySound("coinin");
+            //SendKeys.Send(actionStrings[index].Text);
         }
 
         private void event_validateDelay(object sender, EventArgs e)
@@ -271,6 +295,12 @@ namespace kioskControlPanel
                 buttonState[i].delay = 0;
                 delayValues[i].BackColor = Color.Pink;
             }
+        }
+
+        private void PlaySound(string index)
+        {
+            CoinInSound.controls.stop();
+            CoinInSound.controls.play();
         }
     }
 }
