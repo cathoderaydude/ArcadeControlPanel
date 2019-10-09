@@ -17,17 +17,6 @@ namespace kioskControlPanel
 {
     public partial class frmCpl : Form
     {
-        /*
-         * TODO:
-         * 
-         * - Add systray icon, hide when minimized, default to hidden
-         * - Add method to fire off test events from button status indicators
-         * - Add sound effect when button test event fires (add "bool soundEffect" flag in buttonInfo)
-         * - Add sound effect when button needs to be held for a while to trigger, and then effect when it does trigger?
-         * - Add support for multiple sounds and a way to select them
-         * - Add feature to save settings
-         */
-
         // Device driver object and response code storage
         public FTDI ftdi;
         public FTDI.FT_STATUS ft_status;
@@ -75,6 +64,13 @@ namespace kioskControlPanel
         private WMPLib.WindowsMediaPlayer ExitSound;
 
         // ================================================================================
+        // Member definitions complete
+
+
+
+        /*
+         *   INITIALIZATION ROUTINES
+         */
 
         public frmCpl()
         {
@@ -187,6 +183,10 @@ namespace kioskControlPanel
             txtDebug.AppendText(debugline);
             Program.fDebug.Write(debugline);
         }
+
+        /*
+         *  MAIN PROGRAM FUNCTIONALITY
+         */
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -318,6 +318,12 @@ namespace kioskControlPanel
             }
         }
 
+
+
+        /*
+         *  UI BEHAVIORS
+         */
+
         // Event when a delay field is changed
         private void event_validateDelay(object sender, EventArgs e)
         {
@@ -355,61 +361,11 @@ namespace kioskControlPanel
             CoinInSound.controls.play();
         }
 
-        // Load settings from INI
-        // The ini read method automatically replaces any missing values with stock defaults
-        // This will occur if the INI is completely missing or if just the key is missing
-        private void LoadSettings()
-        {
-            try
-            {
-                IniFile ini = new IniFile(Application.StartupPath + "\\kcp.ini");
-                txtButton1.Text = ini.IniReadValue("button1", "bind", "");
-                txtButton2.Text = ini.IniReadValue("button2", "bind", "");
-                txtButton3.Text = ini.IniReadValue("button3", "bind", "");
-                txtButton4.Text = ini.IniReadValue("button4", "bind", "");
-                txtButton5.Text = ini.IniReadValue("button5", "bind", "");
-                txtButton6.Text = ini.IniReadValue("button6", "bind", "");
-                txtButton7.Text = ini.IniReadValue("button7", "bind", "");
-                txtButton8.Text = ini.IniReadValue("button8", "bind", "");
 
-                txtDelay1.Text = ini.IniReadValue("button1", "delay", "0");
-                txtDelay2.Text = ini.IniReadValue("button2", "delay", "0");
-                txtDelay3.Text = ini.IniReadValue("button3", "delay", "0");
-                txtDelay4.Text = ini.IniReadValue("button4", "delay", "0");
-                txtDelay5.Text = ini.IniReadValue("button5", "delay", "0");
-                txtDelay6.Text = ini.IniReadValue("button6", "delay", "0");
-                txtDelay7.Text = ini.IniReadValue("button7", "delay", "0");
-                txtDelay8.Text = ini.IniReadValue("button8", "delay", "0");
-            } catch (Win32Exception err)
-            {
-                dbgW("Unable to read INI: " + err.ToString());
-            }
-        }
 
-        
-
-        // Save settings to INI
-        private void SaveSettings()
-        {
-            IniFile ini = new IniFile(Application.StartupPath + "\\kcp.ini");
-            ini.IniWriteValue("button1", "bind", txtButton1.Text);
-            ini.IniWriteValue("button2", "bind", txtButton2.Text);
-            ini.IniWriteValue("button3", "bind", txtButton3.Text);
-            ini.IniWriteValue("button4", "bind", txtButton4.Text);
-            ini.IniWriteValue("button5", "bind", txtButton5.Text);
-            ini.IniWriteValue("button6", "bind", txtButton6.Text);
-            ini.IniWriteValue("button7", "bind", txtButton7.Text);
-            ini.IniWriteValue("button8", "bind", txtButton8.Text);
-
-            ini.IniWriteValue("button1", "delay", txtDelay1.Text);
-            ini.IniWriteValue("button2", "delay", txtDelay2.Text);
-            ini.IniWriteValue("button3", "delay", txtDelay3.Text);
-            ini.IniWriteValue("button4", "delay", txtDelay4.Text);
-            ini.IniWriteValue("button5", "delay", txtDelay5.Text);
-            ini.IniWriteValue("button6", "delay", txtDelay6.Text);
-            ini.IniWriteValue("button7", "delay", txtDelay7.Text);
-            ini.IniWriteValue("button8", "delay", txtDelay8.Text);
-        }
+        /*
+         * WINDOW AND TRAYICON EVENTS
+         */
 
         // If user minimizes window, go to tray
         private void frmCpl_SizeChanged(object sender, EventArgs e)
@@ -457,10 +413,71 @@ namespace kioskControlPanel
             }
         }
 
+
+
+        /*
+         * LOADING AND SAVING SETTINGS
+         */
+
         // If the program is closing, save the settings
         private void frmCpl_FormClosed(object sender, FormClosedEventArgs e)
         {
             SaveSettings();
+        }
+
+        // Load settings from INI
+        // The ini read method automatically replaces any missing values with stock defaults
+        // This will occur if the INI is completely missing or if just the key is missing
+        private void LoadSettings()
+        {
+            try
+            {
+                IniFile ini = new IniFile(Application.StartupPath + "\\kcp.ini");
+                txtButton1.Text = ini.IniReadValue("button1", "bind", "");
+                txtButton2.Text = ini.IniReadValue("button2", "bind", "");
+                txtButton3.Text = ini.IniReadValue("button3", "bind", "");
+                txtButton4.Text = ini.IniReadValue("button4", "bind", "");
+                txtButton5.Text = ini.IniReadValue("button5", "bind", "");
+                txtButton6.Text = ini.IniReadValue("button6", "bind", "");
+                txtButton7.Text = ini.IniReadValue("button7", "bind", "");
+                txtButton8.Text = ini.IniReadValue("button8", "bind", "");
+
+                txtDelay1.Text = ini.IniReadValue("button1", "delay", "0");
+                txtDelay2.Text = ini.IniReadValue("button2", "delay", "0");
+                txtDelay3.Text = ini.IniReadValue("button3", "delay", "0");
+                txtDelay4.Text = ini.IniReadValue("button4", "delay", "0");
+                txtDelay5.Text = ini.IniReadValue("button5", "delay", "0");
+                txtDelay6.Text = ini.IniReadValue("button6", "delay", "0");
+                txtDelay7.Text = ini.IniReadValue("button7", "delay", "0");
+                txtDelay8.Text = ini.IniReadValue("button8", "delay", "0");
+            }
+            catch (Win32Exception err)
+            {
+                dbgW("Unable to read INI: " + err.ToString());
+            }
+        }
+        
+        // Save settings to INI
+        private void SaveSettings()
+        {
+            IniFile ini = new IniFile(Application.StartupPath + "\\kcp.ini");
+            ini.IniWriteValue("button1", "bind", txtButton1.Text);
+            ini.IniWriteValue("button2", "bind", txtButton2.Text);
+            ini.IniWriteValue("button3", "bind", txtButton3.Text);
+            ini.IniWriteValue("button4", "bind", txtButton4.Text);
+            ini.IniWriteValue("button5", "bind", txtButton5.Text);
+            ini.IniWriteValue("button6", "bind", txtButton6.Text);
+            ini.IniWriteValue("button7", "bind", txtButton7.Text);
+            ini.IniWriteValue("button8", "bind", txtButton8.Text);
+
+            ini.IniWriteValue("button1", "delay", txtDelay1.Text);
+            ini.IniWriteValue("button2", "delay", txtDelay2.Text);
+            ini.IniWriteValue("button3", "delay", txtDelay3.Text);
+            ini.IniWriteValue("button4", "delay", txtDelay4.Text);
+            ini.IniWriteValue("button5", "delay", txtDelay5.Text);
+            ini.IniWriteValue("button6", "delay", txtDelay6.Text);
+            ini.IniWriteValue("button7", "delay", txtDelay7.Text);
+            ini.IniWriteValue("button8", "delay", txtDelay8.Text);
         }
     }
 }
