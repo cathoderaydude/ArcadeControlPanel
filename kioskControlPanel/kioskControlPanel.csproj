@@ -91,6 +91,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="alpha-screenshot.png" />
     <Content Include="coin in.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

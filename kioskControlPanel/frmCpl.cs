@@ -125,12 +125,14 @@ namespace kioskControlPanel
             validateDelay(3);
 
             // Initialize media player
+            dbgW("Initializing sound");
             try
             {
                 CoinInSound = new WindowsMediaPlayer();
                 CoinInSound.settings.autoStart = false;
                 CoinInSound.URL = "coin in.mp3";
 
+                dbgW("Sound initialized");
                 // TODO: Add other sound effect initializers.
             } catch (Exception err)
             {
