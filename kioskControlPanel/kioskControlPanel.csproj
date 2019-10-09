@@ -52,6 +52,7 @@
       <DependentUpon>frmCpl.cs</DependentUpon>
     </Compile>
     <Compile Include="FTD2XX_NET.cs" />
+    <Compile Include="INI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmCpl.resx">

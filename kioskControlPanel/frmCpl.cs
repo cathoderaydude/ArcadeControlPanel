@@ -11,6 +11,7 @@ using FTD2XX_NET;
 using System.IO;
 using System.Media;
 using WMPLib;
+using Ini;
 
 namespace kioskControlPanel
 {
@@ -336,6 +337,37 @@ namespace kioskControlPanel
         private void ctiShow_Click(object sender, EventArgs e)
         {
             this.Show();
+        }
+
+
+
+        // Load settings from INI file
+        private void LoadSettings()
+        {
+            // Does an INI file exist?
+            
+            // Generate defaults - they will be saved on exit
+        }
+
+        // Save all form settings
+        private void SaveSettings()
+        {
+
+        }
+
+        // settings methods above this go in program, methods below stay in form
+
+        // Load settings from variables into form
+        private void DisplaySettings()
+        {
+
+        }
+
+        // Push all form settings to variables
+        private void ApplySettings()
+        {
+            IniFile ini = new IniFile("kcp.ini");
+            ini.IniWriteValue("button1", "bind", "asd");
         }
     }
 }
