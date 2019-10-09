@@ -19,10 +19,12 @@ namespace kioskControlPanel
         /*
          * TODO:
          * 
+         * - Add systray icon, hide when minimized, default to hidden
          * - Add method to fire off test events from button status indicators
          * - Add sound effect when button test event fires (add "bool soundEffect" flag in buttonInfo)
          * - Add sound effect when button needs to be held for a while to trigger, and then effect when it does trigger?
          * - Add support for multiple sounds and a way to select them
+         * - Add feature to save settings
          */
 
 
