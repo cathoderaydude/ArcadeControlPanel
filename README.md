@@ -41,10 +41,10 @@ In the following instructions, use solder or a dupont connector wherever it says
 Connect your buttons as follows:
 
 1. Locate the pin labeled **VCCIO** on the board.
-1. Attach a wire from VCCIO to one leg of each of your buttons
+1. Attach a wire from **VCCIO** to one leg of each of your buttons
   1. If using multiple buttons, "daisy-chain" from one to the next with several pieces of wire
 1. Attach a wire from the second leg of your first button to the pin labeled **DCD#** on the board.
-1. Repeat for DSR#, RI#, and DTR#
+1. Repeat for **DSR#, RI#, and DTR#**
   1. These instructions will be updated when I have found the rest of the pinout.
 
 You are now ready. Plug the device in to your PC, run KCP, and if it works you'll be able to press buttons and see them light up in the UI.
