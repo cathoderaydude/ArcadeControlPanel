@@ -1,7 +1,7 @@
 # Kiosk Control Panel
 Keyboard input simulator (among other things) for custom pushbuttons on a PC-based arcade game system, utilizing the FT232 USB serial/GPIO device
 
-![Screenshot of alpha version](https://raw.githubusercontent.com/gravislizard/kioskControlPanel/master/kioskControlPanel/alpha-screenshot.png)
+![Screenshot of beta version](https://raw.githubusercontent.com/gravislizard/kioskControlPanel/master/kioskControlPanel/beta-screenshot.png)
 
 # Overview
 
@@ -15,7 +15,7 @@ There are many advantages to this approach. Because the FT232 is not a keyboard 
 
 # Features
 
-* Connect up to 4 buttons of any type (will be expanded to 8 - issue #6)
+* Connect up to 8 buttons of any type
 * Set a unique key combo to be sent when a button is pressed ([reference](https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.sendkeys.send?view=netframework-4.8))
 * Set a length of time the user must hold a button before it triggers
    * "Dangerous" buttons, like "exit current game" or Alt-F4 can be protected from accidental presses this way
@@ -58,3 +58,29 @@ You are now ready. Plug the device in to your PC, run KCP, and if it works you'l
   * I don't know if there's a FT232 library for Linux but if so, compiling on Mono might work
 * FT232 USB device
   * There are multiple versions of this hardware. All should work, to my knowledge
+  
+# Future
+
+Here are things I would like to do eventually:
+
+* Allow more actions. Right now I am using the built-in C# SendKeys functionality, which has some limitations (you can't send the Windows key for instance.) More actions should be made available. Anything you might find in a "macro" program could apply here, but considerations are:
+  * Write a string to a file
+  * Send more complex key sequences
+  * Send a key sequence targeting a specific app or targeting apps by name
+  * Send a mouse click
+    * Position the mouse in a specific place first
+    * Send it directly to an app's window as a Win32 message so the window doesn't have to be visible
+* Expand to multiple units. It seems to be possible to identify these by serial number, so I could offer an expandable interface where you just keep adding more pages of inputs and assigning them to detected devices (or entering SNs for devices that aren't yet connected)
+* Allow other types of inputs
+  * Toggle switches for e.g. DIP settings in MAME or windows audio mute
+  * Analog input - this would consume an output pin and require a capacitor, but would make it possible to have direct control of the Windows volume level, for instance, if adjusting the volume of your amplifier with an analog control is difficult or undesirable
+
+Pie in the sky:
+
+* Try to improve the core FT232 input code. See issue #10
+* Port to other OSes
+  * Obviously being bound to .NET could be a problem. I've never looked into Mono. I was going to start this on Python initially but the FT232 lib was fundamentally broken, I didn't want to mess with PyQt, and calling dark win32 APIs from py doesn't sound like fun
+* Implement output capabilities. I haven't thought much about this, but if I'm already touching the device, I could set some pins to outputs and do something with that. What value could this have that's on-theme for this project?
+* Implement serial/i2c/spi input capabilities. The FT232 natively speaks all sorts of serial protocols; is there something in this?
+
+I haven't seen much software that uses these devices, and general-purpose I/O on PCs has been a sore spot for decades, so I'm interested in whatever I can do to make them available to more people.
