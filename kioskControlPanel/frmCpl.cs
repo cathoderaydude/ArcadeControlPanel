@@ -105,31 +105,42 @@ namespace kioskControlPanel
             dbgW("FT232 initialized.");
 
             // Initialize button bit values
-            btnBits = new byte[] { 16, 32, 64, 128 };
+            btnBits = new byte[] { 1, 2, 4, 8, 16, 32, 64, 128 };
             // Initialize button state array
             buttonState = new Dictionary<int, buttonInfo>();
             buttonState.Add(0, new buttonInfo());
             buttonState.Add(1, new buttonInfo());
             buttonState.Add(2, new buttonInfo());
             buttonState.Add(3, new buttonInfo());
+            buttonState.Add(4, new buttonInfo());
+            buttonState.Add(5, new buttonInfo());
+            buttonState.Add(6, new buttonInfo());
+            buttonState.Add(7, new buttonInfo());
 
             // Initialize button status control array
-            buttonLights = new Button[] { btnStatus1, btnStatus2, btnStatus3, btnStatus4 };
+            buttonLights = new Button[] { btnStatus1, btnStatus2, btnStatus3, btnStatus4, btnStatus5, btnStatus6, btnStatus7, btnStatus8 };
             // Initialize action and delay values
-            actionStrings = new TextBox[] { txtButton1, txtButton2, txtButton3, txtButton4 };
-            delayValues = new TextBox[] { txtDelay1, txtDelay2, txtDelay3, txtDelay4 };
-            // Initialize delay values
+            actionStrings = new TextBox[] { txtButton1, txtButton2, txtButton3, txtButton4, txtButton5, txtButton6, txtButton7, txtButton8 };
+            delayValues = new TextBox[] { txtDelay1, txtDelay2, txtDelay3, txtDelay4, txtDelay5, txtDelay6, txtDelay7, txtDelay8 };
+            // Initialize delay values from form fields
             validateDelay(0);
             validateDelay(1);
             validateDelay(2);
             validateDelay(3);
+            validateDelay(4);
+            validateDelay(5);
+            validateDelay(6);
+            validateDelay(7);
 
             // Initialize media player
             dbgW("Initializing sound");
             try
             {
+                // Create player and load sound
                 CoinInSound = new WindowsMediaPlayer();
                 CoinInSound.settings.autoStart = false;
+
+                // We load the sound now so it'll be in memory. If we switched between effects on the fly you could hit I/O pauses
                 CoinInSound.URL = "coin in.mp3";
 
                 dbgW("Sound initialized");
@@ -270,11 +281,19 @@ namespace kioskControlPanel
         // Common function for triggering button events so delay & instant buttons use the same code
         private void buttonEvent(int index)
         {
-            dbgW("Sending keys: " + actionStrings[index].Text);
-            if (buttonState[index].soundEffect == true) PlaySound("coinin");
-            //SendKeys.Send(actionStrings[index].Text);
+            // Don't actually send keys if "Enable binds" is unchecked
+            if (chkBinds.Checked == true)
+            {
+                dbgW("Sending keys: " + actionStrings[index].Text);
+                if (buttonState[index].soundEffect == true) PlaySound("coinin");
+                SendKeys.Send(actionStrings[index].Text);
+            } else
+            {
+                dbgW("Binds disabled; not sending keys");
+            }
         }
 
+        // Event when a delay field is changed
         private void event_validateDelay(object sender, EventArgs e)
         {
             // Find field ID and call method to update delay
@@ -282,6 +301,7 @@ namespace kioskControlPanel
             validateDelay(i);
         }
 
+        // Event for updating button delays
         private void validateDelay(int i)
         {
             // Update delay on start or when text field is changed
@@ -301,6 +321,7 @@ namespace kioskControlPanel
             }
         }
 
+        // Stub to play generic sound; will be expanded in later versions
         private void PlaySound(string index)
         {
             CoinInSound.controls.stop();
