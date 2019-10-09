@@ -48,10 +48,10 @@ namespace Ini
         /// <PARAM name="Key"></PARAM>
         /// <PARAM name="Path"></PARAM>
         /// <returns></returns>
-        public string IniReadValue(string Section, string Key)
+        public string IniReadValue(string Section, string Key, string def = "%NONE%")
         {
             StringBuilder temp = new StringBuilder(255);
-            int i = GetPrivateProfileString(Section, Key, "", temp,
+            int i = GetPrivateProfileString(Section, Key, def, temp,
                                             255, this.path);
             return temp.ToString();
 

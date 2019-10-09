@@ -28,7 +28,6 @@ namespace kioskControlPanel
          * - Add feature to save settings
          */
 
-
         // Device driver object and response code storage
         public FTDI ftdi;
         public FTDI.FT_STATUS ft_status;
@@ -123,6 +122,10 @@ namespace kioskControlPanel
             // Initialize action and delay values
             actionStrings = new TextBox[] { txtButton1, txtButton2, txtButton3, txtButton4, txtButton5, txtButton6, txtButton7, txtButton8 };
             delayValues = new TextBox[] { txtDelay1, txtDelay2, txtDelay3, txtDelay4, txtDelay5, txtDelay6, txtDelay7, txtDelay8 };
+
+            // Load INI file into form, or defaults if no INI
+            LoadSettings();
+
             // Initialize delay values from form fields
             validateDelay(0);
             validateDelay(1);
@@ -153,6 +156,27 @@ namespace kioskControlPanel
             }
 
             dbgW("Initialization complete, ready to go.");
+
+            // This and the below are fairly cursed, and required to allow the app to exist solely in the systray
+            // without an extremely unpleasant refactor.
+            FirstRun = true;
+        }
+
+        private bool FirstRun = false;
+        // By overriding the SetVisibleCore class method, we prevent Application.Run from showing the form
+        // Then, once the app is loaded, we unset it, and the next time something tries to show the form
+        // it will succeed. This is not actually a hack, just weird.
+        protected override void SetVisibleCore(bool value)
+        {
+            if (FirstRun)
+            {
+                base.SetVisibleCore(false);
+                FirstRun = false;
+            }
+            else
+            {
+                base.SetVisibleCore(value);
+            }
         }
 
         // Write a line to the debug textbox and file
@@ -298,7 +322,9 @@ namespace kioskControlPanel
         private void event_validateDelay(object sender, EventArgs e)
         {
             // Find field ID and call method to update delay
-            int i = (int)this.Tag;
+            TextBox tb = (TextBox)sender;
+
+            int i = int.Parse((string) tb.Tag);
             validateDelay(i);
         }
 
@@ -329,45 +355,112 @@ namespace kioskControlPanel
             CoinInSound.controls.play();
         }
 
+        // Load settings from INI
+        // The ini read method automatically replaces any missing values with stock defaults
+        // This will occur if the INI is completely missing or if just the key is missing
+        private void LoadSettings()
+        {
+            try
+            {
+                IniFile ini = new IniFile(Application.StartupPath + "\\kcp.ini");
+                txtButton1.Text = ini.IniReadValue("button1", "bind", "");
+                txtButton2.Text = ini.IniReadValue("button2", "bind", "");
+                txtButton3.Text = ini.IniReadValue("button3", "bind", "");
+                txtButton4.Text = ini.IniReadValue("button4", "bind", "");
+                txtButton5.Text = ini.IniReadValue("button5", "bind", "");
+                txtButton6.Text = ini.IniReadValue("button6", "bind", "");
+                txtButton7.Text = ini.IniReadValue("button7", "bind", "");
+                txtButton8.Text = ini.IniReadValue("button8", "bind", "");
+
+                txtDelay1.Text = ini.IniReadValue("button1", "delay", "0");
+                txtDelay2.Text = ini.IniReadValue("button2", "delay", "0");
+                txtDelay3.Text = ini.IniReadValue("button3", "delay", "0");
+                txtDelay4.Text = ini.IniReadValue("button4", "delay", "0");
+                txtDelay5.Text = ini.IniReadValue("button5", "delay", "0");
+                txtDelay6.Text = ini.IniReadValue("button6", "delay", "0");
+                txtDelay7.Text = ini.IniReadValue("button7", "delay", "0");
+                txtDelay8.Text = ini.IniReadValue("button8", "delay", "0");
+            } catch (Win32Exception err)
+            {
+                dbgW("Unable to read INI: " + err.ToString());
+            }
+        }
+
+        
+
+        // Save settings to INI
+        private void SaveSettings()
+        {
+            IniFile ini = new IniFile(Application.StartupPath + "\\kcp.ini");
+            ini.IniWriteValue("button1", "bind", txtButton1.Text);
+            ini.IniWriteValue("button2", "bind", txtButton2.Text);
+            ini.IniWriteValue("button3", "bind", txtButton3.Text);
+            ini.IniWriteValue("button4", "bind", txtButton4.Text);
+            ini.IniWriteValue("button5", "bind", txtButton5.Text);
+            ini.IniWriteValue("button6", "bind", txtButton6.Text);
+            ini.IniWriteValue("button7", "bind", txtButton7.Text);
+            ini.IniWriteValue("button8", "bind", txtButton8.Text);
+
+            ini.IniWriteValue("button1", "delay", txtDelay1.Text);
+            ini.IniWriteValue("button2", "delay", txtDelay2.Text);
+            ini.IniWriteValue("button3", "delay", txtDelay3.Text);
+            ini.IniWriteValue("button4", "delay", txtDelay4.Text);
+            ini.IniWriteValue("button5", "delay", txtDelay5.Text);
+            ini.IniWriteValue("button6", "delay", txtDelay6.Text);
+            ini.IniWriteValue("button7", "delay", txtDelay7.Text);
+            ini.IniWriteValue("button8", "delay", txtDelay8.Text);
+        }
+
+        // If user minimizes window, go to tray
+        private void frmCpl_SizeChanged(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.Hide();
+            }
+        }
+
+        // Left click on trayicon to raise window
+        private void ntiIcon_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+            {
+                this.Show();
+                this.WindowState = FormWindowState.Normal; // In case it was minimized
+                this.BringToFront(); // In case it's behind something
+            }
+        }
+
+        // "Exit" button in trayicon menu
         private void ctiExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
+        // "Show" button in trayicon menu
         private void ctiShow_Click(object sender, EventArgs e)
         {
             this.Show();
+            this.WindowState = FormWindowState.Normal; // In case it was minimized
+            this.BringToFront(); // In case it's behind something
         }
 
-
-
-        // Load settings from INI file
-        private void LoadSettings()
+        // Prompt user to exit
+        private void frmCpl_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // Does an INI file exist?
-            
-            // Generate defaults - they will be saved on exit
+            // If Windows is shutting down, don't interrupt it
+            if (e.CloseReason == CloseReason.WindowsShutDown || e.CloseReason == CloseReason.TaskManagerClosing) return;
+            // Otherwise offer a confirmation
+            if (MessageBox.Show(this, "Are you sure you want to exit? If you just meant to hide the window, minimize it instead.\r\n\r\nExit anyway?", "Exit?", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
 
-        // Save all form settings
-        private void SaveSettings()
+        // If the program is closing, save the settings
+        private void frmCpl_FormClosed(object sender, FormClosedEventArgs e)
         {
-
-        }
-
-        // settings methods above this go in program, methods below stay in form
-
-        // Load settings from variables into form
-        private void DisplaySettings()
-        {
-
-        }
-
-        // Push all form settings to variables
-        private void ApplySettings()
-        {
-            IniFile ini = new IniFile("kcp.ini");
-            ini.IniWriteValue("button1", "bind", "asd");
+            SaveSettings();
         }
     }
 }
