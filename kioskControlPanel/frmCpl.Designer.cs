@@ -97,7 +97,7 @@
             // 
             this.tmrPoll.Enabled = true;
             this.tmrPoll.Interval = 32;
-            this.tmrPoll.Tick += new System.EventHandler(this.tmrPoll_Tick);
+            this.tmrPoll.Tick += new System.EventHandler(this.TmrPoll_Tick);
             // 
             // txtDebug
             // 

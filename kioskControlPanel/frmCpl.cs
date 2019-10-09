@@ -51,6 +51,7 @@ namespace kioskControlPanel
             }
         }
         
+        // Array tracking the state of each button
         private Dictionary<int, ButtonInfo> ButtonState;
         
         // Array of button status display controls
@@ -89,6 +90,7 @@ namespace kioskControlPanel
             } else
             {
                 MessageBox.Show(this, "No FT232 could be detected. Execution cannot continue.", "Error: Device not present", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
             }
 
             // Set all pins (255 is a bitmask) to asynchronous GPIO mode
@@ -103,15 +105,17 @@ namespace kioskControlPanel
             // Initialize button bit values
             btnBits = new byte[] { 1, 2, 4, 8, 16, 32, 64, 128 };
             // Initialize button state array
-            ButtonState = new Dictionary<int, ButtonInfo>();
-            ButtonState.Add(0, new ButtonInfo());
-            ButtonState.Add(1, new ButtonInfo());
-            ButtonState.Add(2, new ButtonInfo());
-            ButtonState.Add(3, new ButtonInfo());
-            ButtonState.Add(4, new ButtonInfo());
-            ButtonState.Add(5, new ButtonInfo());
-            ButtonState.Add(6, new ButtonInfo());
-            ButtonState.Add(7, new ButtonInfo());
+            ButtonState = new Dictionary<int, ButtonInfo>
+            {
+                { 0, new ButtonInfo() },
+                { 1, new ButtonInfo() },
+                { 2, new ButtonInfo() },
+                { 3, new ButtonInfo() },
+                { 4, new ButtonInfo() },
+                { 5, new ButtonInfo() },
+                { 6, new ButtonInfo() },
+                { 7, new ButtonInfo() }
+            };
 
             // Initialize button status control array
             buttonLights = new Button[] { btnStatus1, btnStatus2, btnStatus3, btnStatus4, btnStatus5, btnStatus6, btnStatus7, btnStatus8 };
@@ -188,7 +192,7 @@ namespace kioskControlPanel
          *  MAIN PROGRAM FUNCTIONALITY
          */
 
-        private void tmrPoll_Tick(object sender, EventArgs e)
+        private void TmrPoll_Tick(object sender, EventArgs e)
         {
             // Buffer for pin status
             // Different array sizes have different effects; I don't understand why, but the device
