@@ -306,10 +306,13 @@ namespace kioskControlPanel
                 }
             }
         }
-        
+
+
         // Common function for triggering button events so delay & instant buttons use the same code
         private void ButtonEvent(int index)
         {
+            SendRawInput.SendKey(SendRawInput.KeyCodes.DIK_5, 50);
+
             // Don't actually send keys if "Enable binds" is unchecked
             if (ChkBinds.Checked == true)
             {
