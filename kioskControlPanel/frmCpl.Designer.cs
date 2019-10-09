@@ -81,7 +81,7 @@
             this.txtDebug.Multiline = true;
             this.txtDebug.Name = "txtDebug";
             this.txtDebug.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDebug.Size = new System.Drawing.Size(245, 279);
+            this.txtDebug.Size = new System.Drawing.Size(291, 279);
             this.txtDebug.TabIndex = 2;
             // 
             // groupBox2
@@ -91,7 +91,7 @@
             this.groupBox2.Location = new System.Drawing.Point(439, 3);
             this.groupBox2.Name = "groupBox2";
             this.tableLayoutPanel1.SetRowSpan(this.groupBox2, 2);
-            this.groupBox2.Size = new System.Drawing.Size(251, 298);
+            this.groupBox2.Size = new System.Drawing.Size(297, 298);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Debug output";
@@ -242,7 +242,9 @@
             this.txtDelay4.Name = "txtDelay4";
             this.txtDelay4.Size = new System.Drawing.Size(64, 20);
             this.txtDelay4.TabIndex = 15;
+            this.txtDelay4.Tag = "3";
             this.txtDelay4.Text = "0";
+            this.txtDelay4.TextChanged += new System.EventHandler(this.event_validateDelay);
             // 
             // label7
             // 
@@ -259,7 +261,9 @@
             this.txtDelay3.Name = "txtDelay3";
             this.txtDelay3.Size = new System.Drawing.Size(64, 20);
             this.txtDelay3.TabIndex = 13;
-            this.txtDelay3.Text = "500";
+            this.txtDelay3.Tag = "2";
+            this.txtDelay3.Text = "50";
+            this.txtDelay3.TextChanged += new System.EventHandler(this.event_validateDelay);
             // 
             // label6
             // 
@@ -276,7 +280,9 @@
             this.txtDelay2.Name = "txtDelay2";
             this.txtDelay2.Size = new System.Drawing.Size(64, 20);
             this.txtDelay2.TabIndex = 11;
-            this.txtDelay2.Text = "500";
+            this.txtDelay2.Tag = "1";
+            this.txtDelay2.Text = "50";
+            this.txtDelay2.TextChanged += new System.EventHandler(this.event_validateDelay);
             // 
             // label5
             // 
@@ -293,7 +299,9 @@
             this.txtDelay1.Name = "txtDelay1";
             this.txtDelay1.Size = new System.Drawing.Size(64, 20);
             this.txtDelay1.TabIndex = 9;
+            this.txtDelay1.Tag = "0";
             this.txtDelay1.Text = "0";
+            this.txtDelay1.TextChanged += new System.EventHandler(this.event_validateDelay);
             // 
             // label4
             // 
@@ -390,23 +398,26 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(693, 304);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(739, 304);
             this.tableLayoutPanel1.TabIndex = 6;
             // 
             // eventTimer
             // 
             this.eventTimer.Enabled = true;
             this.eventTimer.Interval = 10;
+            this.eventTimer.Tick += new System.EventHandler(this.eventTimer_Tick);
             // 
             // frmCpl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(693, 304);
+            this.ClientSize = new System.Drawing.Size(739, 304);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(709, 343);
+            this.Location = new System.Drawing.Point(2100, 100);
+            this.MinimumSize = new System.Drawing.Size(755, 343);
             this.Name = "frmCpl";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Auxiliary Key Interface";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

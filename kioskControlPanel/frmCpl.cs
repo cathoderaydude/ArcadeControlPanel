@@ -35,20 +35,8 @@ namespace kioskControlPanel
         {
             public bool state;
             public int delay;
+            public int remaining;
             public bool soundEffect;
-
-            /*public override bool Equals(object obj)
-            {
-                var other = obj as bool;
-
-                if (obj.GetType() == Boolean)
-                {
-                    return (this.state == (bool) obj);
-                } else
-                {
-                    return false;
-                }
-            }*/
 
             public static bool operator ==(buttonInfo x, bool y)
             {
@@ -63,6 +51,7 @@ namespace kioskControlPanel
             {
                 this.state = false;
                 this.delay = 0;
+                this.remaining = 0;
                 this.soundEffect = false;
             }
         }
@@ -106,21 +95,23 @@ namespace kioskControlPanel
 
             // Initialize button bit values
             btnBits = new byte[] { 16, 32, 64, 128 };
-            // Initialize button status control array
-            buttonLights = new Button[] { btnStatus1, btnStatus2, btnStatus3, btnStatus4 };
-            // Initialize action and delay values
-            actionStrings = new TextBox[] { txtButton1, txtButton2, txtButton3, txtButton4 };
-            delayValues = new TextBox[] { txtDelay1, txtDelay2, txtDelay3, txtDelay4 };
-
-            // Initialize button state (obsolete)
-            // buttonsDown = new bool[] {false, false, false, false};
-
             // Initialize button state array
             buttonState = new Dictionary<int, buttonInfo>();
             buttonState.Add(0, new buttonInfo());
             buttonState.Add(1, new buttonInfo());
             buttonState.Add(2, new buttonInfo());
             buttonState.Add(3, new buttonInfo());
+
+            // Initialize button status control array
+            buttonLights = new Button[] { btnStatus1, btnStatus2, btnStatus3, btnStatus4 };
+            // Initialize action and delay values
+            actionStrings = new TextBox[] { txtButton1, txtButton2, txtButton3, txtButton4 };
+            delayValues = new TextBox[] { txtDelay1, txtDelay2, txtDelay3, txtDelay4 };
+            // Initialize delay values
+            validateDelay(0);
+            validateDelay(1);
+            validateDelay(2);
+            validateDelay(3);
 
             dbgW("Initialization complete, ready to go.");
         }
@@ -182,17 +173,31 @@ namespace kioskControlPanel
                 // Check for bit for this button, and make sure the button isn't already pressed
                 if (((((int)readData[0]) & btnBits[i]) != 0) && buttonState[i] == false)
                 {
-                    // Button was pressed
+                    // Button was not pressed and now is
                     // Set flag in button status table
                     buttonState[i].state = true;
-                    // Turn diagnostic light green
-                    buttonLights[i].BackColor = Color.LimeGreen;
                     // Log event
-                    dbgW("Button "+i.ToString()+" pressed");
+                    dbgW("Button " + i.ToString() + " pressed");
+
+                    int delayValue = buttonState[i].delay;
+                    // Check whether the button's action has a delay
+                    if (delayValue > 0)
+                    {
+                        // Yes; turn diagnostic light orange and set the delay value for the button
+                        buttonLights[i].BackColor = Color.Orange;
+                        buttonState[i].remaining = delayValue;
+                        dbgW("Delay of " + (delayValue * 10).ToString() + " milliseconds");
+                    }
+                    else
+                    {
+                        // No; Turn diagnostic light green and take action immediately
+                        buttonLights[i].BackColor = Color.LimeGreen;
+                        buttonEvent(i);
+                    }
                 }
                 else if (((((int)readData[0]) & btnBits[i]) == 0) && buttonState[i] == true)
                 {
-                    // Button was not pressed
+                    // Button was pressed and has been released
                     // Clear flag in button status table
                     buttonState[i].state = false;
                     // Clear diagnostic light
@@ -201,6 +206,70 @@ namespace kioskControlPanel
                     dbgW("Button " + i.ToString() + " released");
                 }
                 // No action is taken if the button state hasn't changed, so there's no else
+            }
+        }
+
+        private void eventTimer_Tick(object sender, EventArgs e)
+        {
+            // We have two timers because the one polling the FT232 operates at 16ms, the interval of the FT232's read timeout,
+            // whereas this one runs at 10ms so we can cleanly count down delay values.
+            // Is this distinction worth it? Unknown, but the FT232 is a device I don't understand and this seems to tune
+            // it to usability.
+
+            // Check the state of each button
+            for (int i = 0; i < btnBits.Length; i++)
+            {
+                if(buttonState[i] == true)
+                {
+                    // Button is currently pressed
+                    // Check if countdown has expired
+                    if (buttonState[i].remaining > 0)
+                    {
+                        buttonState[i].remaining -= 1; // Button isn't ready to fire; decrement value
+
+                        // We check again here; if we are now under 0, fire the action
+                        // This code will never be reached once the number sinks below 0 for the first time
+                        if (buttonState[i].remaining <= 0)
+                        {
+                            buttonLights[i].BackColor = Color.LimeGreen;
+                            dbgW("Delay elapsed on button " + i.ToString());
+                            buttonEvent(i);
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Common function for triggering button events so delay & instant buttons use the same code
+        private void buttonEvent(int index)
+        {
+            dbgW("Sending keys: " + actionStrings[index].Text);
+            SendKeys.Send(actionStrings[index].Text);
+        }
+
+        private void event_validateDelay(object sender, EventArgs e)
+        {
+            // Find field ID and call method to update delay
+            int i = (int)this.Tag;
+            validateDelay(i);
+        }
+
+        private void validateDelay(int i)
+        {
+            // Update delay on start or when text field is changed
+            // Check if there's a valid number in the delay field
+            try
+            {
+                // Yep - clear field error color and set delay value
+                buttonState[i].delay = int.Parse(delayValues[i].Text);
+                this.BackColor = DefaultBackColor;
+            }
+            catch (Exception err)
+            {
+                // Nope - flag field and set delay value to 0 so we can continue processing
+                dbgW("The value for delay on button " + i.ToString() + " is not a valid number.");
+                buttonState[i].delay = 0;
+                delayValues[i].BackColor = Color.Pink;
             }
         }
     }
