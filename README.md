@@ -17,6 +17,8 @@ There are many advantages to this approach. Because the FT232 is not a keyboard 
 
 * Connect up to 4 buttons of any type (will be expanded to 8 - issue #6)
 * Set a unique key combo to be sent when a button is pressed ([reference](https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.sendkeys.send?view=netframework-4.8))
+* Set a length of time the user must hold a button before it triggers
+   * "Dangerous" buttons, like "exit current game" or Alt-F4 can be protected from accidental presses this way
 * Fairly low latency (10-20ms)
 * Requires only a cheap USB adapter and light soldering to get working
 
