@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCpl));
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tmrPoll = new System.Windows.Forms.Timer(this.components);
             this.txtDebug = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -78,7 +78,7 @@
             this.txtButton2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtButton1 = new System.Windows.Forms.TextBox();
-            this.chkBinds = new System.Windows.Forms.CheckBox();
+            this.ChkBinds = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.eventTimer = new System.Windows.Forms.Timer(this.components);
             this.ntiIcon = new System.Windows.Forms.NotifyIcon(this.components);
@@ -93,11 +93,11 @@
             this.ctxIcon.SuspendLayout();
             this.SuspendLayout();
             // 
-            // timer1
+            // tmrPoll
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 32;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.tmrPoll.Enabled = true;
+            this.tmrPoll.Interval = 32;
+            this.tmrPoll.Tick += new System.EventHandler(this.tmrPoll_Tick);
             // 
             // txtDebug
             // 
@@ -310,7 +310,7 @@
             this.groupBox4.Controls.Add(this.txtButton2);
             this.groupBox4.Controls.Add(this.label1);
             this.groupBox4.Controls.Add(this.txtButton1);
-            this.groupBox4.Controls.Add(this.chkBinds);
+            this.groupBox4.Controls.Add(this.ChkBinds);
             this.groupBox4.Location = new System.Drawing.Point(248, 3);
             this.groupBox4.Name = "groupBox4";
             this.tableLayoutPanel1.SetRowSpan(this.groupBox4, 2);
@@ -531,7 +531,7 @@
             this.txtDelay4.TabIndex = 15;
             this.txtDelay4.Tag = "3";
             this.txtDelay4.Text = "0";
-            this.txtDelay4.TextChanged += new System.EventHandler(this.event_validateDelay);
+            this.txtDelay4.TextChanged += new System.EventHandler(this.Event_ValidateDelay);
             // 
             // txtDelay3
             // 
@@ -541,7 +541,7 @@
             this.txtDelay3.TabIndex = 13;
             this.txtDelay3.Tag = "2";
             this.txtDelay3.Text = "0";
-            this.txtDelay3.TextChanged += new System.EventHandler(this.event_validateDelay);
+            this.txtDelay3.TextChanged += new System.EventHandler(this.Event_ValidateDelay);
             // 
             // txtDelay2
             // 
@@ -551,7 +551,7 @@
             this.txtDelay2.TabIndex = 11;
             this.txtDelay2.Tag = "1";
             this.txtDelay2.Text = "0";
-            this.txtDelay2.TextChanged += new System.EventHandler(this.event_validateDelay);
+            this.txtDelay2.TextChanged += new System.EventHandler(this.Event_ValidateDelay);
             // 
             // label5
             // 
@@ -570,7 +570,7 @@
             this.txtDelay1.TabIndex = 9;
             this.txtDelay1.Tag = "0";
             this.txtDelay1.Text = "0";
-            this.txtDelay1.TextChanged += new System.EventHandler(this.event_validateDelay);
+            this.txtDelay1.TextChanged += new System.EventHandler(this.Event_ValidateDelay);
             // 
             // txtButton4
             // 
@@ -609,15 +609,15 @@
             this.txtButton1.Size = new System.Drawing.Size(100, 20);
             this.txtButton1.TabIndex = 1;
             // 
-            // chkBinds
+            // ChkBinds
             // 
-            this.chkBinds.AutoSize = true;
-            this.chkBinds.Location = new System.Drawing.Point(6, 18);
-            this.chkBinds.Name = "chkBinds";
-            this.chkBinds.Size = new System.Drawing.Size(88, 17);
-            this.chkBinds.TabIndex = 0;
-            this.chkBinds.Text = "Enable Binds";
-            this.chkBinds.UseVisualStyleBackColor = true;
+            this.ChkBinds.AutoSize = true;
+            this.ChkBinds.Location = new System.Drawing.Point(6, 18);
+            this.ChkBinds.Name = "ChkBinds";
+            this.ChkBinds.Size = new System.Drawing.Size(88, 17);
+            this.ChkBinds.TabIndex = 0;
+            this.ChkBinds.Text = "Enable Binds";
+            this.ChkBinds.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
             // 
@@ -641,7 +641,7 @@
             // 
             this.eventTimer.Enabled = true;
             this.eventTimer.Interval = 10;
-            this.eventTimer.Tick += new System.EventHandler(this.eventTimer_Tick);
+            this.eventTimer.Tick += new System.EventHandler(this.EventTimer_Tick);
             // 
             // ntiIcon
             // 
@@ -649,7 +649,7 @@
             this.ntiIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("ntiIcon.Icon")));
             this.ntiIcon.Text = "Kiosk Control Panel";
             this.ntiIcon.Visible = true;
-            this.ntiIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ntiIcon_MouseClick);
+            this.ntiIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NtiIcon_MouseClick);
             // 
             // ctxIcon
             // 
@@ -659,14 +659,14 @@
             this.ctiExit});
             this.ctxIcon.Name = "ctxIcon";
             this.ctxIcon.Size = new System.Drawing.Size(141, 54);
-            this.ctxIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ctiShow_Click);
+            this.ctxIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CtiShow_Click);
             // 
             // ctiShow
             // 
             this.ctiShow.Name = "ctiShow";
             this.ctiShow.Size = new System.Drawing.Size(140, 22);
             this.ctiShow.Text = "Show config";
-            this.ctiShow.Click += new System.EventHandler(this.ctiShow_Click);
+            this.ctiShow.Click += new System.EventHandler(this.CtiShow_Click);
             // 
             // toolStripSeparator1
             // 
@@ -678,7 +678,7 @@
             this.ctiExit.Name = "ctiExit";
             this.ctiExit.Size = new System.Drawing.Size(140, 22);
             this.ctiExit.Text = "Exit";
-            this.ctiExit.Click += new System.EventHandler(this.ctiExit_Click);
+            this.ctiExit.Click += new System.EventHandler(this.CtiExit_Click);
             // 
             // frmCpl
             // 
@@ -692,9 +692,9 @@
             this.Name = "frmCpl";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Kiosk Control Panel";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCpl_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmCpl_FormClosed);
-            this.SizeChanged += new System.EventHandler(this.frmCpl_SizeChanged);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCpl_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmCpl_FormClosed);
+            this.SizeChanged += new System.EventHandler(this.FrmCpl_SizeChanged);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -708,7 +708,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer tmrPoll;
         private System.Windows.Forms.TextBox txtDebug;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -727,7 +727,7 @@
         private System.Windows.Forms.TextBox txtButton2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtButton1;
-        private System.Windows.Forms.CheckBox chkBinds;
+        private System.Windows.Forms.CheckBox ChkBinds;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;

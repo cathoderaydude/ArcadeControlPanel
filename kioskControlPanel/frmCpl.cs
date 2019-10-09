@@ -25,39 +25,39 @@ namespace kioskControlPanel
         public byte[] btnBits;
         
         // Struct to store button state and milliseconds until it should take effect
-        private class buttonInfo
+        private class ButtonInfo
         {
             public bool state;
             public int delay;
             public int remaining;
-            public bool soundEffect;
+            public bool SoundEffect;
 
             // These allow you to do "if buttonState[i] == true" instead of needing to include .state
-            public static bool operator ==(buttonInfo x, bool y)
+            public static bool operator ==(ButtonInfo x, bool y)
             {
                 return (x.state == y);
             }
-            public static bool operator !=(buttonInfo x, bool y)
+            public static bool operator !=(ButtonInfo x, bool y)
             {
                 return (x.state != y);
             }
 
-            public buttonInfo()
+            public ButtonInfo()
             {
                 this.state = false;
                 this.delay = 0;
                 this.remaining = 0;
-                this.soundEffect = true;
+                this.SoundEffect = true;
             }
         }
         
-        private Dictionary<int, buttonInfo> buttonState;
+        private Dictionary<int, ButtonInfo> ButtonState;
         
         // Array of button status display controls
         private Button[] buttonLights;
 
         // Arrays of action fields
-        private TextBox[] actionStrings;
+        private TextBox[] ActionStrings;
         private TextBox[] delayValues;
 
         private WMPLib.WindowsMediaPlayer CoinInSound;
@@ -76,7 +76,7 @@ namespace kioskControlPanel
         {
             InitializeComponent();
 
-            dbgW("Init FT232");
+            DbgW("Init FT232");
             // Initialize device object
             ftdi = new FTDI();
             ft_status = FTDI.FT_STATUS.FT_OK;
@@ -85,7 +85,7 @@ namespace kioskControlPanel
             ft_status = ftdi.OpenByIndex(0);
             if (ft_status == FTDI.FT_STATUS.FT_OK)
             {
-                dbgW("FT232 inited");
+                DbgW("FT232 inited");
             } else
             {
                 MessageBox.Show(this, "No FT232 could be detected. Execution cannot continue.", "Error: Device not present", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -93,47 +93,47 @@ namespace kioskControlPanel
 
             // Set all pins (255 is a bitmask) to asynchronous GPIO mode
             ft_status = ftdi.SetBitMode(255, 1);
-            dbgW("Set async pin mode: " + ft_status.ToString());
+            DbgW("Set async pin mode: " + ft_status.ToString());
             // I'm not sure how this works, but I couldn't get the buffer to consistently return useful results
             // until I dropped this to 300. It was initially at 9600 and would return whole buffers of 00s
             ft_status = ftdi.SetBaudRate(300);
-            dbgW("Set baud rate: " + ft_status.ToString());
-            dbgW("FT232 initialized.");
+            DbgW("Set baud rate: " + ft_status.ToString());
+            DbgW("FT232 initialized.");
 
             // Initialize button bit values
             btnBits = new byte[] { 1, 2, 4, 8, 16, 32, 64, 128 };
             // Initialize button state array
-            buttonState = new Dictionary<int, buttonInfo>();
-            buttonState.Add(0, new buttonInfo());
-            buttonState.Add(1, new buttonInfo());
-            buttonState.Add(2, new buttonInfo());
-            buttonState.Add(3, new buttonInfo());
-            buttonState.Add(4, new buttonInfo());
-            buttonState.Add(5, new buttonInfo());
-            buttonState.Add(6, new buttonInfo());
-            buttonState.Add(7, new buttonInfo());
+            ButtonState = new Dictionary<int, ButtonInfo>();
+            ButtonState.Add(0, new ButtonInfo());
+            ButtonState.Add(1, new ButtonInfo());
+            ButtonState.Add(2, new ButtonInfo());
+            ButtonState.Add(3, new ButtonInfo());
+            ButtonState.Add(4, new ButtonInfo());
+            ButtonState.Add(5, new ButtonInfo());
+            ButtonState.Add(6, new ButtonInfo());
+            ButtonState.Add(7, new ButtonInfo());
 
             // Initialize button status control array
             buttonLights = new Button[] { btnStatus1, btnStatus2, btnStatus3, btnStatus4, btnStatus5, btnStatus6, btnStatus7, btnStatus8 };
             // Initialize action and delay values
-            actionStrings = new TextBox[] { txtButton1, txtButton2, txtButton3, txtButton4, txtButton5, txtButton6, txtButton7, txtButton8 };
+            ActionStrings = new TextBox[] { txtButton1, txtButton2, txtButton3, txtButton4, txtButton5, txtButton6, txtButton7, txtButton8 };
             delayValues = new TextBox[] { txtDelay1, txtDelay2, txtDelay3, txtDelay4, txtDelay5, txtDelay6, txtDelay7, txtDelay8 };
 
             // Load INI file into form, or defaults if no INI
             LoadSettings();
 
             // Initialize delay values from form fields
-            validateDelay(0);
-            validateDelay(1);
-            validateDelay(2);
-            validateDelay(3);
-            validateDelay(4);
-            validateDelay(5);
-            validateDelay(6);
-            validateDelay(7);
+            ValidateDelay(0);
+            ValidateDelay(1);
+            ValidateDelay(2);
+            ValidateDelay(3);
+            ValidateDelay(4);
+            ValidateDelay(5);
+            ValidateDelay(6);
+            ValidateDelay(7);
 
             // Initialize media player
-            dbgW("Initializing sound");
+            DbgW("Initializing sound");
             try
             {
                 // Create player and load sound
@@ -143,15 +143,15 @@ namespace kioskControlPanel
                 // We load the sound now so it'll be in memory. If we switched between effects on the fly you could hit I/O pauses
                 CoinInSound.URL = "coin in.mp3";
 
-                dbgW("Sound initialized");
+                DbgW("Sound initialized");
                 // TODO: Add other sound effect initializers.
             } catch (Exception err)
             {
-                dbgW("Unable to initialize sound: " + err.ToString());
-                dbgW("There will be no sound effects.");
+                DbgW("Unable to initialize sound: " + err.ToString());
+                DbgW("There will be no sound effects.");
             }
 
-            dbgW("Initialization complete, ready to go.");
+            DbgW("Initialization complete, ready to go.");
 
             // This and the below are fairly cursed, and required to allow the app to exist solely in the systray
             // without an extremely unpleasant refactor.
@@ -176,7 +176,7 @@ namespace kioskControlPanel
         }
 
         // Write a line to the debug textbox and file
-        private void dbgW(string str)
+        private void DbgW(string str)
         {
             string timestamp = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss:fff");
             string debugline = string.Format("[{0}] {1} \r\n", timestamp, str);
@@ -188,7 +188,7 @@ namespace kioskControlPanel
          *  MAIN PROGRAM FUNCTIONALITY
          */
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void tmrPoll_Tick(object sender, EventArgs e)
         {
             // Buffer for pin status
             // Different array sizes have different effects; I don't understand why, but the device
@@ -205,10 +205,10 @@ namespace kioskControlPanel
             {
                 // If anything went wrong, stop the loop but don't exit so the user can read the logs.
                 string errorMessage = "Failed to get number of bytes available to read (error " + ft_status.ToString() + ")";
-                dbgW(errorMessage);
-                dbgW("Processing halted. Restart program to continue.");
+                DbgW(errorMessage);
+                DbgW("Processing halted. Restart program to continue.");
                 MessageBox.Show(this, "An error (" + ft_status.ToString() + ") was returned when trying to read the FT232.\r\nProcessing halted. Restart the program to continue.", "Error: Device not present", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                timer1.Enabled = false;
+                tmrPoll.Enabled = false;
                 return;
             }
 
@@ -234,45 +234,45 @@ namespace kioskControlPanel
             for(int i=0;i<btnBits.Length;i++)
             {
                 // Check for bit for this button, and make sure the button isn't already pressed
-                if (((((int)readData[0]) & btnBits[i]) != 0) && buttonState[i] == false)
+                if (((((int)readData[0]) & btnBits[i]) != 0) && ButtonState[i] == false)
                 {
                     // Button was not pressed and now is
                     // Set flag in button status table
-                    buttonState[i].state = true;
+                    ButtonState[i].state = true;
                     // Log event
-                    dbgW("Button " + i.ToString() + " pressed");
+                    DbgW("Button " + i.ToString() + " pressed");
 
-                    int delayValue = buttonState[i].delay;
+                    int delayValue = ButtonState[i].delay;
                     // Check whether the button's action has a delay
                     if (delayValue > 0)
                     {
                         // Yes; turn diagnostic light orange and set the delay value for the button
                         buttonLights[i].BackColor = Color.Orange;
-                        buttonState[i].remaining = delayValue;
-                        dbgW("Delay of " + (delayValue * 10).ToString() + " milliseconds");
+                        ButtonState[i].remaining = delayValue;
+                        DbgW("Delay of " + (delayValue * 10).ToString() + " milliseconds");
                     }
                     else
                     {
                         // No; Turn diagnostic light green and take action immediately
                         buttonLights[i].BackColor = Color.LimeGreen;
-                        buttonEvent(i);
+                        ButtonEvent(i);
                     }
                 }
-                else if (((((int)readData[0]) & btnBits[i]) == 0) && buttonState[i] == true)
+                else if (((((int)readData[0]) & btnBits[i]) == 0) && ButtonState[i] == true)
                 {
                     // Button was pressed and has been released
                     // Clear flag in button status table
-                    buttonState[i].state = false;
+                    ButtonState[i].state = false;
                     // Clear diagnostic light
                     buttonLights[i].BackColor = Color.Maroon;
                     // Log event
-                    dbgW("Button " + i.ToString() + " released");
+                    DbgW("Button " + i.ToString() + " released");
                 }
                 // No action is taken if the button state hasn't changed, so there's no else
             }
         }
 
-        private void eventTimer_Tick(object sender, EventArgs e)
+        private void EventTimer_Tick(object sender, EventArgs e)
         {
             // We have two timers because the one polling the FT232 operates at 16ms, the interval of the FT232's read timeout,
             // whereas this one runs at 10ms so we can cleanly count down delay values.
@@ -282,21 +282,21 @@ namespace kioskControlPanel
             // Check the state of each button
             for (int i = 0; i < btnBits.Length; i++)
             {
-                if(buttonState[i] == true)
+                if(ButtonState[i] == true)
                 {
                     // Button is currently pressed
                     // Check if countdown has expired
-                    if (buttonState[i].remaining > 0)
+                    if (ButtonState[i].remaining > 0)
                     {
-                        buttonState[i].remaining -= 1; // Button isn't ready to fire; decrement value
+                        ButtonState[i].remaining -= 1; // Button isn't ready to fire; decrement value
 
                         // We check again here; if we are now under 0, fire the action
                         // This code will never be reached once the number sinks below 0 for the first time
-                        if (buttonState[i].remaining <= 0)
+                        if (ButtonState[i].remaining <= 0)
                         {
                             buttonLights[i].BackColor = Color.LimeGreen;
-                            dbgW("Delay elapsed on button " + i.ToString());
-                            buttonEvent(i);
+                            DbgW("Delay elapsed on button " + i.ToString());
+                            ButtonEvent(i);
                         }
                     }
                 }
@@ -304,17 +304,17 @@ namespace kioskControlPanel
         }
         
         // Common function for triggering button events so delay & instant buttons use the same code
-        private void buttonEvent(int index)
+        private void ButtonEvent(int index)
         {
             // Don't actually send keys if "Enable binds" is unchecked
-            if (chkBinds.Checked == true)
+            if (ChkBinds.Checked == true)
             {
-                dbgW("Sending keys: " + actionStrings[index].Text);
-                if (buttonState[index].soundEffect == true) PlaySound("coinin");
-                SendKeys.Send(actionStrings[index].Text);
+                DbgW("Sending keys: " + ActionStrings[index].Text);
+                if (ButtonState[index].SoundEffect == true) PlaySound("coinin");
+                SendKeys.Send(ActionStrings[index].Text);
             } else
             {
-                dbgW("Binds disabled; not sending keys");
+                DbgW("Binds disabled; not sending keys");
             }
         }
 
@@ -325,31 +325,31 @@ namespace kioskControlPanel
          */
 
         // Event when a delay field is changed
-        private void event_validateDelay(object sender, EventArgs e)
+        private void Event_ValidateDelay(object sender, EventArgs e)
         {
             // Find field ID and call method to update delay
             TextBox tb = (TextBox)sender;
 
             int i = int.Parse((string) tb.Tag);
-            validateDelay(i);
+            ValidateDelay(i);
         }
 
         // Event for updating button delays
-        private void validateDelay(int i)
+        private void ValidateDelay(int i)
         {
             // Update delay on start or when text field is changed
             // Check if there's a valid number in the delay field
             try
             {
                 // Yep - clear field error color and set delay value
-                buttonState[i].delay = int.Parse(delayValues[i].Text);
+                ButtonState[i].delay = int.Parse(delayValues[i].Text);
                 this.BackColor = DefaultBackColor;
             }
             catch (Exception err)
             {
                 // Nope - flag field and set delay value to 0 so we can continue processing
-                dbgW("The value for delay on button " + i.ToString() + " is not a valid number.");
-                buttonState[i].delay = 0;
+                DbgW("The value for delay on button " + i.ToString() + " is not a valid number.");
+                ButtonState[i].delay = 0;
                 delayValues[i].BackColor = Color.Pink;
             }
         }
@@ -368,7 +368,7 @@ namespace kioskControlPanel
          */
 
         // If user minimizes window, go to tray
-        private void frmCpl_SizeChanged(object sender, EventArgs e)
+        private void FrmCpl_SizeChanged(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Minimized)
             {
@@ -377,7 +377,7 @@ namespace kioskControlPanel
         }
 
         // Left click on trayicon to raise window
-        private void ntiIcon_MouseClick(object sender, MouseEventArgs e)
+        private void NtiIcon_MouseClick(object sender, MouseEventArgs e)
         {
             if(e.Button == MouseButtons.Left)
             {
@@ -388,13 +388,13 @@ namespace kioskControlPanel
         }
 
         // "Exit" button in trayicon menu
-        private void ctiExit_Click(object sender, EventArgs e)
+        private void CtiExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
         // "Show" button in trayicon menu
-        private void ctiShow_Click(object sender, EventArgs e)
+        private void CtiShow_Click(object sender, EventArgs e)
         {
             this.Show();
             this.WindowState = FormWindowState.Normal; // In case it was minimized
@@ -402,7 +402,7 @@ namespace kioskControlPanel
         }
 
         // Prompt user to exit
-        private void frmCpl_FormClosing(object sender, FormClosingEventArgs e)
+        private void FrmCpl_FormClosing(object sender, FormClosingEventArgs e)
         {
             // If Windows is shutting down, don't interrupt it
             if (e.CloseReason == CloseReason.WindowsShutDown || e.CloseReason == CloseReason.TaskManagerClosing) return;
@@ -420,7 +420,7 @@ namespace kioskControlPanel
          */
 
         // If the program is closing, save the settings
-        private void frmCpl_FormClosed(object sender, FormClosedEventArgs e)
+        private void FrmCpl_FormClosed(object sender, FormClosedEventArgs e)
         {
             SaveSettings();
         }
@@ -453,7 +453,7 @@ namespace kioskControlPanel
             }
             catch (Win32Exception err)
             {
-                dbgW("Unable to read INI: " + err.ToString());
+                DbgW("Unable to read INI: " + err.ToString());
             }
         }
         
