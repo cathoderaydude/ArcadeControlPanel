@@ -81,10 +81,16 @@
             this.btnStatus7 = new System.Windows.Forms.Button();
             this.btnStatus6 = new System.Windows.Forms.Button();
             this.btnStatus5 = new System.Windows.Forms.Button();
+            this.ntiIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.ctxIcon = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctiExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.ctiShow = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.ctxIcon.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
@@ -637,6 +643,41 @@
             this.btnStatus5.Text = "5";
             this.btnStatus5.UseVisualStyleBackColor = false;
             // 
+            // ntiIcon
+            // 
+            this.ntiIcon.ContextMenuStrip = this.ctxIcon;
+            this.ntiIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("ntiIcon.Icon")));
+            this.ntiIcon.Text = "Kiosk Control Panel";
+            this.ntiIcon.Visible = true;
+            // 
+            // ctxIcon
+            // 
+            this.ctxIcon.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ctiShow,
+            this.toolStripSeparator1,
+            this.ctiExit});
+            this.ctxIcon.Name = "ctxIcon";
+            this.ctxIcon.Size = new System.Drawing.Size(141, 54);
+            // 
+            // ctiExit
+            // 
+            this.ctiExit.Name = "ctiExit";
+            this.ctiExit.Size = new System.Drawing.Size(140, 22);
+            this.ctiExit.Text = "Exit";
+            this.ctiExit.Click += new System.EventHandler(this.ctiExit_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(137, 6);
+            // 
+            // ctiShow
+            // 
+            this.ctiShow.Name = "ctiShow";
+            this.ctiShow.Size = new System.Drawing.Size(140, 22);
+            this.ctiShow.Text = "Show config";
+            this.ctiShow.Click += new System.EventHandler(this.ctiShow_Click);
+            // 
             // frmCpl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -648,7 +689,7 @@
             this.MinimumSize = new System.Drawing.Size(755, 343);
             this.Name = "frmCpl";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Auxiliary Key Interface";
+            this.Text = "Kiosk Control Panel";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -656,6 +697,7 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.ctxIcon.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -712,6 +754,11 @@
         private System.Windows.Forms.Button btnStatus7;
         private System.Windows.Forms.Button btnStatus6;
         private System.Windows.Forms.Button btnStatus5;
+        private System.Windows.Forms.NotifyIcon ntiIcon;
+        private System.Windows.Forms.ContextMenuStrip ctxIcon;
+        private System.Windows.Forms.ToolStripMenuItem ctiShow;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem ctiExit;
     }
 }
 

@@ -327,5 +327,15 @@ namespace kioskControlPanel
             CoinInSound.controls.stop();
             CoinInSound.controls.play();
         }
+
+        private void ctiExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void ctiShow_Click(object sender, EventArgs e)
+        {
+            this.Show();
+        }
     }
 }

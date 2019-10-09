@@ -93,6 +93,7 @@
   <ItemGroup>
     <Content Include="alpha-screenshot.png" />
     <Content Include="coin in.mp3" />
+    <Content Include="kcp.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
