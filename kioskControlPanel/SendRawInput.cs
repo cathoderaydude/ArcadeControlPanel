@@ -78,7 +78,7 @@ namespace kioskControlPanel
         static extern uint SendInput(uint nInputs, INPUT[] pInputs, int cbSize);
 
         // Send a single keystroke
-        public static void SendKey(KeyCodes key, int delay = 0)
+        public static void SendKey(KeyCodes key, bool KeyDown, bool KeyUp, int delay = 0)
         {
             ushort scanKey = (ushort)key;
 
@@ -101,20 +101,42 @@ namespace kioskControlPanel
                 },
             };
 
-            // Send key DOWN event
-            if (SendInput((uint)keyPress.Length, keyPress, Marshal.SizeOf(typeof(INPUT))) == 0)
+            if (KeyDown == true)
             {
-                throw new SendRawInputException("SendInput failed with code: " + Marshal.GetLastWin32Error().ToString());
+                // Send key DOWN event
+                if (SendInput((uint)keyPress.Length, keyPress, Marshal.SizeOf(typeof(INPUT))) == 0)
+                {
+                    throw new SendRawInputException("SendInput failed with code: " + Marshal.GetLastWin32Error().ToString());
+                }
             }
+
             // Pause if there's a required delay for e.g. MAME
             if (delay > 0) Thread.Sleep(delay);
 
-            // key UP
-            keyPress[0].u.ki.dwFlags = KEYEVENTF_KEYUP | KEYEVENTF_SCANCODE;
-            if (SendInput((uint)keyPress.Length, keyPress, Marshal.SizeOf(typeof(INPUT))) == 0)
+            if (KeyUp == true)
             {
-                throw new SendRawInputException("SendInput failed with code: " + Marshal.GetLastWin32Error().ToString());
+                // key UP
+                keyPress[0].u.ki.dwFlags = KEYEVENTF_KEYUP | KEYEVENTF_SCANCODE;
+                if (SendInput((uint)keyPress.Length, keyPress, Marshal.SizeOf(typeof(INPUT))) == 0)
+                {
+                    throw new SendRawInputException("SendInput failed with code: " + Marshal.GetLastWin32Error().ToString());
+                }
             }
+        }
+
+        public static void SendKeyPress(KeyCodes key, int delay = 0)
+        {
+            SendKey(key, true, true, delay);
+        }
+
+        public static void SendKeyDown(KeyCodes key)
+        {
+            SendKey(key, true, false);
+        }
+
+        public static void SendKeyUp(KeyCodes key)
+        {
+            SendKey(key, false, true);
         }
 
         // Custom exception
