@@ -12,6 +12,7 @@ using System.IO;
 using System.Media;
 using WMPLib;
 using Ini;
+using System.Text.RegularExpressions;
 
 namespace kioskControlPanel
 {
@@ -160,6 +161,9 @@ namespace kioskControlPanel
             // This and the below are fairly cursed, and required to allow the app to exist solely in the systray
             // without an extremely unpleasant refactor.
             FirstRun = true;
+
+            //Console.WriteLine(ValidateMacro("ALT(F4) 5 F5"));
+            Console.WriteLine(ValidateMacro("{ALT F4} 5 F5"));
         }
 
         private bool FirstRun = false;
@@ -316,7 +320,6 @@ namespace kioskControlPanel
             SendRawInput.SendKeyPress(SendRawInput.KeyCodes.DIK_V, 50);
             SendRawInput.SendKeyUp(SendRawInput.KeyCodes.DIK_LCONTROL);
 
-
             // Don't actually send keys if "Enable binds" is unchecked
             if (ChkBinds.Checked == true)
             {
@@ -329,7 +332,51 @@ namespace kioskControlPanel
             }
         }
 
+        // Rename this to ParseMacro
+        // Parse a key macro and produce a series of tokens
+        private bool ValidateMacro(string macro, bool testonly = true)
+        {
+            Regex r = new Regex(@"({.*?})", RegexOptions.IgnoreCase);
+            Regex r2 = new Regex(@"(\w*) ", RegexOptions.IgnoreCase);
 
+            // Holds the processed command sequences
+            List<string> ActionTokens = new List<string>();
+
+            Match ActionMatch = r.Match(macro);
+            List<string> ActionBlocks = new List<string>();
+            // For each { } block...
+            while(ActionMatch.Success)
+            {
+                // Find every word in the block
+                Match TokenMatch = r2.Match(ActionMatch.Groups[0].Value);
+                if (TokenMatch.Length == 1)
+                {
+                    // Check if key is valid and return false if so
+                }
+                else
+                {
+                    while (TokenMatch.Success)
+                    {
+
+                        TokenMatch.NextMatch();
+                    }
+                }
+                ActionMatch.NextMatch();
+            }
+            if (ActionBlocks.Count > 0)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
+
+        // Convert a string to a matching keycode or fail if no match
+        private SendRawInput.KeyCodes ConvertKeycode(string key)
+        {
+            return SendRawInput.KeyCodes.DIK_Z;
+        }
 
         /*
          *  UI BEHAVIORS
