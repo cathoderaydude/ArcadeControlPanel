@@ -316,9 +316,9 @@ namespace kioskControlPanel
         private void ButtonEvent(int index)
         {
             // New sendkey APIs
-            SendRawInput.SendKeyDown(SendRawInput.KeyCodes.DIK_LCONTROL);
-            SendRawInput.SendKeyPress(SendRawInput.KeyCodes.DIK_V, 50);
-            SendRawInput.SendKeyUp(SendRawInput.KeyCodes.DIK_LCONTROL);
+            //SendRawInput.SendKeyDown(SendRawInput.KeyCodes.DIK_LCONTROL);
+            //SendRawInput.SendKeyPress(SendRawInput.KeyCodes.DIK_V, 50);
+            //SendRawInput.SendKeyUp(SendRawInput.KeyCodes.DIK_LCONTROL);
 
             // Don't actually send keys if "Enable binds" is unchecked
             if (ChkBinds.Checked == true)
@@ -336,8 +336,13 @@ namespace kioskControlPanel
         // Parse a key macro and produce a series of tokens
         private bool ValidateMacro(string macro, bool testonly = true)
         {
+            // We need to do this to bump the static constructor; tune this up later
+            Console.WriteLine(SendRawInput.YeahWereHere);
+            
             Regex r = new Regex(@"({.*?})", RegexOptions.IgnoreCase);
             Regex r2 = new Regex(@"(\w*) ", RegexOptions.IgnoreCase);
+
+            "stljisdftd".Split
 
             // Holds the processed command sequences
             List<string> ActionTokens = new List<string>();
@@ -351,15 +356,31 @@ namespace kioskControlPanel
                 Match TokenMatch = r2.Match(ActionMatch.Groups[0].Value);
                 if (TokenMatch.Length == 1)
                 {
+                    // There's only one key in the block, just do it
                     // Check if key is valid and return false if so
                 }
                 else
                 {
-                    while (TokenMatch.Success)
+                    // There's more than one key, send each one
+                    /* 
+                     * Note for later reference: there are a lot of ways of making modifier keys work, and at some later date,
+                     * if anyone has interest in this project , I would love to see this language replaced with one that does a
+                     * cleaner job with them, but parsers are the opposite of my forte, so this isn't going to be clean.
+                     * 
+                     * A good way to handle this would be to say that a single modifier by itself is an instantaneous keypress,
+                     * a modifier prefixed e.g. CTRL {A A S} will send Ctrl keydown, A A S as keypresses, then Ctrl keyup. But
+                     * the code for that is ugly and confusing to my head, so I'm just going to make every modifier a toggle.
+                     * 
+                     * There will be an index - ModifierKeys - and every key in that will have a status flag. when it's in a
+                     * macro it will toggle the state every time it's called; macro validation will fail if not all modifiers are
+                     * released after being set.
+                     */
+
+                    /*while (TokenMatch.Success)
                     {
 
                         TokenMatch.NextMatch();
-                    }
+                    }*/
                 }
                 ActionMatch.NextMatch();
             }
@@ -375,7 +396,8 @@ namespace kioskControlPanel
         // Convert a string to a matching keycode or fail if no match
         private SendRawInput.KeyCodes ConvertKeycode(string key)
         {
-            return SendRawInput.KeyCodes.DIK_Z;
+            //return SendRawInput.KeyCodes.DIK_Z;
+            return SendRawInput.KeyCodes.A;
         }
 
         /*

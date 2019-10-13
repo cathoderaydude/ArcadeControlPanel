@@ -175,7 +175,47 @@ namespace kioskControlPanel
             }
         }
 
-        Dictionary<string, KeyCodes> KeyLookup;
+        public class KeyInfo
+        {
+            public ushort Code;
+            public bool Modifier;
+            public bool State;
+
+            public KeyInfo(ushort pCode, bool pModifier, bool pState)
+            {
+                Code = pCode;
+                Modifier = pModifier;
+                State = pState;
+            }
+        }
+
+        public static Dictionary<string, KeyInfo> KeyData;
+
+        static SendRawInput()
+        {
+            KeyData = new Dictionary<string, KeyInfo>();
+
+            Console.WriteLine("Constructing SendRawInput");
+
+            foreach (KeyCodes code in Enum.GetValues(typeof(KeyCodes))) {
+                string name = code.ToString();
+                ushort value = (ushort)code;
+                KeyData.Add(name, new KeyInfo(value, false, false));
+                Console.WriteLine(name + " " + value.ToString());
+            }
+
+            KeyData["LCTRL"].Modifier = true;
+            KeyData["LSHIFT"].Modifier = true;
+            KeyData["RSHIFT"].Modifier = true;
+            KeyData["RCTRL"].Modifier = true;
+            KeyData["LWIN"].Modifier = true;
+            KeyData["RWIN"].Modifier = true;
+            KeyData["LALT"].Modifier = true;
+
+            YeahWereHere = true;
+        }
+
+        public static bool YeahWereHere;
 
         // Physical scancodes for theoretically every key
         public enum KeyCodes
@@ -208,7 +248,7 @@ namespace kioskControlPanel
             LBRACKET = 0x1A,
             RBRACKET = 0x1B,
             RETURN = 0x1C,    /* Enter on main keyboard */
-            LCONTROL = 0x1D,
+            LCTRL = 0x1D,
             A = 0x1E,
             S = 0x1F,
             D = 0x20,
@@ -235,7 +275,7 @@ namespace kioskControlPanel
             SLASH = 0x35,    /* / on main keyboard */
             RSHIFT = 0x36,
             MULTIPLY = 0x37,    /* * on numeric keypad */
-            LMENU = 0x38,    /* left Alt */
+            LALT = 0x38,    /* left Alt */
             SPACE = 0x39,
             CAPITAL = 0x3A,
             F1 = 0x3B,
@@ -286,7 +326,7 @@ namespace kioskControlPanel
             UNLABELED = 0x97,    /*                        (J3100) */
             NEXTTRACK = 0x99,    /* Next Track */
             NUMPADENTER = 0x9C,    /* Enter on numeric keypad */
-            RCONTROL = 0x9D,
+            RCTRL = 0x9D,
             MUTE = 0xA0,    /* Mute */
             CALCULATOR = 0xA1,    /* Calculator */
             PLAYPAUSE = 0xA2,    /* Play / Pause */
@@ -297,7 +337,7 @@ namespace kioskControlPanel
             NUMPADCOMMA = 0xB3,    /* , on numeric keypad (NEC PC98) */
             DIVIDE = 0xB5,    /* / on numeric keypad */
             SYSRQ = 0xB7,
-            RMENU = 0xB8,    /* right Alt */
+            RALT = 0xB8,    /* right Alt */
             PAUSE = 0xC5,    /* Pause */
             HOME = 0xC7,    /* Home on arrow keypad */
             UP = 0xC8,    /* UpArrow on arrow keypad */
