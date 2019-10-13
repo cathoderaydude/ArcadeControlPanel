@@ -175,11 +175,12 @@ namespace kioskControlPanel
             }
         }
 
+        // Stores info about each key; for convenience the keys current state (for modifiers) is stored here as well
         public class KeyInfo
         {
-            public ushort Code;
-            public bool Modifier;
-            public bool State;
+            public ushort Code; // The scancode
+            public bool Modifier;  // Whether this key is a modifier
+            public bool State; // Whether this modifier key is currently held down
 
             public KeyInfo(ushort pCode, bool pModifier, bool pState)
             {
@@ -191,19 +192,23 @@ namespace kioskControlPanel
 
         public static Dictionary<string, KeyInfo> KeyData;
 
+        // Static constructor that populates the KeyData dictionary because C# has atrocious support for 
+        // defining static data at compile time
         static SendRawInput()
         {
             KeyData = new Dictionary<string, KeyInfo>();
 
-            Console.WriteLine("Constructing SendRawInput");
-
+            // Walk the KeyCodes enum and copy every value into a KeyInfo object
+            // Since the enum is the authoritative data source for key IDs this allows us to programmatically
+            // identify keys but also access them dynamically at runtime without having two separate
+            // arrays that could fall out of sync
             foreach (KeyCodes code in Enum.GetValues(typeof(KeyCodes))) {
                 string name = code.ToString();
                 ushort value = (ushort)code;
                 KeyData.Add(name, new KeyInfo(value, false, false));
-                Console.WriteLine(name + " " + value.ToString());
             }
 
+            // Flag every modifier key
             KeyData["LCTRL"].Modifier = true;
             KeyData["LSHIFT"].Modifier = true;
             KeyData["RSHIFT"].Modifier = true;
@@ -212,9 +217,12 @@ namespace kioskControlPanel
             KeyData["RWIN"].Modifier = true;
             KeyData["LALT"].Modifier = true;
 
+            // This will be deleted later
             YeahWereHere = true;
         }
 
+        // This is just used to "bump" the static constructor; it will be replaced with a 
+        // noop function later to do the same thing
         public static bool YeahWereHere;
 
         // Physical scancodes for theoretically every key

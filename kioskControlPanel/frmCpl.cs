@@ -162,8 +162,9 @@ namespace kioskControlPanel
             // without an extremely unpleasant refactor.
             FirstRun = true;
 
-            //Console.WriteLine(ValidateMacro("ALT(F4) 5 F5"));
-            Console.WriteLine(ValidateMacro("{ALT F4} 5 F5"));
+            // Used for testing the macro validator, will remove later
+            //Console.WriteLine(ValidateMacro("LALT F4 LCTRL F5"));
+            //Console.WriteLine(ValidateMacro("F4 D F C N1 LCTRL N LCTRL"));
         }
 
         private bool FirstRun = false;
@@ -190,6 +191,9 @@ namespace kioskControlPanel
             string debugline = string.Format("[{0}] {1} \r\n", timestamp, str);
             txtDebug.AppendText(debugline);
             Program.fDebug.Write(debugline);
+#if DEBUG
+            Console.WriteLine(debugline);
+#endif
         }
 
         /*
@@ -338,30 +342,55 @@ namespace kioskControlPanel
         {
             // We need to do this to bump the static constructor; tune this up later
             Console.WriteLine(SendRawInput.YeahWereHere);
-            
-            Regex r = new Regex(@"({.*?})", RegexOptions.IgnoreCase);
-            Regex r2 = new Regex(@"(\w*) ", RegexOptions.IgnoreCase);
 
-            "stljisdftd".Split
+            // This will track modifier keys to ensure they're all terminated
+            List<string> Modifiers = new List<string>();
 
-            // Holds the processed command sequences
-            List<string> ActionTokens = new List<string>();
+            // Split input into words
+            string[] tokens = macro.Split(' ');
 
-            Match ActionMatch = r.Match(macro);
-            List<string> ActionBlocks = new List<string>();
-            // For each { } block...
-            while(ActionMatch.Success)
+            if (tokens.Length < 1)
             {
-                // Find every word in the block
-                Match TokenMatch = r2.Match(ActionMatch.Groups[0].Value);
-                if (TokenMatch.Length == 1)
+                DbgW("Key macro is blank");
+                return false;
+            }
+
+            // Iterate over words
+            foreach (string token in tokens)
+            {
+                string tokenU = token.ToUpper();
+                // Check if word is a valid key
+                if (SendRawInput.KeyData.ContainsKey(tokenU))
                 {
-                    // There's only one key in the block, just do it
-                    // Check if key is valid and return false if so
+                    SendRawInput.KeyInfo key = SendRawInput.KeyData[tokenU];
+                    // If the key is a modifier and isn't in the Modifiers list, add it.
+                    // Otherwise, remove it.
+                    // This will be used to ensure all modifiers are terminated.
+                    if (key.Modifier)
+                    {
+                        if (!Modifiers.Contains(tokenU)) {
+                            Modifiers.Add(tokenU);
+                        } else {
+                            Modifiers.Remove(tokenU);
+                        }
+                    }
+                } else
+                {
+                    // Was not a valid key; give up
+                    DbgW("Invalid key name: " + token);
+                    return false;
                 }
-                else
-                {
-                    // There's more than one key, send each one
+            }
+
+            if (Modifiers.Count > 0)
+            {
+                DbgW("Macro invalid: modifier keys " + string.Join(",", Modifiers) + " were not terminated.");
+                
+                return false;
+            }
+
+            return true;
+  
                     /* 
                      * Note for later reference: there are a lot of ways of making modifier keys work, and at some later date,
                      * if anyone has interest in this project , I would love to see this language replaced with one that does a
@@ -375,22 +404,6 @@ namespace kioskControlPanel
                      * macro it will toggle the state every time it's called; macro validation will fail if not all modifiers are
                      * released after being set.
                      */
-
-                    /*while (TokenMatch.Success)
-                    {
-
-                        TokenMatch.NextMatch();
-                    }*/
-                }
-                ActionMatch.NextMatch();
-            }
-            if (ActionBlocks.Count > 0)
-            {
-                return true;
-            } else
-            {
-                return false;
-            }
         }
 
         // Convert a string to a matching keycode or fail if no match
