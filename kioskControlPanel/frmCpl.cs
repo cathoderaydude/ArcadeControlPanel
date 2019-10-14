@@ -87,7 +87,9 @@ namespace kioskControlPanel
             ft_status = ftdi.OpenByIndex(0);
             if (ft_status == FTDI.FT_STATUS.FT_OK)
             {
-                DbgW("FT232 inited");
+                // Print serial number; obvs. later we will need to add methods to select from multiple connected devices
+                ftdi.GetSerialNumber(out string SerialNumber);
+                DbgW("FT232 inited, SN " + SerialNumber);
             } else
             {
                 MessageBox.Show(this, "No FT232 could be detected. Execution cannot continue.", "Error: Device not present", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -146,8 +148,14 @@ namespace kioskControlPanel
                 CoinInSound.settings.autoStart = false;
 
                 // We load the sound now so it'll be in memory. If we switched between effects on the fly you could hit I/O pauses
-                CoinInSound.URL = "coin in.mp3";
-
+                if (File.Exists("coin in.mp3"))
+                {
+                    CoinInSound.URL = "coin in.mp3";
+                } else
+                {
+                    DbgW("File 'coin in.mp3' does not exist; sound will not function.");
+                }
+                
                 DbgW("Sound initialized");
                 // TODO: Add other sound effect initializers.
             } catch (Exception err)
@@ -347,7 +355,7 @@ namespace kioskControlPanel
                 MacroTokens = ValidateMacro(macro);
             } catch (FormatException e)
             {
-                DbgW("Macro for button " + index.ToString() + " is invalid: " + e.ToString());
+                DbgW("Macro for button " + index.ToString() + " is invalid: " + e.Message);
                 return;
             }
 
@@ -375,7 +383,8 @@ namespace kioskControlPanel
                 } else
                 {
                     // It's a normal key, just press it
-                    SendRawInput.SendKeyPress(Token);
+                    // Currently there is a 50ms hardcoded delay; this will be improved later
+                    SendRawInput.SendKeyPress(Token, 50);
                 }
             }
 
