@@ -670,6 +670,7 @@
             this.txtDelay8.TabIndex = 32;
             this.txtDelay8.Tag = "7";
             this.txtDelay8.Text = "0";
+            this.txtDelay8.TextChanged += new System.EventHandler(this.Event_ValidateDelay);
             // 
             // panel15
             // 
@@ -727,6 +728,7 @@
             this.txtDelay7.TabIndex = 30;
             this.txtDelay7.Tag = "6";
             this.txtDelay7.Text = "50";
+            this.txtDelay7.TextChanged += new System.EventHandler(this.Event_ValidateDelay);
             // 
             // panel13
             // 
@@ -784,6 +786,7 @@
             this.txtDelay6.TabIndex = 28;
             this.txtDelay6.Tag = "5";
             this.txtDelay6.Text = "50";
+            this.txtDelay6.TextChanged += new System.EventHandler(this.Event_ValidateDelay);
             // 
             // panel11
             // 
@@ -841,6 +844,7 @@
             this.txtDelay5.TabIndex = 26;
             this.txtDelay5.Tag = "4";
             this.txtDelay5.Text = "0";
+            this.txtDelay5.TextChanged += new System.EventHandler(this.Event_ValidateDelay);
             // 
             // panel9
             // 
