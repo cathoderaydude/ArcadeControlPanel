@@ -284,6 +284,7 @@
             this.label10.TabIndex = 5;
             this.label10.Text = "Click a button to test its binding\r\nThere will be a five second delay,\r\nand a bee" +
     "p when the test fires";
+            this.label10.Visible = false;
             // 
             // label9
             // 
@@ -294,6 +295,7 @@
             this.label9.Size = new System.Drawing.Size(36, 13);
             this.label9.TabIndex = 4;
             this.label9.Text = "Test:";
+            this.label9.Visible = false;
             // 
             // btnStatus4
             // 
@@ -361,7 +363,7 @@
             this.groupBox4.Size = new System.Drawing.Size(409, 482);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Bindings (NOT SAVED)";
+            this.groupBox4.Text = "Bindings";
             // 
             // tableLayoutPanel3
             // 
