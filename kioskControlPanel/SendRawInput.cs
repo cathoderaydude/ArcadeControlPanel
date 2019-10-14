@@ -78,10 +78,8 @@ namespace kioskControlPanel
         static extern uint SendInput(uint nInputs, INPUT[] pInputs, int cbSize);
 
         // Send a single keystroke
-        public static void SendKey(KeyCodes key, bool KeyDown, bool KeyUp, int delay = 0)
+        public static void SendKey(ushort scanKey, bool KeyDown, bool KeyUp, int delay = 0)
         {
-            ushort scanKey = (ushort)key;
-
             // Not sure why this is an array; investigate later
             INPUT[] keyPress = new INPUT[]
             {
@@ -131,7 +129,17 @@ namespace kioskControlPanel
         /// <param name="delay">The delay in milliseconds between the keydown and keyup</param>
         public static void SendKeyPress(KeyCodes key, int delay = 0)
         {
-            SendKey(key, true, true, delay);
+            SendKey(KeyData[key.ToString()].Code, true, true, delay);
+        }
+
+        /// <summary>
+        /// Send a keydown followed by a keyup, with an optional delay between the two
+        /// </summary>
+        /// <param name="key">The keycode to send, as a string</param>
+        /// <param name="delay">The delay in milliseconds between the keydown and keyup</param>
+        public static void SendKeyPress(string key, int delay = 0)
+        {
+            SendKey(KeyData[key].Code, true, true, delay);
         }
 
         /// <summary>
@@ -140,21 +148,21 @@ namespace kioskControlPanel
         /// <param name="key">The keycode to send, from the KeyCodes list</param>
         /// <param name="modifier">The modifier to send, from the KeyCodes list (any key is valid, however)</param>
         /// <param name="delay">The delay in milliseconds between the keydown and keyup</param>
-        public static void SendKeyPressMod(KeyCodes key, KeyCodes modifier, int delay = 0)
+        public static void SendKeyPressMod(string key, string modifier, int delay = 0)
         {
             SendKeyDown(modifier); // Turn modifier on
             SendKeyPress(key, delay); // Send key
             SendKeyUp(modifier); // Turn modifier off
         }
 
-        public static void SendKeyDown(KeyCodes key)
+        public static void SendKeyDown(string key)
         {
-            SendKey(key, true, false);
+            SendKey(KeyData[key].Code, true, false);
         }
 
-        public static void SendKeyUp(KeyCodes key)
+        public static void SendKeyUp(string key)
         {
-            SendKey(key, false, true);
+            SendKey(KeyData[key].Code, false, true);
         }
 
         // Custom exception
@@ -234,10 +242,11 @@ namespace kioskControlPanel
          * Most significantly, all the left keys (LALT, LCTRL, LSHIFT, LWIN) have been renamed without the L because almost
          * everyone intends the L.
          * 
-         * Also, entering "N1" instead of "1" sucks and is hard to read, but enums can't contain numeric keys (ouch!) so
-         * I aliased all the digits to ONE, TWO, THREE, etc.
+         * <strikethrough>Also, entering "N1" instead of "1" sucks and is hard to read, but enums can't contain numeric keys (ouch!) so
+         * I aliased all the digits to ONE, TWO, THREE, etc.</strikethrough>
+         * I found out enums only permit single entries for each value.
          * 
-         * Maybe later I will get rid of the enum entirely and this won't be a problem. I am beginning to question its usefulness.
+         * I think I will get rid of the enum soon.
          */ 
         public enum KeyCodes
         {
@@ -252,16 +261,6 @@ namespace kioskControlPanel
             N8 = 0x09,
             N9 = 0x0A,
             N0 = 0x0B,
-            ONE = 0x02,
-            TWO = 0x03,
-            THREE = 0x04,
-            FOUR = 0x05,
-            FIVE = 0x06,
-            SIX = 0x07,
-            SEVEN = 0x08,
-            EIGHT = 0x09,
-            NINE = 0x0A,
-            ZERO = 0x0B,
             MINUS = 0x0C,    /* - on main keyboard */
             EQUALS = 0x0D,
             BACK = 0x0E,    /* backspace */

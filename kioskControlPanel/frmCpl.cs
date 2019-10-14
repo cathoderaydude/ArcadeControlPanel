@@ -163,6 +163,9 @@ namespace kioskControlPanel
             //Console.WriteLine(ValidateMacro("LALT F4 LCTRL F5"));
             //Console.WriteLine(ValidateMacro("F4 D F C N1 LCTRL N LCTRL"));
 
+            // We need to do this to bump the static constructor in the raw input library; tune this up later
+            Console.WriteLine(SendRawInput.YeahWereHere);
+
             // This and the below are fairly cursed, and required to allow the app to exist solely in the systray
             // without an extremely unpleasant refactor.
             FirstRun = true;
@@ -330,34 +333,70 @@ namespace kioskControlPanel
             //SendRawInput.SendKeyUp(SendRawInput.KeyCodes.DIK_LCONTROL);
 
             // Don't actually send keys if "Enable binds" is unchecked
-            if (ChkBinds.Checked == true)
-            {
-                DbgW("Sending keys: " + ActionStrings[index].Text);
-                if (ButtonState[index].SoundEffect == true) PlaySound("coinin");
-                SendKeys.Send(ActionStrings[index].Text);
-            } else
+            if (ChkBinds.Checked == false)
             {
                 DbgW("Binds disabled; not sending keys");
+                return;
             }
-        }
 
-        // Rename this to ParseMacro
-        // Parse a key macro and produce a series of tokens
-        private bool ValidateMacro(string macro, bool testonly = true)
-        {
-            // We need to do this to bump the static constructor; tune this up later
-            Console.WriteLine(SendRawInput.YeahWereHere);
+            string macro = ActionStrings[index].Text;
+            string[] MacroTokens;            
+            // Validate the macro and get an array of valid keycodes back
+            try
+            {
+                MacroTokens = ValidateMacro(macro);
+            } catch (FormatException e)
+            {
+                DbgW("Macro for button " + index.ToString() + " is invalid: " + e.ToString());
+                return;
+            }
 
             // This will track modifier keys to ensure they're all terminated
             List<string> Modifiers = new List<string>();
+
+            DbgW("Sending keys: " + string.Join(",", MacroTokens));
+            // Send the actual keystrokes
+            foreach (string Token in MacroTokens)
+            {
+                SendRawInput.KeyInfo key = SendRawInput.KeyData[Token];
+                // Track which modifiers are down and send the appropriate Down or Up
+                if (key.Modifier)
+                {
+                    if (!Modifiers.Contains(Token))
+                    {
+                        Modifiers.Add(Token);
+                        SendRawInput.SendKeyDown(Token);
+                    }
+                    else
+                    {
+                        Modifiers.Remove(Token);
+                        SendRawInput.SendKeyUp(Token);
+                    }
+                } else
+                {
+                    // It's a normal key, just press it
+                    SendRawInput.SendKeyPress(Token);
+                }
+            }
+
+            // Play default sound
+            if (ButtonState[index].SoundEffect == true) PlaySound("coinin");
+        }
+
+        // Parse a key macro and return a string of tokens
+        public string[] ValidateMacro(string macro)
+        {
+            // This will track modifier keys to ensure they're all terminated
+            List<string> Modifiers = new List<string>();
+            // Holds series of tokens to be returned
+            List<string> KeyTokens = new List<string>();
 
             // Split input into words
             string[] tokens = macro.Split(' ');
 
             if (tokens.Length < 1)
             {
-                DbgW("Key macro is blank");
-                return false;
+                throw new FormatException("Key macro is blank");
             }
 
             // Iterate over words
@@ -367,6 +406,8 @@ namespace kioskControlPanel
                 // Check if word is a valid key
                 if (SendRawInput.KeyData.ContainsKey(tokenU))
                 {
+                    // Add it to the return value
+                    KeyTokens.Add(tokenU);
                     SendRawInput.KeyInfo key = SendRawInput.KeyData[tokenU];
                     // If the key is a modifier and isn't in the Modifiers list, add it.
                     // Otherwise, remove it.
@@ -381,20 +422,27 @@ namespace kioskControlPanel
                     }
                 } else
                 {
-                    // Was not a valid key; give up
-                    DbgW("Invalid key name: " + token);
-                    return false;
+                    // Was not a valid key; give up and throw exception (since otherwise we'd need to
+                    // return an empty string, which is vague)
+                    throw new FormatException("Invalid key name: " + token);
                 }
             }
 
+            // If there are any unmatched modifier keys (pressed but never released), release them now
             if (Modifiers.Count > 0)
             {
-                DbgW("Macro invalid: modifier keys " + string.Join(",", Modifiers) + " were not terminated.");
-                
-                return false;
+#if DEBUG
+                DbgW("Modifier keys " + string.Join(",", Modifiers) + " were not terminated, terminating automatically.");
+#endif
+
+                // Add each modifier to the returned string
+                foreach(string Modifier in Modifiers)
+                {
+                    KeyTokens.Add(Modifier);
+                }
             }
 
-            return true;
+            return KeyTokens.ToArray();
   
             /* 
             * Note for later reference: there are a lot of ways of making modifier keys work, and at some later date,
@@ -409,13 +457,6 @@ namespace kioskControlPanel
             * macro it will toggle the state every time it's called; macro validation will fail if not all modifiers are
             * released after being set. This is probably adequate long term, frankly.
             */
-        }
-
-        // Convert a string to a matching keycode or fail if no match
-        private SendRawInput.KeyCodes ConvertKeycode(string key)
-        {
-            //return SendRawInput.KeyCodes.DIK_Z;
-            return SendRawInput.KeyCodes.A;
         }
 
         /*
@@ -450,6 +491,16 @@ namespace kioskControlPanel
                 ButtonState[i].delay = 0;
                 delayValues[i].BackColor = Color.Pink;
             }
+        }
+
+        // Set/clear sound effect flag on a button
+        private void Event_SetSoundEffect(object sender, EventArgs e)
+        {
+            // Find field ID
+            CheckBox tb = (CheckBox)sender;
+            int i = int.Parse((string)tb.Tag);
+            // Set sound effect flag
+            ButtonState[i].SoundEffect = tb.Checked;
         }
 
         // Stub to play generic sound; will be expanded in later versions
@@ -548,6 +599,15 @@ namespace kioskControlPanel
                 txtDelay6.Text = ini.IniReadValue("button6", "delay", "0");
                 txtDelay7.Text = ini.IniReadValue("button7", "delay", "0");
                 txtDelay8.Text = ini.IniReadValue("button8", "delay", "0");
+
+                chkSnd1.Checked = CheckText(ini.IniReadValue("button1", "sound", "false"));
+                chkSnd2.Checked = CheckText(ini.IniReadValue("button2", "sound", "false"));
+                chkSnd3.Checked = CheckText(ini.IniReadValue("button3", "sound", "false"));
+                chkSnd4.Checked = CheckText(ini.IniReadValue("button4", "sound", "false"));
+                chkSnd5.Checked = CheckText(ini.IniReadValue("button5", "sound", "false"));
+                chkSnd6.Checked = CheckText(ini.IniReadValue("button6", "sound", "false"));
+                chkSnd7.Checked = CheckText(ini.IniReadValue("button7", "sound", "false"));
+                chkSnd8.Checked = CheckText(ini.IniReadValue("button8", "sound", "false"));
             }
             catch (Win32Exception err)
             {
@@ -555,6 +615,18 @@ namespace kioskControlPanel
             }
         }
         
+        // Just convert "true" or "false" to a bool
+        private bool CheckText(string Value)
+        {
+            if (Value.ToLower() == "true")
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
+
         // Save settings to INI
         private void SaveSettings()
         {
@@ -576,6 +648,15 @@ namespace kioskControlPanel
             ini.IniWriteValue("button6", "delay", txtDelay6.Text);
             ini.IniWriteValue("button7", "delay", txtDelay7.Text);
             ini.IniWriteValue("button8", "delay", txtDelay8.Text);
+
+            ini.IniWriteValue("button1", "sound", chkSnd1.Checked.ToString());
+            ini.IniWriteValue("button2", "sound", chkSnd2.Checked.ToString());
+            ini.IniWriteValue("button3", "sound", chkSnd3.Checked.ToString());
+            ini.IniWriteValue("button4", "sound", chkSnd4.Checked.ToString());
+            ini.IniWriteValue("button5", "sound", chkSnd5.Checked.ToString());
+            ini.IniWriteValue("button6", "sound", chkSnd6.Checked.ToString());
+            ini.IniWriteValue("button7", "sound", chkSnd7.Checked.ToString());
+            ini.IniWriteValue("button8", "sound", chkSnd8.Checked.ToString());
         }
     }
 }
