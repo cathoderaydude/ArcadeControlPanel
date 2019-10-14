@@ -1,7 +1,7 @@
 # Kiosk Control Panel
 Keyboard input simulator for physical pushbuttons on (for example) Windows-based arcade game systems, utilizing the FT232 USB serial/GPIO device
 
-![Screenshot of beta version](https://raw.githubusercontent.com/gravislizard/kioskControlPanel/master/kioskControlPanel/beta-screenshot.png)
+![Screenshot of beta version](https://raw.githubusercontent.com/gravislizard/kioskControlPanel/master/kioskControlPanel/1.0b-screenshot.png)
 
 # Overview
 
