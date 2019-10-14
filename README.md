@@ -1,5 +1,5 @@
 # Kiosk Control Panel
-Keyboard input simulator (among other things) for custom pushbuttons on a PC-based arcade game system, utilizing the FT232 USB serial/GPIO device
+Keyboard input simulator for physical pushbuttons on (for example) Windows-based arcade game systems, utilizing the FT232 USB serial/GPIO device
 
 ![Screenshot of beta version](https://raw.githubusercontent.com/gravislizard/kioskControlPanel/master/kioskControlPanel/beta-screenshot.png)
 
@@ -9,16 +9,19 @@ This app allows you to connect pushbuttons to your PC using an inexpensive USB d
 
 I started this project because I needed button inputs for a touchscreen-only arcade machine I acquired. I was running MAME, which needed an "insert coin" button, and Steam games which required a keypress to exit. I didn't want a keyboard hanging out of the cabinet, just some basic buttons to do preassigned actions to whatever program was in focus.
 
-The FT232 is a $10 USB "COM port adapter" which can be used in a mode called "GPIO" or "bit-bang," in which you can use all 8 pins as generic inputs or outputs. This allowed me to connect up to eight buttons, although I initially only needed four.
+The FT232 is a $10 USB "COM port adapter" which can be used in a mode called "GPIO" or "bit-bang," in which you can use all 8 pins as generic inputs or outputs. This allowed me to connect up to eight physical buttons and access them from software.
 
-There are many advantages to this approach. Because the FT232 is not a keyboard or gamepad, there's no possibility of its inputs becoming confused with regular user input. Also, each one has a unique serial number, so it may eventually be possible to configure multiple of these devices and have KCP remember them even if you unplug them and move them to different ports.
+There are many advantages to this approach. Because the FT232 is not a "keyboard" or "gamepad," there's no possibility of its inputs becoming confused with regular user input - the device itself doesn't simulate keystrokes, it sends unique signals that this application recognizes directly, making input absolutely unambiguous.
+
+Also, each one has a unique serial number, so it will eventually be possible to configure several of these devices and have KCP remember which one is assigned to which buttons, even if you unplug them and move them to different ports.
 
 # Features
 
 * Connect up to 8 buttons of any type
-* Set a unique key combo to be sent when a button is pressed ([reference](https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.sendkeys.send?view=netframework-4.8))
+* Set a unique key combo to be sent when a button is pressed (full documentation in progress)
 * Set a length of time the user must hold a button before it triggers
    * "Dangerous" buttons, like "exit current game" or Alt-F4 can be protected from accidental presses this way
+   * Coming soon: A "chirp" will play at intervals while holding down protected buttons so the user knows to keep holding them
 * Fairly low latency (10-20ms)
 * Requires only a cheap USB adapter and light soldering to get working
 
@@ -51,10 +54,32 @@ Connect your buttons as follows:
 
 You are now ready. Plug the device in to your PC, run KCP, and if it works you'll be able to press buttons and see them light up in the UI.
 
+# Using the application
+
+Right now the application automatically detects the first FT232 it finds on startup and binds to it. If you have multiple, you will have to unplug all but one for now.
+
+- Launch kioskControlPanel.exe; it will appear in your systray
+- Click the systray icon to view the configuration window
+- Press each button on your FT232 to verify inputs are working
+  - You can leave the app running while you experiment with the inputs as long as you don't short out the device
+  - If nothing is working, check the debug log to ensure the device was detected and the serial number matches
+- Enter macros for each button. The macro language will be fully documented soon, but for now:
+  - In the "Button 1", "Button 2", etc. fields, enter the "macro" to be executed when that key is pressed
+  - The macro is a series of key names separated by spaces, e.g. "ALT F4" or "TAB DOWN DOWN DOWN ENTER RIGHT ENTER ESCAPE"
+  - Most key names are self-evident, but the number keys are all prefixed by N; so to get a 1, enter "N1"
+  - If a key name is invalid, you'll be told so when you try to trigger the button
+- If you want to require a button to be held down before it triggers, enter a *number of milliseconds divided by ten* in the Delay field; so for half a second, enter "50"
+- If you want a button to play a sound effect, check the speaker icon next to it
+  - Right now it's always a "insert coin" effect; replace "coin in.mp3" in the program folder to change that
+  - This will be replaced with a file picker later
+- When you think you have everything set up, check the "Enable binds" box. Now you're *armed* - pressing buttons will execute their macros
+- That's it. You're ready to go. Minimize the app to hide it in the systray.
+- When you exit, your settings will be saved automatically to an INI in the program folder.
+
 # System Requirements
 
 * Windows
-  * Any version that supports .NET should work. Developed on Windows 10.
+  * Any version that supports .NET 4.6 should work. Developed on Windows 10.
   * I don't know if there's a FT232 library for Linux but if so, compiling on Mono might work
 * FT232 USB device
   * There are multiple versions of this hardware. All should work, to my knowledge
