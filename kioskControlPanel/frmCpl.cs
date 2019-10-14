@@ -154,17 +154,18 @@ namespace kioskControlPanel
             {
                 DbgW("Unable to initialize sound: " + err.ToString());
                 DbgW("There will be no sound effects.");
+                // TODO: Add code to actually handle this situation elsewhere; right now a crash will occur when a sound tries to play
             }
 
             DbgW("Initialization complete, ready to go.");
 
-            // This and the below are fairly cursed, and required to allow the app to exist solely in the systray
-            // without an extremely unpleasant refactor.
-            FirstRun = true;
-
             // Used for testing the macro validator, will remove later
             //Console.WriteLine(ValidateMacro("LALT F4 LCTRL F5"));
             //Console.WriteLine(ValidateMacro("F4 D F C N1 LCTRL N LCTRL"));
+
+            // This and the below are fairly cursed, and required to allow the app to exist solely in the systray
+            // without an extremely unpleasant refactor.
+            FirstRun = true;
         }
 
         private bool FirstRun = false;
@@ -173,6 +174,10 @@ namespace kioskControlPanel
         // it will succeed. This is not actually a hack, just weird.
         protected override void SetVisibleCore(bool value)
         {
+#if DEBUG
+            // It's irritating having to hit the systray icon every time during debugging
+            FirstRun = false; 
+#endif
             if (FirstRun)
             {
                 base.SetVisibleCore(false);
@@ -391,19 +396,19 @@ namespace kioskControlPanel
 
             return true;
   
-                    /* 
-                     * Note for later reference: there are a lot of ways of making modifier keys work, and at some later date,
-                     * if anyone has interest in this project , I would love to see this language replaced with one that does a
-                     * cleaner job with them, but parsers are the opposite of my forte, so this isn't going to be clean.
-                     * 
-                     * A good way to handle this would be to say that a single modifier by itself is an instantaneous keypress,
-                     * a modifier prefixed e.g. CTRL {A A S} will send Ctrl keydown, A A S as keypresses, then Ctrl keyup. But
-                     * the code for that is ugly and confusing to my head, so I'm just going to make every modifier a toggle.
-                     * 
-                     * There will be an index - ModifierKeys - and every key in that will have a status flag. when it's in a
-                     * macro it will toggle the state every time it's called; macro validation will fail if not all modifiers are
-                     * released after being set.
-                     */
+            /* 
+            * Note for later reference: there are a lot of ways of making modifier keys work, and at some later date,
+            * if anyone has interest in this project , I would love to see this language replaced with one that does a
+            * cleaner job with them, but parsers are the opposite of my forte, so this isn't going to be clean.
+            * 
+            * A good way to handle this would be to say that a single modifier by itself is an instantaneous keypress,
+            * a modifier prefixed e.g. CTRL {A A S} will send Ctrl keydown, A A S as keypresses, then Ctrl keyup. But
+            * the code for that is ugly and confusing to my head, so I'm just going to make every modifier a toggle.
+            * 
+            * Every modifier is flagged as such in the key value structure, and has a state field. when it's in a
+            * macro it will toggle the state every time it's called; macro validation will fail if not all modifiers are
+            * released after being set. This is probably adequate long term, frankly.
+            */
         }
 
         // Convert a string to a matching keycode or fail if no match

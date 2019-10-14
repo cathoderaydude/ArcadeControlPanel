@@ -209,13 +209,13 @@ namespace kioskControlPanel
             }
 
             // Flag every modifier key
-            KeyData["LCTRL"].Modifier = true;
-            KeyData["LSHIFT"].Modifier = true;
+            KeyData["CTRL"].Modifier = true;
+            KeyData["SHIFT"].Modifier = true;
             KeyData["RSHIFT"].Modifier = true;
             KeyData["RCTRL"].Modifier = true;
-            KeyData["LWIN"].Modifier = true;
+            KeyData["WIN"].Modifier = true;
             KeyData["RWIN"].Modifier = true;
-            KeyData["LALT"].Modifier = true;
+            KeyData["ALT"].Modifier = true;
 
             // This will be deleted later
             YeahWereHere = true;
@@ -225,7 +225,20 @@ namespace kioskControlPanel
         // noop function later to do the same thing
         public static bool YeahWereHere;
 
-        // Physical scancodes for theoretically every key
+        /* Physical scancodes for theoretically every key
+         * A note about this list:
+         * It is sourced from somewhere in the Microsoft SDK, so all these names were originally magic values
+         * in the Win32 API. I've changed a significant number of them to things I liked more for this macro language.
+         * So be aware of that before you attempt to connect this to win32 functions in any way
+         * 
+         * Most significantly, all the left keys (LALT, LCTRL, LSHIFT, LWIN) have been renamed without the L because almost
+         * everyone intends the L.
+         * 
+         * Also, entering "N1" instead of "1" sucks and is hard to read, but enums can't contain numeric keys (ouch!) so
+         * I aliased all the digits to ONE, TWO, THREE, etc.
+         * 
+         * Maybe later I will get rid of the enum entirely and this won't be a problem. I am beginning to question its usefulness.
+         */ 
         public enum KeyCodes
         {
             ESCAPE = 0x01,
@@ -239,6 +252,16 @@ namespace kioskControlPanel
             N8 = 0x09,
             N9 = 0x0A,
             N0 = 0x0B,
+            ONE = 0x02,
+            TWO = 0x03,
+            THREE = 0x04,
+            FOUR = 0x05,
+            FIVE = 0x06,
+            SIX = 0x07,
+            SEVEN = 0x08,
+            EIGHT = 0x09,
+            NINE = 0x0A,
+            ZERO = 0x0B,
             MINUS = 0x0C,    /* - on main keyboard */
             EQUALS = 0x0D,
             BACK = 0x0E,    /* backspace */
@@ -256,7 +279,7 @@ namespace kioskControlPanel
             LBRACKET = 0x1A,
             RBRACKET = 0x1B,
             RETURN = 0x1C,    /* Enter on main keyboard */
-            LCTRL = 0x1D,
+            CTRL = 0x1D,
             A = 0x1E,
             S = 0x1F,
             D = 0x20,
@@ -269,7 +292,7 @@ namespace kioskControlPanel
             SEMICOLON = 0x27,
             APOSTROPHE = 0x28,
             GRAVE = 0x29,    /* accent grave */
-            LSHIFT = 0x2A,
+            SHIFT = 0x2A,
             BACKSLASH = 0x2B,
             Z = 0x2C,
             X = 0x2D,
@@ -283,7 +306,7 @@ namespace kioskControlPanel
             SLASH = 0x35,    /* / on main keyboard */
             RSHIFT = 0x36,
             MULTIPLY = 0x37,    /* * on numeric keypad */
-            LALT = 0x38,    /* left Alt */
+            ALT = 0x38,    /* left Alt */
             SPACE = 0x39,
             CAPITAL = 0x3A,
             F1 = 0x3B,
@@ -357,7 +380,7 @@ namespace kioskControlPanel
             NEXT = 0xD1,    /* PgDn on arrow keypad */
             INSERT = 0xD2,    /* Insert on arrow keypad */
             DELETE = 0xD3,    /* Delete on arrow keypad */
-            LWIN = 0xDB,    /* Left Windows key */
+            WIN = 0xDB,    /* Left Windows key */
             RWIN = 0xDC,    /* Right Windows key */
             APPS = 0xDD,    /* AppMenu key */
             POWER = 0xDE,    /* System Power */
