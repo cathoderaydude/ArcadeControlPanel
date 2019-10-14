@@ -5,9 +5,9 @@ Keyboard input simulator for physical pushbuttons on (for example) Windows-based
 
 # Overview
 
-This app allows you to connect pushbuttons to your PC using an inexpensive USB device called an FT232 like [this one](https://www.amazon.com/FT232R-FT232RL-Serial-Converter-XYGStudy/dp/B00DTRFKM4), then trigger arbitrary key sequences when you press them.
+This app allows you to connect pushbuttons to your PC using an inexpensive USB device called an FT232, then trigger arbitrary key sequences when you press them. An example device is [this one](https://www.amazon.com/FT232R-FT232RL-Serial-Converter-XYGStudy/dp/B00DTRFKM4), but there are many others - see the "Requirements" section below.
 
-I started this project because I needed button inputs for a touchscreen-only arcade machine I acquired. I was running MAME, which needed an "insert coin" button, and Steam games which required a keypress to exit. I didn't want a keyboard hanging out of the cabinet, just some basic buttons to do preassigned actions to whatever program was in focus.
+I started this project because I needed button inputs for a touchscreen-only arcade machine I acquired. I was running MAME, which needed an "insert coin" button, and Steam games which required a keypress to exit. I didn't want a keyboard hanging out of the cabinet, just some basic buttons to send preassigned keystrokes to whatever program was in focus.
 
 The FT232 is a $10 USB "COM port adapter" which can be used in a mode called "GPIO" or "bit-bang," in which you can use all 8 pins as generic inputs or outputs. This allowed me to connect up to eight physical buttons and access them from software.
 
@@ -76,13 +76,24 @@ Right now the application automatically detects the first FT232 it finds on star
 - That's it. You're ready to go. Minimize the app to hide it in the systray.
 - When you exit, your settings will be saved automatically to an INI in the program folder.
 
-# System Requirements
+# Requirements
 
 * Windows
   * Any version that supports .NET 4.6 should work. Developed on Windows 10.
   * I don't know if there's a FT232 library for Linux but if so, compiling on Mono might work
 * FT232 USB device
-  * There are multiple versions of this hardware. All should work, to my knowledge
+  * There are multiple versions of this chip (FT232R, FT232RL, etc.) but all should work
+  * Some boards only have six pins (*TX, RX, RTS, CTS,* power and ground) and you will _not_ be able to get full usage out of those. You want the ones that have two extra rows of pins with labels like *DTR, DSR* and *DCD*.
+  
+## Disclaimer: Counterfeit FT232s
+
+A couple years ago there was an incident - known as FTDIgate to some - in which FTDI, the manufacturer of the FT232 chip, released a driver update that bricked a lot of devices, which all turned out to be using counterfeit chips. There was a backlash (understandably) from customers and FTDI removed the destructive code, but their drivers still won't work with counterfeits.
+
+**Is this likely?** Good question. FTDIgate was a couple years ago, so I expect the arms race has proceeded to a point where the counterfeits no longer trip detection, or nobody is selling them anymore because FTDIs scheme worked.
+
+**How will I know if this happened to me?** I don't know yet, since I don't have a counterfeit to test with, but from what I understand you'll just see your button inputs get real flaky or maybe activate on their own. If this happens to you, [contact me](mailto:cathoderaydude@gekk.info) and I may be able to send you a verified working device in return for the broken one, since I need a bad one for testing.
+
+**What can I do about this?** - Buy a real one. [This](https://www.amazon.com/FT232R-FT232RL-Serial-Converter-XYGStudy/dp/B00DTRFKM4) is the one I ordered that works perfectly. I intend to buy several other models soon and will try to build a compatibility database.
   
 # Future
 
