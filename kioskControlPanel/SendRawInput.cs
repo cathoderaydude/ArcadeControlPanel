@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * == Kiosk Control Panel ==
+ * This class handles "raw" synthetic keyboard input.
+ * This software is licensed under the Mozilla Public License Version 2.0, the details of which can be found in the file LICENSE
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -76,6 +82,12 @@ namespace kioskControlPanel
 
         [DllImport("user32.dll", SetLastError = true)]
         static extern uint SendInput(uint nInputs, INPUT[] pInputs, int cbSize);
+
+        // This dictionary maps key names to key info objects
+        public static Dictionary<string, KeyInfo> KeyData;
+
+
+
 
         // Send a single keystroke
         public static void SendKey(ushort scanKey, bool KeyDown, bool KeyUp, int delay = 0)
@@ -197,8 +209,6 @@ namespace kioskControlPanel
                 State = pState;
             }
         }
-
-        public static Dictionary<string, KeyInfo> KeyData;
 
         // Static constructor that populates the KeyData dictionary because C# has atrocious support for 
         // defining static data at compile time

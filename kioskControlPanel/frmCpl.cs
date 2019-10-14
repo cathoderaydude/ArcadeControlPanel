@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * == Kiosk Control Panel ==
+ * The bulk of the program functionality is contained here.
+ * This software is licensed under the Mozilla Public License Version 2.0, the details of which can be found in the file LICENSE
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;

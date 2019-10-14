@@ -109,3 +109,7 @@ Pie in the sky:
 * Implement serial/i2c/spi input capabilities. The FT232 natively speaks all sorts of serial protocols; is there something in this?
 
 I haven't seen much software that uses these devices, and general-purpose I/O on PCs has been a sore spot for decades, so I'm interested in whatever I can do to make them available to more people.
+
+# License
+
+This software is licensed under the Mozilla Public License Version 2.0, the details of which can be found in the file LICENSE
