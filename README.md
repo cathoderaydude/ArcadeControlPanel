@@ -1,7 +1,7 @@
 # Arcade Control Panel
 Keyboard input simulator for physical pushbuttons on (for example) Windows-based arcade game systems, utilizing the FT232 USB serial/GPIO device
 
-![Screenshot of beta version](https://raw.githubusercontent.com/gravislizard/ArcadeControlPanel/master/ArcadeControlPanel/1.0b-screenshot.png)
+![Screenshot of beta version](https://raw.githubusercontent.com/cathoderaydude/ArcadeControlPanel/master/ArcadeControlPanel/1.0b-screenshot.png)
 
 # Overview
 
