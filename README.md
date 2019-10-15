@@ -9,14 +9,6 @@ Keyboard input simulator for physical pushbuttons on (for example) Windows-based
 
 This app allows you to connect pushbuttons to your PC using an inexpensive USB device called an FT232, then trigger arbitrary key sequences when you press them. An example device is [this one](https://www.amazon.com/FT232R-FT232RL-Serial-Converter-XYGStudy/dp/B00DTRFKM4), but there are many others - see the "Requirements" section below.
 
-I started this project because I needed button inputs for a touchscreen-only arcade machine I acquired. I was running MAME, which needed an "insert coin" button, and Steam games which required a keypress to exit. I didn't want a keyboard hanging out of the cabinet, just some basic buttons to send preassigned keystrokes to whatever program was in focus.
-
-The FT232 is a $10 USB "COM port adapter" which can be used in a mode called "GPIO" or "bit-bang," in which you can use all 8 pins as generic inputs or outputs. This allowed me to connect up to eight physical buttons and access them from software.
-
-There are many advantages to this approach. Because the FT232 is not a "keyboard" or "gamepad," there's no possibility of its inputs becoming confused with regular user input - the device itself doesn't simulate keystrokes, it sends unique signals that this application recognizes directly, making input absolutely unambiguous.
-
-Also, each one has a unique serial number, so it will eventually be possible to configure several of these devices and have ACP remember which one is assigned to which buttons, even if you unplug them and move them to different ports.
-
 # Features
 
 * Connect up to 8 buttons of any type
@@ -76,12 +68,9 @@ Right now the application automatically detects the first FT232 it finds on star
 - Click the systray icon to view the configuration window
 - Press each button on your FT232 to verify inputs are working
   - You can leave the app running while you experiment with the inputs as long as you don't short out the device
-  - If nothing is working, check the debug log to ensure the device was detected and the serial number matches
-- Enter macros for each button. The macro language will be fully documented soon, but for now:
-  - In the "Button 1", "Button 2", etc. fields, enter the "macro" to be executed when that key is pressed
-  - The macro is a series of key names separated by spaces, e.g. "ALT F4" or "TAB DOWN DOWN DOWN ENTER RIGHT ENTER ESCAPE"
-  - Most key names are self-evident, but the number keys are all prefixed by N; so to get a 1, enter "N1"
-  - If a key name is invalid, you'll be told so when you try to trigger the button
+  - If nothing is working, check the debug log to ensure the device was detected and the serial number matches  
+- Enter [macros](https://github.com/cathoderaydude/ArcadeControlPanel/blob/master/docs/macro.md) for each button.
+  - If a key name is invalid, you'll be told so when you try to trigger the button 
 - If you want to require a button to be held down before it triggers, enter a *number of milliseconds divided by ten* in the Delay field; so for half a second, enter "50"
 - If you want a button to play a sound effect, check the speaker icon next to it
   - Right now it's always a "insert coin" effect; replace "coin in.mp3" in the program folder to change that
@@ -108,7 +97,19 @@ A couple years ago there was an incident - known as FTDIgate to some - in which 
 **How will I know if this happened to me?** I don't know yet, since I don't have a counterfeit to test with, but from what I understand you'll just see your button inputs get real flaky or maybe activate on their own. If this happens to you, [contact me](mailto:cathoderaydude@gekk.info) and I may be able to send you a verified working device in return for the broken one, since I need a bad one for testing.
 
 **What can I do about this?** - Buy a real one. [This](https://www.amazon.com/FT232R-FT232RL-Serial-Converter-XYGStudy/dp/B00DTRFKM4) is the one I ordered that works perfectly. I intend to buy several other models soon and will try to build a compatibility database.
-  
+
+# Why?
+
+I started this project because I needed button inputs for a touchscreen-only arcade machine I acquired. I was running MAME, which needed an "insert coin" button, and Steam games which required a keypress to exit. I didn't want a keyboard hanging out of the cabinet, just some basic buttons to send preassigned keystrokes to whatever program was in focus.
+
+The FT232 is a $10 USB "COM port adapter" which can be used in a mode called "GPIO" or "bit-bang," in which you can use all 8 pins as generic inputs or outputs. This allowed me to connect up to eight physical buttons and access them from software.
+
+There are many advantages to this approach. Because the FT232 is not a "keyboard" or "gamepad," there's no possibility of its inputs becoming confused with regular user input - the device itself doesn't simulate keystrokes, it sends unique signals that this application recognizes directly, making input absolutely unambiguous.
+
+Also, each one has a unique serial number, so it will eventually be possible to configure several of these devices and have ACP remember which one is assigned to which buttons, even if you unplug them and move them to different ports.
+
+I've gotten several suggestions of using an Arduino or Teensy in HID mode. I explicitly don't want to do this for countless reasons, not the least of which is I don't want to have to "program" the outboard device - I want everything software-driven, and the FT232 is completely fire-and-forget - but also because I don't want to be limited to just simple keypresses.
+
 # Future
 
 Here are things I would like to do eventually:
