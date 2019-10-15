@@ -51,18 +51,25 @@ namespace kioskControlPanel
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel8 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnSnd8 = new System.Windows.Forms.Button();
             this.chkSnd8 = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel7 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnSnd7 = new System.Windows.Forms.Button();
             this.chkSnd7 = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnSnd6 = new System.Windows.Forms.Button();
             this.chkSnd6 = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnSnd5 = new System.Windows.Forms.Button();
             this.chkSnd5 = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnSnd4 = new System.Windows.Forms.Button();
             this.chkSnd4 = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnSnd3 = new System.Windows.Forms.Button();
             this.chkSnd3 = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnSnd2 = new System.Windows.Forms.Button();
             this.chkSnd2 = new System.Windows.Forms.CheckBox();
             this.panel16 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
@@ -113,6 +120,7 @@ namespace kioskControlPanel
             this.label5 = new System.Windows.Forms.Label();
             this.txtDelay1 = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnSnd1 = new System.Windows.Forms.Button();
             this.chkSnd1 = new System.Windows.Forms.CheckBox();
             this.label11 = new System.Windows.Forms.Label();
             this.ChkBinds = new System.Windows.Forms.CheckBox();
@@ -123,14 +131,6 @@ namespace kioskControlPanel
             this.ctiShow = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ctiExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnSnd1 = new System.Windows.Forms.Button();
-            this.btnSnd2 = new System.Windows.Forms.Button();
-            this.btnSnd3 = new System.Windows.Forms.Button();
-            this.btnSnd4 = new System.Windows.Forms.Button();
-            this.btnSnd5 = new System.Windows.Forms.Button();
-            this.btnSnd6 = new System.Windows.Forms.Button();
-            this.btnSnd7 = new System.Windows.Forms.Button();
-            this.btnSnd8 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -431,6 +431,18 @@ namespace kioskControlPanel
             this.flowLayoutPanel8.Size = new System.Drawing.Size(34, 42);
             this.flowLayoutPanel8.TabIndex = 71;
             // 
+            // btnSnd8
+            // 
+            this.btnSnd8.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
+            this.btnSnd8.Location = new System.Drawing.Point(0, 0);
+            this.btnSnd8.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd8.Name = "btnSnd8";
+            this.btnSnd8.Size = new System.Drawing.Size(19, 23);
+            this.btnSnd8.TabIndex = 3;
+            this.btnSnd8.Tag = "7";
+            this.btnSnd8.UseVisualStyleBackColor = true;
+            this.btnSnd8.Click += new System.EventHandler(this.Event_LoadSound);
+            // 
             // chkSnd8
             // 
             this.chkSnd8.AutoSize = true;
@@ -451,6 +463,18 @@ namespace kioskControlPanel
             this.flowLayoutPanel7.Name = "flowLayoutPanel7";
             this.flowLayoutPanel7.Size = new System.Drawing.Size(34, 42);
             this.flowLayoutPanel7.TabIndex = 70;
+            // 
+            // btnSnd7
+            // 
+            this.btnSnd7.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
+            this.btnSnd7.Location = new System.Drawing.Point(0, 0);
+            this.btnSnd7.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd7.Name = "btnSnd7";
+            this.btnSnd7.Size = new System.Drawing.Size(19, 23);
+            this.btnSnd7.TabIndex = 3;
+            this.btnSnd7.Tag = "6";
+            this.btnSnd7.UseVisualStyleBackColor = true;
+            this.btnSnd7.Click += new System.EventHandler(this.Event_LoadSound);
             // 
             // chkSnd7
             // 
@@ -473,6 +497,18 @@ namespace kioskControlPanel
             this.flowLayoutPanel6.Size = new System.Drawing.Size(34, 42);
             this.flowLayoutPanel6.TabIndex = 69;
             // 
+            // btnSnd6
+            // 
+            this.btnSnd6.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
+            this.btnSnd6.Location = new System.Drawing.Point(0, 0);
+            this.btnSnd6.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd6.Name = "btnSnd6";
+            this.btnSnd6.Size = new System.Drawing.Size(19, 23);
+            this.btnSnd6.TabIndex = 3;
+            this.btnSnd6.Tag = "5";
+            this.btnSnd6.UseVisualStyleBackColor = true;
+            this.btnSnd6.Click += new System.EventHandler(this.Event_LoadSound);
+            // 
             // chkSnd6
             // 
             this.chkSnd6.AutoSize = true;
@@ -493,6 +529,18 @@ namespace kioskControlPanel
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
             this.flowLayoutPanel5.Size = new System.Drawing.Size(34, 42);
             this.flowLayoutPanel5.TabIndex = 68;
+            // 
+            // btnSnd5
+            // 
+            this.btnSnd5.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
+            this.btnSnd5.Location = new System.Drawing.Point(0, 0);
+            this.btnSnd5.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd5.Name = "btnSnd5";
+            this.btnSnd5.Size = new System.Drawing.Size(19, 23);
+            this.btnSnd5.TabIndex = 3;
+            this.btnSnd5.Tag = "4";
+            this.btnSnd5.UseVisualStyleBackColor = true;
+            this.btnSnd5.Click += new System.EventHandler(this.Event_LoadSound);
             // 
             // chkSnd5
             // 
@@ -515,6 +563,18 @@ namespace kioskControlPanel
             this.flowLayoutPanel4.Size = new System.Drawing.Size(34, 42);
             this.flowLayoutPanel4.TabIndex = 67;
             // 
+            // btnSnd4
+            // 
+            this.btnSnd4.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
+            this.btnSnd4.Location = new System.Drawing.Point(0, 0);
+            this.btnSnd4.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd4.Name = "btnSnd4";
+            this.btnSnd4.Size = new System.Drawing.Size(19, 23);
+            this.btnSnd4.TabIndex = 3;
+            this.btnSnd4.Tag = "3";
+            this.btnSnd4.UseVisualStyleBackColor = true;
+            this.btnSnd4.Click += new System.EventHandler(this.Event_LoadSound);
+            // 
             // chkSnd4
             // 
             this.chkSnd4.AutoSize = true;
@@ -536,6 +596,18 @@ namespace kioskControlPanel
             this.flowLayoutPanel3.Size = new System.Drawing.Size(34, 42);
             this.flowLayoutPanel3.TabIndex = 66;
             // 
+            // btnSnd3
+            // 
+            this.btnSnd3.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
+            this.btnSnd3.Location = new System.Drawing.Point(0, 0);
+            this.btnSnd3.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd3.Name = "btnSnd3";
+            this.btnSnd3.Size = new System.Drawing.Size(19, 23);
+            this.btnSnd3.TabIndex = 3;
+            this.btnSnd3.Tag = "2";
+            this.btnSnd3.UseVisualStyleBackColor = true;
+            this.btnSnd3.Click += new System.EventHandler(this.Event_LoadSound);
+            // 
             // chkSnd3
             // 
             this.chkSnd3.AutoSize = true;
@@ -556,6 +628,18 @@ namespace kioskControlPanel
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(34, 42);
             this.flowLayoutPanel2.TabIndex = 65;
+            // 
+            // btnSnd2
+            // 
+            this.btnSnd2.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
+            this.btnSnd2.Location = new System.Drawing.Point(0, 0);
+            this.btnSnd2.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd2.Name = "btnSnd2";
+            this.btnSnd2.Size = new System.Drawing.Size(19, 23);
+            this.btnSnd2.TabIndex = 3;
+            this.btnSnd2.Tag = "1";
+            this.btnSnd2.UseVisualStyleBackColor = true;
+            this.btnSnd2.Click += new System.EventHandler(this.Event_LoadSound);
             // 
             // chkSnd2
             // 
@@ -1038,6 +1122,18 @@ namespace kioskControlPanel
             this.flowLayoutPanel1.Size = new System.Drawing.Size(34, 42);
             this.flowLayoutPanel1.TabIndex = 64;
             // 
+            // btnSnd1
+            // 
+            this.btnSnd1.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
+            this.btnSnd1.Location = new System.Drawing.Point(0, 0);
+            this.btnSnd1.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd1.Name = "btnSnd1";
+            this.btnSnd1.Size = new System.Drawing.Size(19, 23);
+            this.btnSnd1.TabIndex = 2;
+            this.btnSnd1.Tag = "0";
+            this.btnSnd1.UseVisualStyleBackColor = true;
+            this.btnSnd1.Click += new System.EventHandler(this.Event_LoadSound);
+            // 
             // chkSnd1
             // 
             this.chkSnd1.AutoSize = true;
@@ -1131,95 +1227,6 @@ namespace kioskControlPanel
             this.ctiExit.Size = new System.Drawing.Size(140, 22);
             this.ctiExit.Text = "Exit";
             this.ctiExit.Click += new System.EventHandler(this.CtiExit_Click);
-            // 
-            // btnSnd1
-            // 
-            this.btnSnd1.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
-            this.btnSnd1.Location = new System.Drawing.Point(0, 0);
-            this.btnSnd1.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.btnSnd1.Name = "btnSnd1";
-            this.btnSnd1.Size = new System.Drawing.Size(19, 23);
-            this.btnSnd1.TabIndex = 2;
-            this.btnSnd1.Tag = "0";
-            this.btnSnd1.UseVisualStyleBackColor = true;
-            this.btnSnd1.Click += new System.EventHandler(this.btnSnd1_Click);
-            // 
-            // btnSnd2
-            // 
-            this.btnSnd2.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
-            this.btnSnd2.Location = new System.Drawing.Point(0, 0);
-            this.btnSnd2.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.btnSnd2.Name = "btnSnd2";
-            this.btnSnd2.Size = new System.Drawing.Size(19, 23);
-            this.btnSnd2.TabIndex = 3;
-            this.btnSnd2.Tag = "1";
-            this.btnSnd2.UseVisualStyleBackColor = true;
-            // 
-            // btnSnd3
-            // 
-            this.btnSnd3.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
-            this.btnSnd3.Location = new System.Drawing.Point(0, 0);
-            this.btnSnd3.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.btnSnd3.Name = "btnSnd3";
-            this.btnSnd3.Size = new System.Drawing.Size(19, 23);
-            this.btnSnd3.TabIndex = 3;
-            this.btnSnd3.Tag = "2";
-            this.btnSnd3.UseVisualStyleBackColor = true;
-            // 
-            // btnSnd4
-            // 
-            this.btnSnd4.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
-            this.btnSnd4.Location = new System.Drawing.Point(0, 0);
-            this.btnSnd4.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.btnSnd4.Name = "btnSnd4";
-            this.btnSnd4.Size = new System.Drawing.Size(19, 23);
-            this.btnSnd4.TabIndex = 3;
-            this.btnSnd4.Tag = "3";
-            this.btnSnd4.UseVisualStyleBackColor = true;
-            // 
-            // btnSnd5
-            // 
-            this.btnSnd5.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
-            this.btnSnd5.Location = new System.Drawing.Point(0, 0);
-            this.btnSnd5.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.btnSnd5.Name = "btnSnd5";
-            this.btnSnd5.Size = new System.Drawing.Size(19, 23);
-            this.btnSnd5.TabIndex = 3;
-            this.btnSnd5.Tag = "4";
-            this.btnSnd5.UseVisualStyleBackColor = true;
-            // 
-            // btnSnd6
-            // 
-            this.btnSnd6.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
-            this.btnSnd6.Location = new System.Drawing.Point(0, 0);
-            this.btnSnd6.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.btnSnd6.Name = "btnSnd6";
-            this.btnSnd6.Size = new System.Drawing.Size(19, 23);
-            this.btnSnd6.TabIndex = 3;
-            this.btnSnd6.Tag = "5";
-            this.btnSnd6.UseVisualStyleBackColor = true;
-            // 
-            // btnSnd7
-            // 
-            this.btnSnd7.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
-            this.btnSnd7.Location = new System.Drawing.Point(0, 0);
-            this.btnSnd7.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.btnSnd7.Name = "btnSnd7";
-            this.btnSnd7.Size = new System.Drawing.Size(19, 23);
-            this.btnSnd7.TabIndex = 3;
-            this.btnSnd7.Tag = "6";
-            this.btnSnd7.UseVisualStyleBackColor = true;
-            // 
-            // btnSnd8
-            // 
-            this.btnSnd8.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
-            this.btnSnd8.Location = new System.Drawing.Point(0, 0);
-            this.btnSnd8.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.btnSnd8.Name = "btnSnd8";
-            this.btnSnd8.Size = new System.Drawing.Size(19, 23);
-            this.btnSnd8.TabIndex = 3;
-            this.btnSnd8.Tag = "7";
-            this.btnSnd8.UseVisualStyleBackColor = true;
             // 
             // frmCpl
             // 

@@ -19,6 +19,9 @@ using System.Media;
 using WMPLib;
 using Ini;
 using System.Text.RegularExpressions;
+using NAudio;
+using NAudio.Wave;
+using NAudio.Wave.SampleProviders;
 
 namespace kioskControlPanel
 {
@@ -79,8 +82,13 @@ namespace kioskControlPanel
         private TextBox[] delayValues;
 
         // Default, and currently only sound effect
+        // To be removed
         private WMPLib.WindowsMediaPlayer CoinInSound;
-        //private WMPLib.WindowsMediaPlayer ExitSound;
+
+        // New audio library wave device
+        private WaveOutEvent WOut;
+        // Collection of audio files for each channel
+        Dictionary<int, AudioFileReader> ButtonSounds;
 
         // ================================================================================
         // Member definitions complete
@@ -143,6 +151,34 @@ namespace kioskControlPanel
             ActionStrings = new TextBox[] { txtButton1, txtButton2, txtButton3, txtButton4, txtButton5, txtButton6, txtButton7, txtButton8 };
             delayValues = new TextBox[] { txtDelay1, txtDelay2, txtDelay3, txtDelay4, txtDelay5, txtDelay6, txtDelay7, txtDelay8 };
 
+            // Initialize media player
+            DbgW("Initializing sound");
+            try
+            {
+                // Create audio output device
+                WOut = new NAudio.Wave.WaveOutEvent();
+                ButtonSounds = new Dictionary<int, AudioFileReader>
+                {
+                    { 0, null },
+                    { 1, null },
+                    { 2, null },
+                    { 3, null },
+                    { 4, null },
+                    { 5, null },
+                    { 6, null },
+                    { 7, null }
+                };
+
+                DbgW("Sound initialized");
+                // TODO: Add other sound effect initializers.
+            }
+            catch (Exception err)
+            {
+                DbgW("Unable to initialize sound: " + err.Message);
+                DbgW("There will be no sound effects.");
+                // TODO: Add code to actually handle this situation elsewhere; right now a crash will occur when a sound tries to play
+            }
+
             // Load INI file into form, or defaults if no INI
             LoadSettings();
 
@@ -155,32 +191,6 @@ namespace kioskControlPanel
             ValidateDelay(5);
             ValidateDelay(6);
             ValidateDelay(7);
-
-            // Initialize media player
-            DbgW("Initializing sound");
-            try
-            {
-                // Create player and load sound
-                CoinInSound = new WindowsMediaPlayer();
-                CoinInSound.settings.autoStart = false;
-
-                // We load the sound now so it'll be in memory. If we switched between effects on the fly you could hit I/O pauses
-                if (File.Exists("coin in.mp3"))
-                {
-                    CoinInSound.URL = "coin in.mp3";
-                } else
-                {
-                    DbgW("File 'coin in.mp3' does not exist; sound will not function.");
-                }
-                
-                DbgW("Sound initialized");
-                // TODO: Add other sound effect initializers.
-            } catch (Exception err)
-            {
-                DbgW("Unable to initialize sound: " + err.ToString());
-                DbgW("There will be no sound effects.");
-                // TODO: Add code to actually handle this situation elsewhere; right now a crash will occur when a sound tries to play
-            }
 
             DbgW("Initialization complete, ready to go.");
 
@@ -406,7 +416,7 @@ namespace kioskControlPanel
             }
 
             // Play default sound
-            if (ButtonState[index].SoundEffect == true) PlaySound("coinin");
+            if (ButtonState[index].SoundEffect == true) PlaySound(index);
         }
 
         // Parse a key macro and return a string of tokens
@@ -485,6 +495,27 @@ namespace kioskControlPanel
             */
         }
 
+        // Play sound associated with specific button
+        private void PlaySound(int index)
+        {
+            // If no sound effect is loaded, cancel
+            if (ButtonSounds[index] == null)
+            {
+                DbgW("No sound loaded for button " + (index + 1).ToString());
+                return;
+            };
+            
+            WOut.Stop(); // Stop any playing sound
+            WOut.Init(ButtonSounds[index]); // Load the wave stream
+            ButtonSounds[index].Position = 0; // Ensure wave is rewound
+            WOut.Play(); // Play
+            // This solution is less than ideal because it seems to block while reading the file from disk every time
+            // you play it, introducing a delay and extra IO scrubbing. There is a "better" technique at
+            // https://markheath.net/post/fire-and-forget-audio-playback-with
+            // that might improve this but I don't want to implement it right now.
+        }
+
+
         /*
          *  UI BEHAVIORS
          */
@@ -528,13 +559,6 @@ namespace kioskControlPanel
             int i = int.Parse((string)tb.Tag);
             // Set sound effect flag
             ButtonState[i].SoundEffect = tb.Checked;
-        }
-
-        // Stub to play generic sound; will be expanded in later versions
-        private void PlaySound(string index)
-        {
-            CoinInSound.controls.stop();
-            CoinInSound.controls.play();
         }
 
 
@@ -592,13 +616,15 @@ namespace kioskControlPanel
 
 
         /*
-         * LOADING AND SAVING SETTINGS
+         * LOADING AND SAVING
          */
 
         // If the program is closing, save the settings
         private void FrmCpl_FormClosed(object sender, FormClosedEventArgs e)
         {
             SaveSettings();
+
+            // TODO: Dispose of sound objects here?
         }
 
         // Load settings from INI
@@ -635,6 +661,8 @@ namespace kioskControlPanel
                 chkSnd6.Checked = CheckText(ini.IniReadValue("button6", "sound", "false"));
                 chkSnd7.Checked = CheckText(ini.IniReadValue("button7", "sound", "false"));
                 chkSnd8.Checked = CheckText(ini.IniReadValue("button8", "sound", "false"));
+
+                LoadSound(0, ini.IniReadValue("button1", "soundfile", ""));
             }
             catch (Win32Exception err)
             {
@@ -684,9 +712,45 @@ namespace kioskControlPanel
             ini.IniWriteValue("button6", "sound", chkSnd6.Checked.ToString());
             ini.IniWriteValue("button7", "sound", chkSnd7.Checked.ToString());
             ini.IniWriteValue("button8", "sound", chkSnd8.Checked.ToString());
+
+            ini.IniWriteValue("button1", "soundfile", ButtonSounds[0] != null ? ButtonSounds[0].FileName : "");
+            ini.IniWriteValue("button2", "soundfile", ButtonSounds[1] != null ? ButtonSounds[1].FileName : "");
+            ini.IniWriteValue("button3", "soundfile", ButtonSounds[2] != null ? ButtonSounds[2].FileName : "");
+            ini.IniWriteValue("button4", "soundfile", ButtonSounds[3] != null ? ButtonSounds[3].FileName : "");
+            ini.IniWriteValue("button5", "soundfile", ButtonSounds[4] != null ? ButtonSounds[4].FileName : "");
+            ini.IniWriteValue("button6", "soundfile", ButtonSounds[5] != null ? ButtonSounds[5].FileName : "");
+            ini.IniWriteValue("button7", "soundfile", ButtonSounds[6] != null ? ButtonSounds[6].FileName : "");
+            ini.IniWriteValue("button8", "soundfile", ButtonSounds[7] != null ? ButtonSounds[7].FileName : "");
         }
 
-        private void btnSnd1_Click(object sender, EventArgs e)
+        // Attempt to load a file into a button position. If quiet=false, user will get a popup error
+        private void LoadSound(int index, string filename, bool quiet = true)
+        {
+            // If filename was empty then no file is being loaded; just bail
+            if (filename == "") return;
+
+            // Attempt to load the file
+            try
+            {
+                ButtonSounds[index] = new AudioFileReader(filename);
+            }
+            catch (Exception err)
+            {
+                ButtonSounds[index] = null;
+                // If quiet (e.g. on startup) just log an error; otherwise (user just attempted to load a file) pop a message
+                if (quiet)
+                {
+                    DbgW("Unable to load sound " + filename + " for button " + (index + 1).ToString() + ": " + err.Message);
+                    Console.WriteLine(err.ToString());
+                } else
+                {
+                    MessageBox.Show(this, "Unable to load sound " + filename +  " for button " + (index + 1).ToString() + ": " + err.Message,
+                        "Error loading sound", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void Event_LoadSound(object sender, EventArgs e)
         {
             Button Sender = (Button) sender;
             int index = int.Parse(((string) Sender.Tag));
@@ -703,9 +767,8 @@ namespace kioskControlPanel
 
             if (PickerResult == DialogResult.Cancel) return; // User cancelled
 
-            // Apply the setting
-            CoinInSound.URL = SoundPicker.FileName;
-            DbgW(CoinInSound.status);
+            // Apply the setting and pop an error if it fails
+            LoadSound(index, SoundPicker.FileName, false);
         }
     }
 }
