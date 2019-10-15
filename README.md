@@ -77,7 +77,7 @@ Right now the application automatically detects the first FT232 it finds on star
 1. If you want a button to play a sound effect, check the speaker icon next to it
     * Right now it's always a "insert coin" effect; replace "coin in.mp3" in the program folder to change that
     * This will be replaced with a file picker later
-1. When you think you have everything set up, check the "Enable binds" box. Now you're *armed* - pressing buttons will execute their macros
+1. When you think you have everything set up, click the button with the red X so it turns green. Now you're *armed* - pressing buttons will execute their macros
 1. That's it. You're ready to go. Minimize the app to hide it in the systray.
 1. When you exit, your settings will be saved automatically to an INI in the program folder.
 
@@ -122,7 +122,7 @@ Here are things I would like to do eventually:
   * Send a key sequence targeting a specific app or targeting apps by name
   * Send a mouse click
     * Position the mouse in a specific place first
-    * Send it directly to an app's window as a Win32 message so the window doesn't have to be visible
+  * Send actions directly to an app's window as Win32 messages so the window doesn't have to be visible
 * Expand to multiple units. It seems to be possible to identify these by serial number, so I could offer an expandable interface where you just keep adding more pages of inputs and assigning them to detected devices (or entering SNs for devices that aren't yet connected)
 * Allow other types of inputs
   * Toggle switches for e.g. DIP settings in MAME or windows audio mute
