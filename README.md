@@ -7,7 +7,9 @@ Keyboard input simulator for physical pushbuttons on (for example) Windows-based
 
 # Overview
 
-This app allows you to connect pushbuttons to your PC using an inexpensive USB device called an FT232, then trigger arbitrary key sequences when you press them. An example device is [this one](https://www.amazon.com/FT232R-FT232RL-Serial-Converter-XYGStudy/dp/B00DTRFKM4), but there are many others - see the "Requirements" section below.
+This app allows you to connect pushbuttons to your PC using an inexpensive USB device called an FT232, then trigger arbitrary key sequences when you press them. This was intended for triggering "insert coin" and "exit" actions on MAME, but you can use it with any application.
+
+An example device is [this one](https://www.amazon.com/FT232R-FT232RL-Serial-Converter-XYGStudy/dp/B00DTRFKM4), but there are many others - see the "Requirements" section below.
 
 # Features
 
