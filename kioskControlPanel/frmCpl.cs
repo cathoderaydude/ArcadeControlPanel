@@ -48,6 +48,16 @@ namespace kioskControlPanel
             {
                 return (x.state != y);
             }
+            // Stubs to prevent compiler warning
+            public override bool Equals(object obj)
+            {
+                return base.Equals(obj);
+            }
+            public override int GetHashCode()
+            {
+                return base.GetHashCode();
+            }
+
 
             public ButtonInfo()
             {
@@ -68,8 +78,9 @@ namespace kioskControlPanel
         private TextBox[] ActionStrings;
         private TextBox[] delayValues;
 
+        // Default, and currently only sound effect
         private WMPLib.WindowsMediaPlayer CoinInSound;
-        private WMPLib.WindowsMediaPlayer ExitSound;
+        //private WMPLib.WindowsMediaPlayer ExitSound;
 
         // ================================================================================
         // Member definitions complete
@@ -501,6 +512,7 @@ namespace kioskControlPanel
             }
             catch (Exception err)
             {
+                err.ToString(); // To clear compiler warning
                 // Nope - flag field and set delay value to 0 so we can continue processing
                 DbgW("The value for delay on button " + i.ToString() + " is not a valid number.");
                 ButtonState[i].delay = 0;
@@ -672,6 +684,28 @@ namespace kioskControlPanel
             ini.IniWriteValue("button6", "sound", chkSnd6.Checked.ToString());
             ini.IniWriteValue("button7", "sound", chkSnd7.Checked.ToString());
             ini.IniWriteValue("button8", "sound", chkSnd8.Checked.ToString());
+        }
+
+        private void btnSnd1_Click(object sender, EventArgs e)
+        {
+            Button Sender = (Button) sender;
+            int index = int.Parse(((string) Sender.Tag));
+
+            OpenFileDialog SoundPicker = new OpenFileDialog();
+            // We'll suggest mp3 and wav, but the user can pick another type if they like
+            // Will need to figure out how to retrieve errors from WMPlib to verify loaded files
+            SoundPicker.Filter = "Sound files (*.mp3;*.wav)|*.mp3;*.wav|All files (*.*)|*.*";
+            SoundPicker.FilterIndex = 1;
+            SoundPicker.InitialDirectory = Application.StartupPath;
+            SoundPicker.Title = "Select sound file for button " + (index + 1).ToString();
+            // Display dialog
+            DialogResult PickerResult = SoundPicker.ShowDialog(this);
+
+            if (PickerResult == DialogResult.Cancel) return; // User cancelled
+
+            // Apply the setting
+            CoinInSound.URL = SoundPicker.FileName;
+            DbgW(CoinInSound.status);
         }
     }
 }

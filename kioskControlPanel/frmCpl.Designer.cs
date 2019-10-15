@@ -51,25 +51,18 @@ namespace kioskControlPanel
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel8 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.chkSnd8 = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel7 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.chkSnd7 = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.chkSnd6 = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.chkSnd5 = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.chkSnd4 = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.chkSnd3 = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.chkSnd2 = new System.Windows.Forms.CheckBox();
             this.panel16 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
@@ -120,7 +113,6 @@ namespace kioskControlPanel
             this.label5 = new System.Windows.Forms.Label();
             this.txtDelay1 = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.chkSnd1 = new System.Windows.Forms.CheckBox();
             this.label11 = new System.Windows.Forms.Label();
             this.ChkBinds = new System.Windows.Forms.CheckBox();
@@ -131,25 +123,26 @@ namespace kioskControlPanel
             this.ctiShow = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ctiExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnSnd1 = new System.Windows.Forms.Button();
+            this.btnSnd2 = new System.Windows.Forms.Button();
+            this.btnSnd3 = new System.Windows.Forms.Button();
+            this.btnSnd4 = new System.Windows.Forms.Button();
+            this.btnSnd5 = new System.Windows.Forms.Button();
+            this.btnSnd6 = new System.Windows.Forms.Button();
+            this.btnSnd7 = new System.Windows.Forms.Button();
+            this.btnSnd8 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.flowLayoutPanel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.flowLayoutPanel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.flowLayoutPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.flowLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.flowLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.flowLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel16.SuspendLayout();
             this.panel15.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -167,7 +160,6 @@ namespace kioskControlPanel
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.ctxIcon.SuspendLayout();
             this.SuspendLayout();
@@ -432,29 +424,18 @@ namespace kioskControlPanel
             // 
             // flowLayoutPanel8
             // 
-            this.flowLayoutPanel8.Controls.Add(this.pictureBox8);
+            this.flowLayoutPanel8.Controls.Add(this.btnSnd8);
             this.flowLayoutPanel8.Controls.Add(this.chkSnd8);
             this.flowLayoutPanel8.Location = new System.Drawing.Point(360, 339);
             this.flowLayoutPanel8.Name = "flowLayoutPanel8";
             this.flowLayoutPanel8.Size = new System.Drawing.Size(34, 42);
             this.flowLayoutPanel8.TabIndex = 71;
             // 
-            // pictureBox8
-            // 
-            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-            this.pictureBox8.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox8.InitialImage")));
-            this.pictureBox8.Location = new System.Drawing.Point(2, 0);
-            this.pictureBox8.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(20, 19);
-            this.pictureBox8.TabIndex = 0;
-            this.pictureBox8.TabStop = false;
-            // 
             // chkSnd8
             // 
             this.chkSnd8.AutoSize = true;
             this.chkSnd8.Location = new System.Drawing.Point(3, 25);
-            this.chkSnd8.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.chkSnd8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
             this.chkSnd8.Name = "chkSnd8";
             this.chkSnd8.Size = new System.Drawing.Size(15, 14);
             this.chkSnd8.TabIndex = 1;
@@ -464,29 +445,18 @@ namespace kioskControlPanel
             // 
             // flowLayoutPanel7
             // 
-            this.flowLayoutPanel7.Controls.Add(this.pictureBox7);
+            this.flowLayoutPanel7.Controls.Add(this.btnSnd7);
             this.flowLayoutPanel7.Controls.Add(this.chkSnd7);
             this.flowLayoutPanel7.Location = new System.Drawing.Point(360, 291);
             this.flowLayoutPanel7.Name = "flowLayoutPanel7";
             this.flowLayoutPanel7.Size = new System.Drawing.Size(34, 42);
             this.flowLayoutPanel7.TabIndex = 70;
             // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox7.InitialImage")));
-            this.pictureBox7.Location = new System.Drawing.Point(2, 0);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(20, 19);
-            this.pictureBox7.TabIndex = 0;
-            this.pictureBox7.TabStop = false;
-            // 
             // chkSnd7
             // 
             this.chkSnd7.AutoSize = true;
             this.chkSnd7.Location = new System.Drawing.Point(3, 25);
-            this.chkSnd7.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.chkSnd7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
             this.chkSnd7.Name = "chkSnd7";
             this.chkSnd7.Size = new System.Drawing.Size(15, 14);
             this.chkSnd7.TabIndex = 1;
@@ -496,29 +466,18 @@ namespace kioskControlPanel
             // 
             // flowLayoutPanel6
             // 
-            this.flowLayoutPanel6.Controls.Add(this.pictureBox6);
+            this.flowLayoutPanel6.Controls.Add(this.btnSnd6);
             this.flowLayoutPanel6.Controls.Add(this.chkSnd6);
             this.flowLayoutPanel6.Location = new System.Drawing.Point(360, 243);
             this.flowLayoutPanel6.Name = "flowLayoutPanel6";
             this.flowLayoutPanel6.Size = new System.Drawing.Size(34, 42);
             this.flowLayoutPanel6.TabIndex = 69;
             // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox6.InitialImage")));
-            this.pictureBox6.Location = new System.Drawing.Point(2, 0);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(20, 19);
-            this.pictureBox6.TabIndex = 0;
-            this.pictureBox6.TabStop = false;
-            // 
             // chkSnd6
             // 
             this.chkSnd6.AutoSize = true;
             this.chkSnd6.Location = new System.Drawing.Point(3, 25);
-            this.chkSnd6.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.chkSnd6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
             this.chkSnd6.Name = "chkSnd6";
             this.chkSnd6.Size = new System.Drawing.Size(15, 14);
             this.chkSnd6.TabIndex = 1;
@@ -528,29 +487,18 @@ namespace kioskControlPanel
             // 
             // flowLayoutPanel5
             // 
-            this.flowLayoutPanel5.Controls.Add(this.pictureBox5);
+            this.flowLayoutPanel5.Controls.Add(this.btnSnd5);
             this.flowLayoutPanel5.Controls.Add(this.chkSnd5);
             this.flowLayoutPanel5.Location = new System.Drawing.Point(360, 195);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
             this.flowLayoutPanel5.Size = new System.Drawing.Size(34, 42);
             this.flowLayoutPanel5.TabIndex = 68;
             // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.InitialImage")));
-            this.pictureBox5.Location = new System.Drawing.Point(2, 0);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(20, 19);
-            this.pictureBox5.TabIndex = 0;
-            this.pictureBox5.TabStop = false;
-            // 
             // chkSnd5
             // 
             this.chkSnd5.AutoSize = true;
             this.chkSnd5.Location = new System.Drawing.Point(3, 25);
-            this.chkSnd5.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.chkSnd5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
             this.chkSnd5.Name = "chkSnd5";
             this.chkSnd5.Size = new System.Drawing.Size(15, 14);
             this.chkSnd5.TabIndex = 1;
@@ -560,29 +508,18 @@ namespace kioskControlPanel
             // 
             // flowLayoutPanel4
             // 
-            this.flowLayoutPanel4.Controls.Add(this.pictureBox4);
+            this.flowLayoutPanel4.Controls.Add(this.btnSnd4);
             this.flowLayoutPanel4.Controls.Add(this.chkSnd4);
             this.flowLayoutPanel4.Location = new System.Drawing.Point(360, 147);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(34, 42);
             this.flowLayoutPanel4.TabIndex = 67;
             // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.InitialImage")));
-            this.pictureBox4.Location = new System.Drawing.Point(2, 0);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(20, 19);
-            this.pictureBox4.TabIndex = 0;
-            this.pictureBox4.TabStop = false;
-            // 
             // chkSnd4
             // 
             this.chkSnd4.AutoSize = true;
             this.chkSnd4.Location = new System.Drawing.Point(3, 25);
-            this.chkSnd4.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.chkSnd4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
             this.chkSnd4.Name = "chkSnd4";
             this.chkSnd4.Size = new System.Drawing.Size(15, 14);
             this.chkSnd4.TabIndex = 1;
@@ -592,29 +529,18 @@ namespace kioskControlPanel
             // 
             // flowLayoutPanel3
             // 
-            this.flowLayoutPanel3.Controls.Add(this.pictureBox3);
+            this.flowLayoutPanel3.Controls.Add(this.btnSnd3);
             this.flowLayoutPanel3.Controls.Add(this.chkSnd3);
             this.flowLayoutPanel3.Location = new System.Drawing.Point(360, 99);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(34, 42);
             this.flowLayoutPanel3.TabIndex = 66;
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.InitialImage")));
-            this.pictureBox3.Location = new System.Drawing.Point(2, 0);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(20, 19);
-            this.pictureBox3.TabIndex = 0;
-            this.pictureBox3.TabStop = false;
-            // 
             // chkSnd3
             // 
             this.chkSnd3.AutoSize = true;
             this.chkSnd3.Location = new System.Drawing.Point(3, 25);
-            this.chkSnd3.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.chkSnd3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
             this.chkSnd3.Name = "chkSnd3";
             this.chkSnd3.Size = new System.Drawing.Size(15, 14);
             this.chkSnd3.TabIndex = 1;
@@ -624,29 +550,18 @@ namespace kioskControlPanel
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Controls.Add(this.pictureBox2);
+            this.flowLayoutPanel2.Controls.Add(this.btnSnd2);
             this.flowLayoutPanel2.Controls.Add(this.chkSnd2);
             this.flowLayoutPanel2.Location = new System.Drawing.Point(360, 51);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(34, 42);
             this.flowLayoutPanel2.TabIndex = 65;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
-            this.pictureBox2.Location = new System.Drawing.Point(2, 0);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(20, 19);
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
-            // 
             // chkSnd2
             // 
             this.chkSnd2.AutoSize = true;
             this.chkSnd2.Location = new System.Drawing.Point(3, 25);
-            this.chkSnd2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.chkSnd2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
             this.chkSnd2.Name = "chkSnd2";
             this.chkSnd2.Size = new System.Drawing.Size(15, 14);
             this.chkSnd2.TabIndex = 1;
@@ -1116,29 +1031,18 @@ namespace kioskControlPanel
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.pictureBox1);
+            this.flowLayoutPanel1.Controls.Add(this.btnSnd1);
             this.flowLayoutPanel1.Controls.Add(this.chkSnd1);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(360, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(34, 42);
             this.flowLayoutPanel1.TabIndex = 64;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(2, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(20, 19);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // chkSnd1
             // 
             this.chkSnd1.AutoSize = true;
             this.chkSnd1.Location = new System.Drawing.Point(3, 25);
-            this.chkSnd1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.chkSnd1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
             this.chkSnd1.Name = "chkSnd1";
             this.chkSnd1.Size = new System.Drawing.Size(15, 14);
             this.chkSnd1.TabIndex = 1;
@@ -1228,6 +1132,95 @@ namespace kioskControlPanel
             this.ctiExit.Text = "Exit";
             this.ctiExit.Click += new System.EventHandler(this.CtiExit_Click);
             // 
+            // btnSnd1
+            // 
+            this.btnSnd1.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
+            this.btnSnd1.Location = new System.Drawing.Point(0, 0);
+            this.btnSnd1.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd1.Name = "btnSnd1";
+            this.btnSnd1.Size = new System.Drawing.Size(19, 23);
+            this.btnSnd1.TabIndex = 2;
+            this.btnSnd1.Tag = "0";
+            this.btnSnd1.UseVisualStyleBackColor = true;
+            this.btnSnd1.Click += new System.EventHandler(this.btnSnd1_Click);
+            // 
+            // btnSnd2
+            // 
+            this.btnSnd2.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
+            this.btnSnd2.Location = new System.Drawing.Point(0, 0);
+            this.btnSnd2.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd2.Name = "btnSnd2";
+            this.btnSnd2.Size = new System.Drawing.Size(19, 23);
+            this.btnSnd2.TabIndex = 3;
+            this.btnSnd2.Tag = "1";
+            this.btnSnd2.UseVisualStyleBackColor = true;
+            // 
+            // btnSnd3
+            // 
+            this.btnSnd3.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
+            this.btnSnd3.Location = new System.Drawing.Point(0, 0);
+            this.btnSnd3.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd3.Name = "btnSnd3";
+            this.btnSnd3.Size = new System.Drawing.Size(19, 23);
+            this.btnSnd3.TabIndex = 3;
+            this.btnSnd3.Tag = "2";
+            this.btnSnd3.UseVisualStyleBackColor = true;
+            // 
+            // btnSnd4
+            // 
+            this.btnSnd4.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
+            this.btnSnd4.Location = new System.Drawing.Point(0, 0);
+            this.btnSnd4.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd4.Name = "btnSnd4";
+            this.btnSnd4.Size = new System.Drawing.Size(19, 23);
+            this.btnSnd4.TabIndex = 3;
+            this.btnSnd4.Tag = "3";
+            this.btnSnd4.UseVisualStyleBackColor = true;
+            // 
+            // btnSnd5
+            // 
+            this.btnSnd5.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
+            this.btnSnd5.Location = new System.Drawing.Point(0, 0);
+            this.btnSnd5.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd5.Name = "btnSnd5";
+            this.btnSnd5.Size = new System.Drawing.Size(19, 23);
+            this.btnSnd5.TabIndex = 3;
+            this.btnSnd5.Tag = "4";
+            this.btnSnd5.UseVisualStyleBackColor = true;
+            // 
+            // btnSnd6
+            // 
+            this.btnSnd6.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
+            this.btnSnd6.Location = new System.Drawing.Point(0, 0);
+            this.btnSnd6.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd6.Name = "btnSnd6";
+            this.btnSnd6.Size = new System.Drawing.Size(19, 23);
+            this.btnSnd6.TabIndex = 3;
+            this.btnSnd6.Tag = "5";
+            this.btnSnd6.UseVisualStyleBackColor = true;
+            // 
+            // btnSnd7
+            // 
+            this.btnSnd7.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
+            this.btnSnd7.Location = new System.Drawing.Point(0, 0);
+            this.btnSnd7.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd7.Name = "btnSnd7";
+            this.btnSnd7.Size = new System.Drawing.Size(19, 23);
+            this.btnSnd7.TabIndex = 3;
+            this.btnSnd7.Tag = "6";
+            this.btnSnd7.UseVisualStyleBackColor = true;
+            // 
+            // btnSnd8
+            // 
+            this.btnSnd8.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
+            this.btnSnd8.Location = new System.Drawing.Point(0, 0);
+            this.btnSnd8.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd8.Name = "btnSnd8";
+            this.btnSnd8.Size = new System.Drawing.Size(19, 23);
+            this.btnSnd8.TabIndex = 3;
+            this.btnSnd8.Tag = "7";
+            this.btnSnd8.UseVisualStyleBackColor = true;
+            // 
             // frmCpl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1253,25 +1246,18 @@ namespace kioskControlPanel
             this.tableLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel8.ResumeLayout(false);
             this.flowLayoutPanel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.flowLayoutPanel7.ResumeLayout(false);
             this.flowLayoutPanel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.flowLayoutPanel6.ResumeLayout(false);
             this.flowLayoutPanel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.flowLayoutPanel5.ResumeLayout(false);
             this.flowLayoutPanel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.flowLayoutPanel4.ResumeLayout(false);
             this.flowLayoutPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
             this.panel15.ResumeLayout(false);
@@ -1306,7 +1292,6 @@ namespace kioskControlPanel
             this.panel2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ctxIcon.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -1389,29 +1374,29 @@ namespace kioskControlPanel
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox chkSnd1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel8;
-        private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.CheckBox chkSnd8;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel7;
-        private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.CheckBox chkSnd7;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel6;
-        private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.CheckBox chkSnd6;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
-        private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.CheckBox chkSnd5;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
-        private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.CheckBox chkSnd4;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.CheckBox chkSnd3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.CheckBox chkSnd2;
+        private System.Windows.Forms.Button btnSnd1;
+        private System.Windows.Forms.Button btnSnd8;
+        private System.Windows.Forms.Button btnSnd7;
+        private System.Windows.Forms.Button btnSnd6;
+        private System.Windows.Forms.Button btnSnd5;
+        private System.Windows.Forms.Button btnSnd4;
+        private System.Windows.Forms.Button btnSnd3;
+        private System.Windows.Forms.Button btnSnd2;
     }
 }
 
