@@ -600,6 +600,7 @@ namespace ArcadeControlPanel
             try
             {
                 IniFile ini = new IniFile(Application.StartupPath + "\\acp.ini");
+                ChkBinds.Checked = ini.IniReadValue("program", "armed", "false").ToLower() == "true" ? true : false;
                 txtButton1.Text = ini.IniReadValue("button1", "bind", "");
                 txtButton2.Text = ini.IniReadValue("button2", "bind", "");
                 txtButton3.Text = ini.IniReadValue("button3", "bind", "");
@@ -649,6 +650,7 @@ namespace ArcadeControlPanel
         private void SaveSettings()
         {
             IniFile ini = new IniFile(Application.StartupPath + "\\acp.ini");
+            ini.IniWriteValue("program", "armed", ChkBinds.Checked.ToString());
             ini.IniWriteValue("button1", "bind", txtButton1.Text);
             ini.IniWriteValue("button2", "bind", txtButton2.Text);
             ini.IniWriteValue("button3", "bind", txtButton3.Text);
@@ -675,6 +677,20 @@ namespace ArcadeControlPanel
             ini.IniWriteValue("button6", "sound", chkSnd6.Checked.ToString());
             ini.IniWriteValue("button7", "sound", chkSnd7.Checked.ToString());
             ini.IniWriteValue("button8", "sound", chkSnd8.Checked.ToString());
+        }
+
+        private void ChkBinds_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox CB = (CheckBox)sender;
+            if (CB.Checked)
+            {
+                CB.Image = new Bitmap(ArcadeControlPanel.Properties.Resources.check);
+                CB.Text = "Macros Armed";
+            } else
+            {
+                CB.Image = new Bitmap(ArcadeControlPanel.Properties.Resources.cross);
+                CB.Text = "Macros Disarmed";
+            }
         }
     }
 }

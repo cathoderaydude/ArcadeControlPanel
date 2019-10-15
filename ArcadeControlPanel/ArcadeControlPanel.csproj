@@ -105,6 +105,8 @@
     <Content Include="beta-screenshot.png" />
     <Content Include="coin in.mp3" />
     <Content Include="acp.ico" />
+    <None Include="Resources\cross.png" />
+    <None Include="Resources\check.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
