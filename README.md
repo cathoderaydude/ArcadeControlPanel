@@ -3,6 +3,8 @@ Keyboard input simulator for physical pushbuttons on (for example) Windows-based
 
 ![Screenshot of beta version](https://raw.githubusercontent.com/cathoderaydude/ArcadeControlPanel/master/ArcadeControlPanel/1.0d-screenshot.png)
 
+![Diagram of FT232 device](https://raw.githubusercontent.com/cathoderaydude/ArcadeControlPanel/master/docs/images/ft232%20banner.png)
+
 # Overview
 
 This app allows you to connect pushbuttons to your PC using an inexpensive USB device called an FT232, then trigger arbitrary key sequences when you press them. An example device is [this one](https://www.amazon.com/FT232R-FT232RL-Serial-Converter-XYGStudy/dp/B00DTRFKM4), but there are many others - see the "Requirements" section below.
@@ -45,14 +47,26 @@ In the following instructions, use solder or a dupont connector wherever it says
   
 Connect your buttons as follows:
 
+[![Image of wiring diagram](https://raw.githubusercontent.com/cathoderaydude/ArcadeControlPanel/master/docs/images/ft232%20btn1%20sm.png)](https://raw.githubusercontent.com/cathoderaydude/ArcadeControlPanel/master/docs/images/ft232%20btn1.png)
+(Click to enlarge)
+
 1. Locate the pin labeled **VCCIO** on the board.
 1. Attach a wire from **VCCIO** to one leg of each of your buttons
   1. If using multiple buttons, "daisy-chain" from one to the next with several pieces of wire
-1. Attach a wire from the second leg of your first button to the pin labeled **DCD#** on the board.
-1. Repeat for **DSR#, RI#, and DTR#**
-  1. These instructions will be updated when I have found the rest of the pinout.
+1. Attach a wire from the second leg of your first button to the pin labeled **TXD** on the board.
 
-You are now ready. Plug the device in to your PC, run ACP, and if it works you'll be able to press buttons and see them light up in the UI.
+You are now ready. Plug the device in to your PC, start ACP, click the systray icon, and you'll be able to press the button and see the big "1" turn green in the UI.
+
+Here are all the button-to-pin assignments:
+
+1. TXD
+1. RXD
+1. RTS#
+1. CTS#
+1. DTR#
+1. DSR#
+1. DCO#
+1. RI#
 
 # Using the application
 
@@ -83,7 +97,7 @@ Right now the application automatically detects the first FT232 it finds on star
   * I don't know if there's a FT232 library for Linux but if so, compiling on Mono might work
 * FT232 USB device
   * There are multiple versions of this chip (FT232R, FT232RL, etc.) but all should work
-  * Some boards only have six pins (*TX, RX, RTS, CTS,* power and ground) and you will _not_ be able to get full usage out of those. You want the ones that have two extra rows of pins with labels like *DTR, DSR* and *DCD*.
+  * Some boards only have six pins (*TX, RX, RTS, CTS,* power and ground) and you will _not_ be able to get full usage out of those, only the first four inputs. You want the ones that have two extra rows of pins with labels like *DTR#, DSR#*, etc. to get all eight inputs.
   
 ## Disclaimer: Counterfeit FT232s
 
@@ -99,7 +113,7 @@ A couple years ago there was an incident - known as FTDIgate to some - in which 
 
 Here are things I would like to do eventually:
 
-* Allow more actions. Right now I am using the built-in C# SendKeys functionality, which has some limitations (you can't send the Windows key for instance.) More actions should be made available. Anything you might find in a "macro" program could apply here, but considerations are:
+* Allow more actions. Right now I am only sending keyboard events. More actions should be made available. Anything you might find in a "macro" program could apply here, but considerations are:
   * Write a string to a file
   * Send more complex key sequences
   * Send a key sequence targeting a specific app or targeting apps by name
