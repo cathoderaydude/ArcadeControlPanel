@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
-namespace kioskControlPanel
+namespace ArcadeControlPanel
 {
     static class Program
     {
@@ -20,7 +20,7 @@ namespace kioskControlPanel
         static void Main()
         {
             // Debug log
-            fDebug = new StreamWriter(@"kcp_debug.txt");
+            fDebug = new StreamWriter(@"acp_debug.txt");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

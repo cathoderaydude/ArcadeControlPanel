@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kioskControlPanel", "kioskControlPanel\kioskControlPanel.csproj", "{29208D03-F685-40E2-8A09-91A6D9C56112}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcadeControlPanel", "ArcadeControlPanel\ArcadeControlPanel.csproj", "{29208D03-F685-40E2-8A09-91A6D9C56112}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Diagnostics;
 
-namespace kioskControlPanel
+namespace ArcadeControlPanel
 {
     partial class frmCpl
     {
@@ -1195,7 +1195,7 @@ namespace kioskControlPanel
             // 
             this.ntiIcon.ContextMenuStrip = this.ctxIcon;
             this.ntiIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("ntiIcon.Icon")));
-            this.ntiIcon.Text = "Kiosk Control Panel";
+            this.ntiIcon.Text = "Arcade Control Panel";
             this.ntiIcon.Visible = true;
             this.ntiIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NtiIcon_MouseClick);
             // 
@@ -1239,7 +1239,7 @@ namespace kioskControlPanel
             this.MinimumSize = new System.Drawing.Size(979, 509);
             this.Name = "frmCpl";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Kiosk Control Panel - 15.0.0.0";
+            this.Text = "Arcade Control Panel";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCpl_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmCpl_FormClosed);
             this.SizeChanged += new System.EventHandler(this.FrmCpl_SizeChanged);

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Threading;
 
-namespace kioskControlPanel
+namespace ArcadeControlPanel
 {
     class SendRawInput
     {

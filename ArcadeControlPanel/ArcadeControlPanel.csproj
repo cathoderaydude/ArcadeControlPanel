@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{29208D03-F685-40E2-8A09-91A6D9C56112}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>kioskControlPanel</RootNamespace>
-    <AssemblyName>kioskControlPanel</AssemblyName>
+    <RootNamespace>ArcadeControlPanel</RootNamespace>
+    <AssemblyName>ArcadeControlPanel</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,7 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>kcp.ico</ApplicationIcon>
+    <ApplicationIcon>acp.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -74,6 +74,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -103,7 +104,7 @@
     <Content Include="alpha-screenshot.png" />
     <Content Include="beta-screenshot.png" />
     <Content Include="coin in.mp3" />
-    <Content Include="kcp.ico" />
+    <Content Include="acp.ico" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

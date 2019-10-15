@@ -1,5 +1,5 @@
 ﻿/*
- * == Kiosk Control Panel ==
+ * == Arcade Control Panel ==
  * The bulk of the program functionality is contained here.
  * This software is licensed under the Mozilla Public License Version 2.0, the details of which can be found in the file LICENSE
  */
@@ -19,8 +19,9 @@ using System.Media;
 using WMPLib;
 using Ini;
 using System.Text.RegularExpressions;
+using System.Reflection;
 
-namespace kioskControlPanel
+namespace ArcadeControlPanel
 {
     public partial class frmCpl : Form
     {
@@ -83,6 +84,8 @@ namespace kioskControlPanel
         public frmCpl()
         {
             InitializeComponent();
+
+            this.Text = "Arcade Control Panel - " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
             DbgW("Init FT232");
             // Initialize device object
@@ -596,7 +599,7 @@ namespace kioskControlPanel
         {
             try
             {
-                IniFile ini = new IniFile(Application.StartupPath + "\\kcp.ini");
+                IniFile ini = new IniFile(Application.StartupPath + "\\acp.ini");
                 txtButton1.Text = ini.IniReadValue("button1", "bind", "");
                 txtButton2.Text = ini.IniReadValue("button2", "bind", "");
                 txtButton3.Text = ini.IniReadValue("button3", "bind", "");
@@ -645,7 +648,7 @@ namespace kioskControlPanel
         // Save settings to INI
         private void SaveSettings()
         {
-            IniFile ini = new IniFile(Application.StartupPath + "\\kcp.ini");
+            IniFile ini = new IniFile(Application.StartupPath + "\\acp.ini");
             ini.IniWriteValue("button1", "bind", txtButton1.Text);
             ini.IniWriteValue("button2", "bind", txtButton2.Text);
             ini.IniWriteValue("button3", "bind", txtButton3.Text);
