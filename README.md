@@ -46,7 +46,7 @@ Connect your buttons as follows:
 
 1. Locate the pin labeled **VCCIO** on the board.
 1. Attach a wire from **VCCIO** to one leg of each of your buttons
-  1. If using multiple buttons, "daisy-chain" from one to the next with several pieces of wire
+    * If using multiple buttons, "daisy-chain" from one to the next with several pieces of wire
 1. Attach a wire from the second leg of your first button to the pin labeled **TXD** on the board.
 
 You are now ready. Plug the device in to your PC, start ACP, click the systray icon, and you'll be able to press the button and see the big "1" turn green in the UI.
@@ -66,20 +66,20 @@ Here are all the button-to-pin assignments:
 
 Right now the application automatically detects the first FT232 it finds on startup and binds to it. If you have multiple, you will have to unplug all but one for now.
 
-- Launch ArcadeControlPanel.exe; it will appear in your systray
-- Click the systray icon to view the configuration window
-- Press each button on your FT232 to verify inputs are working
-  - You can leave the app running while you experiment with the inputs as long as you don't short out the device
-  - If nothing is working, check the debug log to ensure the device was detected and the serial number matches  
-- Enter [macros](https://github.com/cathoderaydude/ArcadeControlPanel/blob/master/docs/macro.md) for each button.
-  - If a key name is invalid, you'll be told so when you try to trigger the button 
-- If you want to require a button to be held down before it triggers, enter a *number of milliseconds divided by ten* in the Delay field; so for half a second, enter "50"
-- If you want a button to play a sound effect, check the speaker icon next to it
-  - Right now it's always a "insert coin" effect; replace "coin in.mp3" in the program folder to change that
-  - This will be replaced with a file picker later
-- When you think you have everything set up, check the "Enable binds" box. Now you're *armed* - pressing buttons will execute their macros
-- That's it. You're ready to go. Minimize the app to hide it in the systray.
-- When you exit, your settings will be saved automatically to an INI in the program folder.
+1. Launch ArcadeControlPanel.exe; it will appear in your systray
+1. Click the systray icon to view the configuration window
+1. Press each button on your FT232 to verify inputs are working
+    * You can leave the app running while you experiment with the inputs as long as you don't short out the device
+    * If nothing is working, check the debug log to ensure the device was detected and the serial number matches  
+1. Enter [macros](https://github.com/cathoderaydude/ArcadeControlPanel/blob/master/docs/macro.md) for each button.
+    * If a key name is invalid, you'll be told so when you try to trigger the button 
+1. If you want to require a button to be held down before it triggers, enter a *number of milliseconds divided by ten* in the Delay field; so for half a second, enter "50"
+1. If you want a button to play a sound effect, check the speaker icon next to it
+    * Right now it's always a "insert coin" effect; replace "coin in.mp3" in the program folder to change that
+    * This will be replaced with a file picker later
+1. When you think you have everything set up, check the "Enable binds" box. Now you're *armed* - pressing buttons will execute their macros
+1. That's it. You're ready to go. Minimize the app to hide it in the systray.
+1. When you exit, your settings will be saved automatically to an INI in the program folder.
 
 # Requirements
 
