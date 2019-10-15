@@ -75,11 +75,12 @@ namespace kioskControlPanel
         private Dictionary<int, ButtonInfo> ButtonState;
         
         // Array of button status display controls
-        private Button[] buttonLights;
+        private Button[] ButtonLights;
 
         // Arrays of action fields
         private TextBox[] ActionStrings;
-        private TextBox[] delayValues;
+        private TextBox[] DelayValues;
+        private Button[] SoundButtons;
 
         // Default, and currently only sound effect
         // To be removed
@@ -146,10 +147,11 @@ namespace kioskControlPanel
             };
 
             // Initialize button status control array
-            buttonLights = new Button[] { btnStatus1, btnStatus2, btnStatus3, btnStatus4, btnStatus5, btnStatus6, btnStatus7, btnStatus8 };
+            ButtonLights = new Button[] { btnStatus1, btnStatus2, btnStatus3, btnStatus4, btnStatus5, btnStatus6, btnStatus7, btnStatus8 };
             // Initialize action and delay values
             ActionStrings = new TextBox[] { txtButton1, txtButton2, txtButton3, txtButton4, txtButton5, txtButton6, txtButton7, txtButton8 };
-            delayValues = new TextBox[] { txtDelay1, txtDelay2, txtDelay3, txtDelay4, txtDelay5, txtDelay6, txtDelay7, txtDelay8 };
+            DelayValues = new TextBox[] { txtDelay1, txtDelay2, txtDelay3, txtDelay4, txtDelay5, txtDelay6, txtDelay7, txtDelay8 };
+            SoundButtons = new Button[] { btnSnd1, btnSnd2, btnSnd3, btnSnd4, btnSnd5, btnSnd6, btnSnd7, btnSnd8 };
 
             // Initialize media player
             DbgW("Initializing sound");
@@ -197,6 +199,15 @@ namespace kioskControlPanel
             // Used for testing the macro validator, will remove later
             //Console.WriteLine(ValidateMacro("LALT F4 LCTRL F5"));
             //Console.WriteLine(ValidateMacro("F4 D F C N1 LCTRL N LCTRL"));
+
+            // Set default tooltips for checkboxes
+            toolTip.SetToolTip(chkSnd1, "Enable sound effect");
+            toolTip.SetToolTip(chkSnd2, "Enable sound effect");
+            toolTip.SetToolTip(chkSnd3, "Enable sound effect");
+            toolTip.SetToolTip(chkSnd4, "Enable sound effect");
+            toolTip.SetToolTip(chkSnd5, "Enable sound effect");
+            toolTip.SetToolTip(chkSnd6, "Enable sound effect");
+            toolTip.SetToolTip(chkSnd7, "Enable sound effect");
 
             // We need to do this to bump the static constructor in the raw input library; tune this up later
             Console.WriteLine(SendRawInput.YeahWereHere);
@@ -302,14 +313,14 @@ namespace kioskControlPanel
                     if (delayValue > 0)
                     {
                         // Yes; turn diagnostic light orange and set the delay value for the button
-                        buttonLights[i].BackColor = Color.Orange;
+                        ButtonLights[i].BackColor = Color.Orange;
                         ButtonState[i].remaining = delayValue;
                         DbgW("Delay of " + (delayValue * 10).ToString() + " milliseconds");
                     }
                     else
                     {
                         // No; Turn diagnostic light green and take action immediately
-                        buttonLights[i].BackColor = Color.LimeGreen;
+                        ButtonLights[i].BackColor = Color.LimeGreen;
                         ButtonEvent(i);
                     }
                 }
@@ -319,7 +330,7 @@ namespace kioskControlPanel
                     // Clear flag in button status table
                     ButtonState[i].state = false;
                     // Clear diagnostic light
-                    buttonLights[i].BackColor = Color.Maroon;
+                    ButtonLights[i].BackColor = Color.Maroon;
                     // Log event
                     DbgW("Button " + i.ToString() + " released");
                 }
@@ -349,7 +360,7 @@ namespace kioskControlPanel
                         // This code will never be reached once the number sinks below 0 for the first time
                         if (ButtonState[i].remaining <= 0)
                         {
-                            buttonLights[i].BackColor = Color.LimeGreen;
+                            ButtonLights[i].BackColor = Color.LimeGreen;
                             DbgW("Delay elapsed on button " + i.ToString());
                             ButtonEvent(i);
                         }
@@ -538,7 +549,7 @@ namespace kioskControlPanel
             try
             {
                 // Yep - clear field error color and set delay value
-                ButtonState[i].delay = int.Parse(delayValues[i].Text);
+                ButtonState[i].delay = int.Parse(DelayValues[i].Text);
                 this.BackColor = DefaultBackColor;
             }
             catch (Exception err)
@@ -547,7 +558,7 @@ namespace kioskControlPanel
                 // Nope - flag field and set delay value to 0 so we can continue processing
                 DbgW("The value for delay on button " + i.ToString() + " is not a valid number.");
                 ButtonState[i].delay = 0;
-                delayValues[i].BackColor = Color.Pink;
+                DelayValues[i].BackColor = Color.Pink;
             }
         }
 
@@ -635,6 +646,8 @@ namespace kioskControlPanel
             try
             {
                 IniFile ini = new IniFile(Application.StartupPath + "\\kcp.ini");
+                ChkBinds.Checked = ini.IniReadValue("program", "armed", "false") == "false" ? false : true;
+
                 txtButton1.Text = ini.IniReadValue("button1", "bind", "");
                 txtButton2.Text = ini.IniReadValue("button2", "bind", "");
                 txtButton3.Text = ini.IniReadValue("button3", "bind", "");
@@ -663,6 +676,13 @@ namespace kioskControlPanel
                 chkSnd8.Checked = CheckText(ini.IniReadValue("button8", "sound", "false"));
 
                 LoadSound(0, ini.IniReadValue("button1", "soundfile", ""));
+                LoadSound(1, ini.IniReadValue("button2", "soundfile", ""));
+                LoadSound(2, ini.IniReadValue("button3", "soundfile", ""));
+                LoadSound(3, ini.IniReadValue("button4", "soundfile", ""));
+                LoadSound(4, ini.IniReadValue("button5", "soundfile", ""));
+                LoadSound(5, ini.IniReadValue("button6", "soundfile", ""));
+                LoadSound(6, ini.IniReadValue("button7", "soundfile", ""));
+                LoadSound(7, ini.IniReadValue("button8", "soundfile", ""));
             }
             catch (Win32Exception err)
             {
@@ -686,6 +706,8 @@ namespace kioskControlPanel
         private void SaveSettings()
         {
             IniFile ini = new IniFile(Application.StartupPath + "\\kcp.ini");
+            ini.IniWriteValue("program", "armed", ChkBinds.Checked.ToString());
+
             ini.IniWriteValue("button1", "bind", txtButton1.Text);
             ini.IniWriteValue("button2", "bind", txtButton2.Text);
             ini.IniWriteValue("button3", "bind", txtButton3.Text);
@@ -726,6 +748,8 @@ namespace kioskControlPanel
         // Attempt to load a file into a button position. If quiet=false, user will get a popup error
         private void LoadSound(int index, string filename, bool quiet = true)
         {
+            toolTip.SetToolTip(SoundButtons[index], "Click to load sound effect"); // Wipe tooltip in case no file is loaded
+
             // If filename was empty then no file is being loaded; just bail
             if (filename == "") return;
 
@@ -733,6 +757,7 @@ namespace kioskControlPanel
             try
             {
                 ButtonSounds[index] = new AudioFileReader(filename);
+                toolTip.SetToolTip(SoundButtons[index], "Sound: " + Path.GetFileName(filename));
             }
             catch (Exception err)
             {
@@ -761,6 +786,10 @@ namespace kioskControlPanel
             SoundPicker.Filter = "Sound files (*.mp3;*.wav)|*.mp3;*.wav|All files (*.*)|*.*";
             SoundPicker.FilterIndex = 1;
             SoundPicker.InitialDirectory = Application.StartupPath;
+            if (ButtonSounds[index] != null)
+            {
+                SoundPicker.FileName = ButtonSounds[index].FileName;
+            }
             SoundPicker.Title = "Select sound file for button " + (index + 1).ToString();
             // Display dialog
             DialogResult PickerResult = SoundPicker.ShowDialog(this);

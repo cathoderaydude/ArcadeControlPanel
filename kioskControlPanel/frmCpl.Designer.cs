@@ -131,6 +131,7 @@ namespace kioskControlPanel
             this.ctiShow = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ctiExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -382,7 +383,7 @@ namespace kioskControlPanel
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel8, 2, 7);
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel7, 2, 6);
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel6, 2, 5);
@@ -426,16 +427,17 @@ namespace kioskControlPanel
             // 
             this.flowLayoutPanel8.Controls.Add(this.btnSnd8);
             this.flowLayoutPanel8.Controls.Add(this.chkSnd8);
-            this.flowLayoutPanel8.Location = new System.Drawing.Point(360, 339);
+            this.flowLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel8.Location = new System.Drawing.Point(350, 339);
             this.flowLayoutPanel8.Name = "flowLayoutPanel8";
-            this.flowLayoutPanel8.Size = new System.Drawing.Size(34, 42);
+            this.flowLayoutPanel8.Size = new System.Drawing.Size(44, 42);
             this.flowLayoutPanel8.TabIndex = 71;
             // 
             // btnSnd8
             // 
             this.btnSnd8.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
-            this.btnSnd8.Location = new System.Drawing.Point(0, 0);
-            this.btnSnd8.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd8.Location = new System.Drawing.Point(0, 19);
+            this.btnSnd8.Margin = new System.Windows.Forms.Padding(0, 19, 3, 0);
             this.btnSnd8.Name = "btnSnd8";
             this.btnSnd8.Size = new System.Drawing.Size(19, 23);
             this.btnSnd8.TabIndex = 3;
@@ -446,8 +448,8 @@ namespace kioskControlPanel
             // chkSnd8
             // 
             this.chkSnd8.AutoSize = true;
-            this.chkSnd8.Location = new System.Drawing.Point(3, 25);
-            this.chkSnd8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
+            this.chkSnd8.Location = new System.Drawing.Point(25, 23);
+            this.chkSnd8.Margin = new System.Windows.Forms.Padding(3, 23, 3, 3);
             this.chkSnd8.Name = "chkSnd8";
             this.chkSnd8.Size = new System.Drawing.Size(15, 14);
             this.chkSnd8.TabIndex = 1;
@@ -459,16 +461,17 @@ namespace kioskControlPanel
             // 
             this.flowLayoutPanel7.Controls.Add(this.btnSnd7);
             this.flowLayoutPanel7.Controls.Add(this.chkSnd7);
-            this.flowLayoutPanel7.Location = new System.Drawing.Point(360, 291);
+            this.flowLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel7.Location = new System.Drawing.Point(350, 291);
             this.flowLayoutPanel7.Name = "flowLayoutPanel7";
-            this.flowLayoutPanel7.Size = new System.Drawing.Size(34, 42);
+            this.flowLayoutPanel7.Size = new System.Drawing.Size(44, 42);
             this.flowLayoutPanel7.TabIndex = 70;
             // 
             // btnSnd7
             // 
             this.btnSnd7.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
-            this.btnSnd7.Location = new System.Drawing.Point(0, 0);
-            this.btnSnd7.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd7.Location = new System.Drawing.Point(0, 19);
+            this.btnSnd7.Margin = new System.Windows.Forms.Padding(0, 19, 3, 0);
             this.btnSnd7.Name = "btnSnd7";
             this.btnSnd7.Size = new System.Drawing.Size(19, 23);
             this.btnSnd7.TabIndex = 3;
@@ -479,8 +482,8 @@ namespace kioskControlPanel
             // chkSnd7
             // 
             this.chkSnd7.AutoSize = true;
-            this.chkSnd7.Location = new System.Drawing.Point(3, 25);
-            this.chkSnd7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
+            this.chkSnd7.Location = new System.Drawing.Point(25, 23);
+            this.chkSnd7.Margin = new System.Windows.Forms.Padding(3, 23, 3, 3);
             this.chkSnd7.Name = "chkSnd7";
             this.chkSnd7.Size = new System.Drawing.Size(15, 14);
             this.chkSnd7.TabIndex = 1;
@@ -492,16 +495,17 @@ namespace kioskControlPanel
             // 
             this.flowLayoutPanel6.Controls.Add(this.btnSnd6);
             this.flowLayoutPanel6.Controls.Add(this.chkSnd6);
-            this.flowLayoutPanel6.Location = new System.Drawing.Point(360, 243);
+            this.flowLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel6.Location = new System.Drawing.Point(350, 243);
             this.flowLayoutPanel6.Name = "flowLayoutPanel6";
-            this.flowLayoutPanel6.Size = new System.Drawing.Size(34, 42);
+            this.flowLayoutPanel6.Size = new System.Drawing.Size(44, 42);
             this.flowLayoutPanel6.TabIndex = 69;
             // 
             // btnSnd6
             // 
             this.btnSnd6.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
-            this.btnSnd6.Location = new System.Drawing.Point(0, 0);
-            this.btnSnd6.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd6.Location = new System.Drawing.Point(0, 19);
+            this.btnSnd6.Margin = new System.Windows.Forms.Padding(0, 19, 3, 0);
             this.btnSnd6.Name = "btnSnd6";
             this.btnSnd6.Size = new System.Drawing.Size(19, 23);
             this.btnSnd6.TabIndex = 3;
@@ -512,8 +516,8 @@ namespace kioskControlPanel
             // chkSnd6
             // 
             this.chkSnd6.AutoSize = true;
-            this.chkSnd6.Location = new System.Drawing.Point(3, 25);
-            this.chkSnd6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
+            this.chkSnd6.Location = new System.Drawing.Point(25, 23);
+            this.chkSnd6.Margin = new System.Windows.Forms.Padding(3, 23, 3, 3);
             this.chkSnd6.Name = "chkSnd6";
             this.chkSnd6.Size = new System.Drawing.Size(15, 14);
             this.chkSnd6.TabIndex = 1;
@@ -525,16 +529,17 @@ namespace kioskControlPanel
             // 
             this.flowLayoutPanel5.Controls.Add(this.btnSnd5);
             this.flowLayoutPanel5.Controls.Add(this.chkSnd5);
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(360, 195);
+            this.flowLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(350, 195);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(34, 42);
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(44, 42);
             this.flowLayoutPanel5.TabIndex = 68;
             // 
             // btnSnd5
             // 
             this.btnSnd5.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
-            this.btnSnd5.Location = new System.Drawing.Point(0, 0);
-            this.btnSnd5.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd5.Location = new System.Drawing.Point(0, 19);
+            this.btnSnd5.Margin = new System.Windows.Forms.Padding(0, 19, 3, 0);
             this.btnSnd5.Name = "btnSnd5";
             this.btnSnd5.Size = new System.Drawing.Size(19, 23);
             this.btnSnd5.TabIndex = 3;
@@ -545,8 +550,8 @@ namespace kioskControlPanel
             // chkSnd5
             // 
             this.chkSnd5.AutoSize = true;
-            this.chkSnd5.Location = new System.Drawing.Point(3, 25);
-            this.chkSnd5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
+            this.chkSnd5.Location = new System.Drawing.Point(25, 23);
+            this.chkSnd5.Margin = new System.Windows.Forms.Padding(3, 23, 3, 3);
             this.chkSnd5.Name = "chkSnd5";
             this.chkSnd5.Size = new System.Drawing.Size(15, 14);
             this.chkSnd5.TabIndex = 1;
@@ -558,16 +563,17 @@ namespace kioskControlPanel
             // 
             this.flowLayoutPanel4.Controls.Add(this.btnSnd4);
             this.flowLayoutPanel4.Controls.Add(this.chkSnd4);
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(360, 147);
+            this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(350, 147);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(34, 42);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(44, 42);
             this.flowLayoutPanel4.TabIndex = 67;
             // 
             // btnSnd4
             // 
             this.btnSnd4.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
-            this.btnSnd4.Location = new System.Drawing.Point(0, 0);
-            this.btnSnd4.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd4.Location = new System.Drawing.Point(0, 19);
+            this.btnSnd4.Margin = new System.Windows.Forms.Padding(0, 19, 3, 0);
             this.btnSnd4.Name = "btnSnd4";
             this.btnSnd4.Size = new System.Drawing.Size(19, 23);
             this.btnSnd4.TabIndex = 3;
@@ -578,8 +584,8 @@ namespace kioskControlPanel
             // chkSnd4
             // 
             this.chkSnd4.AutoSize = true;
-            this.chkSnd4.Location = new System.Drawing.Point(3, 25);
-            this.chkSnd4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
+            this.chkSnd4.Location = new System.Drawing.Point(25, 23);
+            this.chkSnd4.Margin = new System.Windows.Forms.Padding(3, 23, 3, 3);
             this.chkSnd4.Name = "chkSnd4";
             this.chkSnd4.Size = new System.Drawing.Size(15, 14);
             this.chkSnd4.TabIndex = 1;
@@ -591,16 +597,17 @@ namespace kioskControlPanel
             // 
             this.flowLayoutPanel3.Controls.Add(this.btnSnd3);
             this.flowLayoutPanel3.Controls.Add(this.chkSnd3);
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(360, 99);
+            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(350, 99);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(34, 42);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(44, 42);
             this.flowLayoutPanel3.TabIndex = 66;
             // 
             // btnSnd3
             // 
             this.btnSnd3.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
-            this.btnSnd3.Location = new System.Drawing.Point(0, 0);
-            this.btnSnd3.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd3.Location = new System.Drawing.Point(0, 19);
+            this.btnSnd3.Margin = new System.Windows.Forms.Padding(0, 19, 3, 0);
             this.btnSnd3.Name = "btnSnd3";
             this.btnSnd3.Size = new System.Drawing.Size(19, 23);
             this.btnSnd3.TabIndex = 3;
@@ -611,8 +618,8 @@ namespace kioskControlPanel
             // chkSnd3
             // 
             this.chkSnd3.AutoSize = true;
-            this.chkSnd3.Location = new System.Drawing.Point(3, 25);
-            this.chkSnd3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
+            this.chkSnd3.Location = new System.Drawing.Point(25, 23);
+            this.chkSnd3.Margin = new System.Windows.Forms.Padding(3, 23, 3, 3);
             this.chkSnd3.Name = "chkSnd3";
             this.chkSnd3.Size = new System.Drawing.Size(15, 14);
             this.chkSnd3.TabIndex = 1;
@@ -624,16 +631,17 @@ namespace kioskControlPanel
             // 
             this.flowLayoutPanel2.Controls.Add(this.btnSnd2);
             this.flowLayoutPanel2.Controls.Add(this.chkSnd2);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(360, 51);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(350, 51);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(34, 42);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(44, 42);
             this.flowLayoutPanel2.TabIndex = 65;
             // 
             // btnSnd2
             // 
             this.btnSnd2.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
-            this.btnSnd2.Location = new System.Drawing.Point(0, 0);
-            this.btnSnd2.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd2.Location = new System.Drawing.Point(0, 19);
+            this.btnSnd2.Margin = new System.Windows.Forms.Padding(0, 19, 3, 0);
             this.btnSnd2.Name = "btnSnd2";
             this.btnSnd2.Size = new System.Drawing.Size(19, 23);
             this.btnSnd2.TabIndex = 3;
@@ -644,8 +652,8 @@ namespace kioskControlPanel
             // chkSnd2
             // 
             this.chkSnd2.AutoSize = true;
-            this.chkSnd2.Location = new System.Drawing.Point(3, 25);
-            this.chkSnd2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
+            this.chkSnd2.Location = new System.Drawing.Point(25, 23);
+            this.chkSnd2.Margin = new System.Windows.Forms.Padding(3, 23, 3, 3);
             this.chkSnd2.Name = "chkSnd2";
             this.chkSnd2.Size = new System.Drawing.Size(15, 14);
             this.chkSnd2.TabIndex = 1;
@@ -658,7 +666,7 @@ namespace kioskControlPanel
             this.panel16.Controls.Add(this.label16);
             this.panel16.Controls.Add(this.txtDelay8);
             this.panel16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel16.Location = new System.Drawing.Point(280, 339);
+            this.panel16.Location = new System.Drawing.Point(270, 339);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(74, 42);
             this.panel16.TabIndex = 63;
@@ -690,7 +698,7 @@ namespace kioskControlPanel
             this.panel15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel15.Location = new System.Drawing.Point(3, 339);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(271, 42);
+            this.panel15.Size = new System.Drawing.Size(261, 42);
             this.panel15.TabIndex = 62;
             // 
             // label17
@@ -707,7 +715,7 @@ namespace kioskControlPanel
             this.txtButton8.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtButton8.Location = new System.Drawing.Point(0, 22);
             this.txtButton8.Name = "txtButton8";
-            this.txtButton8.Size = new System.Drawing.Size(271, 20);
+            this.txtButton8.Size = new System.Drawing.Size(261, 20);
             this.txtButton8.TabIndex = 24;
             this.txtButton8.Text = "^%+{U}";
             // 
@@ -716,7 +724,7 @@ namespace kioskControlPanel
             this.panel14.Controls.Add(this.label18);
             this.panel14.Controls.Add(this.txtDelay7);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel14.Location = new System.Drawing.Point(280, 291);
+            this.panel14.Location = new System.Drawing.Point(270, 291);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(74, 42);
             this.panel14.TabIndex = 61;
@@ -748,7 +756,7 @@ namespace kioskControlPanel
             this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel13.Location = new System.Drawing.Point(3, 291);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(271, 42);
+            this.panel13.Size = new System.Drawing.Size(261, 42);
             this.panel13.TabIndex = 60;
             // 
             // label19
@@ -765,7 +773,7 @@ namespace kioskControlPanel
             this.txtButton7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtButton7.Location = new System.Drawing.Point(0, 22);
             this.txtButton7.Name = "txtButton7";
-            this.txtButton7.Size = new System.Drawing.Size(271, 20);
+            this.txtButton7.Size = new System.Drawing.Size(261, 20);
             this.txtButton7.TabIndex = 22;
             this.txtButton7.Text = "{Escape}";
             // 
@@ -774,7 +782,7 @@ namespace kioskControlPanel
             this.panel12.Controls.Add(this.label12);
             this.panel12.Controls.Add(this.txtDelay6);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel12.Location = new System.Drawing.Point(280, 243);
+            this.panel12.Location = new System.Drawing.Point(270, 243);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(74, 42);
             this.panel12.TabIndex = 59;
@@ -806,7 +814,7 @@ namespace kioskControlPanel
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel11.Location = new System.Drawing.Point(3, 243);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(271, 42);
+            this.panel11.Size = new System.Drawing.Size(261, 42);
             this.panel11.TabIndex = 58;
             // 
             // txtButton6
@@ -814,7 +822,7 @@ namespace kioskControlPanel
             this.txtButton6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtButton6.Location = new System.Drawing.Point(0, 22);
             this.txtButton6.Name = "txtButton6";
-            this.txtButton6.Size = new System.Drawing.Size(271, 20);
+            this.txtButton6.Size = new System.Drawing.Size(261, 20);
             this.txtButton6.TabIndex = 20;
             this.txtButton6.Text = "%{F4}";
             // 
@@ -832,7 +840,7 @@ namespace kioskControlPanel
             this.panel10.Controls.Add(this.label14);
             this.panel10.Controls.Add(this.txtDelay5);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(280, 195);
+            this.panel10.Location = new System.Drawing.Point(270, 195);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(74, 42);
             this.panel10.TabIndex = 57;
@@ -864,7 +872,7 @@ namespace kioskControlPanel
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel9.Location = new System.Drawing.Point(3, 195);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(271, 42);
+            this.panel9.Size = new System.Drawing.Size(261, 42);
             this.panel9.TabIndex = 56;
             // 
             // txtButton5
@@ -872,7 +880,7 @@ namespace kioskControlPanel
             this.txtButton5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtButton5.Location = new System.Drawing.Point(0, 22);
             this.txtButton5.Name = "txtButton5";
-            this.txtButton5.Size = new System.Drawing.Size(271, 20);
+            this.txtButton5.Size = new System.Drawing.Size(261, 20);
             this.txtButton5.TabIndex = 18;
             this.txtButton5.Text = "{5}";
             // 
@@ -890,7 +898,7 @@ namespace kioskControlPanel
             this.panel8.Controls.Add(this.label4);
             this.panel8.Controls.Add(this.txtDelay4);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(280, 147);
+            this.panel8.Location = new System.Drawing.Point(270, 147);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(74, 42);
             this.panel8.TabIndex = 55;
@@ -922,7 +930,7 @@ namespace kioskControlPanel
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(3, 147);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(271, 42);
+            this.panel7.Size = new System.Drawing.Size(261, 42);
             this.panel7.TabIndex = 54;
             // 
             // txtButton4
@@ -930,7 +938,7 @@ namespace kioskControlPanel
             this.txtButton4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtButton4.Location = new System.Drawing.Point(0, 22);
             this.txtButton4.Name = "txtButton4";
-            this.txtButton4.Size = new System.Drawing.Size(271, 20);
+            this.txtButton4.Size = new System.Drawing.Size(261, 20);
             this.txtButton4.TabIndex = 7;
             // 
             // label6
@@ -947,7 +955,7 @@ namespace kioskControlPanel
             this.panel6.Controls.Add(this.label7);
             this.panel6.Controls.Add(this.txtDelay3);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(280, 99);
+            this.panel6.Location = new System.Drawing.Point(270, 99);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(74, 42);
             this.panel6.TabIndex = 53;
@@ -979,7 +987,7 @@ namespace kioskControlPanel
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(3, 99);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(271, 42);
+            this.panel5.Size = new System.Drawing.Size(261, 42);
             this.panel5.TabIndex = 52;
             // 
             // txtButton3
@@ -987,7 +995,7 @@ namespace kioskControlPanel
             this.txtButton3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtButton3.Location = new System.Drawing.Point(0, 22);
             this.txtButton3.Name = "txtButton3";
-            this.txtButton3.Size = new System.Drawing.Size(271, 20);
+            this.txtButton3.Size = new System.Drawing.Size(261, 20);
             this.txtButton3.TabIndex = 5;
             // 
             // label8
@@ -1004,7 +1012,7 @@ namespace kioskControlPanel
             this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.txtDelay2);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(280, 51);
+            this.panel4.Location = new System.Drawing.Point(270, 51);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(74, 42);
             this.panel4.TabIndex = 51;
@@ -1036,7 +1044,7 @@ namespace kioskControlPanel
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 51);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(271, 42);
+            this.panel3.Size = new System.Drawing.Size(261, 42);
             this.panel3.TabIndex = 50;
             // 
             // txtButton2
@@ -1044,7 +1052,7 @@ namespace kioskControlPanel
             this.txtButton2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtButton2.Location = new System.Drawing.Point(0, 22);
             this.txtButton2.Name = "txtButton2";
-            this.txtButton2.Size = new System.Drawing.Size(271, 20);
+            this.txtButton2.Size = new System.Drawing.Size(261, 20);
             this.txtButton2.TabIndex = 3;
             // 
             // label3
@@ -1063,7 +1071,7 @@ namespace kioskControlPanel
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(271, 42);
+            this.panel1.Size = new System.Drawing.Size(261, 42);
             this.panel1.TabIndex = 48;
             // 
             // txtButton1
@@ -1071,7 +1079,7 @@ namespace kioskControlPanel
             this.txtButton1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtButton1.Location = new System.Drawing.Point(0, 22);
             this.txtButton1.Name = "txtButton1";
-            this.txtButton1.Size = new System.Drawing.Size(271, 20);
+            this.txtButton1.Size = new System.Drawing.Size(261, 20);
             this.txtButton1.TabIndex = 1;
             // 
             // label1
@@ -1088,7 +1096,7 @@ namespace kioskControlPanel
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.txtDelay1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(280, 3);
+            this.panel2.Location = new System.Drawing.Point(270, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(74, 42);
             this.panel2.TabIndex = 49;
@@ -1117,16 +1125,17 @@ namespace kioskControlPanel
             // 
             this.flowLayoutPanel1.Controls.Add(this.btnSnd1);
             this.flowLayoutPanel1.Controls.Add(this.chkSnd1);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(360, 3);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(350, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(34, 42);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(44, 42);
             this.flowLayoutPanel1.TabIndex = 64;
             // 
             // btnSnd1
             // 
             this.btnSnd1.Image = global::kioskControlPanel.Properties.Resources.speaker_16;
-            this.btnSnd1.Location = new System.Drawing.Point(0, 0);
-            this.btnSnd1.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.btnSnd1.Location = new System.Drawing.Point(0, 19);
+            this.btnSnd1.Margin = new System.Windows.Forms.Padding(0, 19, 3, 0);
             this.btnSnd1.Name = "btnSnd1";
             this.btnSnd1.Size = new System.Drawing.Size(19, 23);
             this.btnSnd1.TabIndex = 2;
@@ -1137,8 +1146,8 @@ namespace kioskControlPanel
             // chkSnd1
             // 
             this.chkSnd1.AutoSize = true;
-            this.chkSnd1.Location = new System.Drawing.Point(3, 25);
-            this.chkSnd1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
+            this.chkSnd1.Location = new System.Drawing.Point(25, 23);
+            this.chkSnd1.Margin = new System.Windows.Forms.Padding(3, 23, 3, 3);
             this.chkSnd1.Name = "chkSnd1";
             this.chkSnd1.Size = new System.Drawing.Size(15, 14);
             this.chkSnd1.TabIndex = 1;
@@ -1404,6 +1413,7 @@ namespace kioskControlPanel
         private System.Windows.Forms.Button btnSnd4;
         private System.Windows.Forms.Button btnSnd3;
         private System.Windows.Forms.Button btnSnd2;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
 
