@@ -699,9 +699,9 @@ namespace ArcadeControlPanel
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(-3, 6);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(47, 13);
+            this.label17.Size = new System.Drawing.Size(80, 13);
             this.label17.TabIndex = 45;
-            this.label17.Text = "Button 8";
+            this.label17.Text = "Button 8 Macro";
             // 
             // txtButton8
             // 
@@ -757,9 +757,9 @@ namespace ArcadeControlPanel
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(-3, 6);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(47, 13);
+            this.label19.Size = new System.Drawing.Size(80, 13);
             this.label19.TabIndex = 43;
-            this.label19.Text = "Button 7";
+            this.label19.Text = "Button 7 Macro";
             // 
             // txtButton7
             // 
@@ -824,9 +824,9 @@ namespace ArcadeControlPanel
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(-3, 6);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(47, 13);
+            this.label13.Size = new System.Drawing.Size(80, 13);
             this.label13.TabIndex = 41;
-            this.label13.Text = "Button 6";
+            this.label13.Text = "Button 6 Macro";
             // 
             // panel10
             // 
@@ -882,9 +882,9 @@ namespace ArcadeControlPanel
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(-3, 6);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(47, 13);
+            this.label15.Size = new System.Drawing.Size(80, 13);
             this.label15.TabIndex = 39;
-            this.label15.Text = "Button 5";
+            this.label15.Text = "Button 5 Macro";
             // 
             // panel8
             // 
@@ -939,9 +939,9 @@ namespace ArcadeControlPanel
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(-3, 6);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 13);
+            this.label6.Size = new System.Drawing.Size(80, 13);
             this.label6.TabIndex = 37;
-            this.label6.Text = "Button 4";
+            this.label6.Text = "Button 4 Macro";
             // 
             // panel6
             // 
@@ -996,9 +996,9 @@ namespace ArcadeControlPanel
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(-3, 6);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 13);
+            this.label8.Size = new System.Drawing.Size(80, 13);
             this.label8.TabIndex = 35;
-            this.label8.Text = "Button 3";
+            this.label8.Text = "Button 3 Macro";
             // 
             // panel4
             // 
@@ -1053,9 +1053,9 @@ namespace ArcadeControlPanel
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(-3, 6);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.Size = new System.Drawing.Size(80, 13);
             this.label3.TabIndex = 33;
-            this.label3.Text = "Button 2";
+            this.label3.Text = "Button 2 Macro";
             // 
             // panel1
             // 
@@ -1080,9 +1080,9 @@ namespace ArcadeControlPanel
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(-3, 6);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.Size = new System.Drawing.Size(80, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Button 1";
+            this.label1.Text = "Button 1 Macro";
             // 
             // panel2
             // 
