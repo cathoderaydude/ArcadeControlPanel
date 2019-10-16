@@ -199,7 +199,7 @@ namespace ArcadeControlPanel
             this.txtDebug.Name = "txtDebug";
             this.txtDebug.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtDebug.Size = new System.Drawing.Size(291, 445);
-            this.txtDebug.TabIndex = 2;
+            this.txtDebug.TabIndex = 34;
             // 
             // groupBox2
             // 
@@ -224,7 +224,7 @@ namespace ArcadeControlPanel
             this.btnStatus8.Location = new System.Drawing.Point(0, 0);
             this.btnStatus8.Name = "btnStatus8";
             this.btnStatus8.Size = new System.Drawing.Size(74, 43);
-            this.btnStatus8.TabIndex = 9;
+            this.btnStatus8.TabIndex = 30;
             this.btnStatus8.Text = "8";
             this.btnStatus8.UseVisualStyleBackColor = false;
             // 
@@ -239,7 +239,7 @@ namespace ArcadeControlPanel
             this.btnStatus7.Location = new System.Drawing.Point(0, 0);
             this.btnStatus7.Name = "btnStatus7";
             this.btnStatus7.Size = new System.Drawing.Size(74, 40);
-            this.btnStatus7.TabIndex = 8;
+            this.btnStatus7.TabIndex = 26;
             this.btnStatus7.Text = "7";
             this.btnStatus7.UseVisualStyleBackColor = false;
             // 
@@ -254,7 +254,7 @@ namespace ArcadeControlPanel
             this.btnStatus6.Location = new System.Drawing.Point(0, 0);
             this.btnStatus6.Name = "btnStatus6";
             this.btnStatus6.Size = new System.Drawing.Size(74, 40);
-            this.btnStatus6.TabIndex = 7;
+            this.btnStatus6.TabIndex = 22;
             this.btnStatus6.Text = "6";
             this.btnStatus6.UseVisualStyleBackColor = false;
             // 
@@ -269,7 +269,7 @@ namespace ArcadeControlPanel
             this.btnStatus5.Location = new System.Drawing.Point(0, 0);
             this.btnStatus5.Name = "btnStatus5";
             this.btnStatus5.Size = new System.Drawing.Size(74, 40);
-            this.btnStatus5.TabIndex = 6;
+            this.btnStatus5.TabIndex = 18;
             this.btnStatus5.Text = "5";
             this.btnStatus5.UseVisualStyleBackColor = false;
             // 
@@ -284,7 +284,7 @@ namespace ArcadeControlPanel
             this.btnStatus4.Location = new System.Drawing.Point(0, 0);
             this.btnStatus4.Name = "btnStatus4";
             this.btnStatus4.Size = new System.Drawing.Size(74, 40);
-            this.btnStatus4.TabIndex = 3;
+            this.btnStatus4.TabIndex = 14;
             this.btnStatus4.Text = "4";
             this.btnStatus4.UseVisualStyleBackColor = false;
             // 
@@ -299,7 +299,7 @@ namespace ArcadeControlPanel
             this.btnStatus3.Location = new System.Drawing.Point(0, 0);
             this.btnStatus3.Name = "btnStatus3";
             this.btnStatus3.Size = new System.Drawing.Size(74, 40);
-            this.btnStatus3.TabIndex = 2;
+            this.btnStatus3.TabIndex = 10;
             this.btnStatus3.Text = "3";
             this.btnStatus3.UseVisualStyleBackColor = false;
             // 
@@ -314,7 +314,7 @@ namespace ArcadeControlPanel
             this.btnStatus2.Location = new System.Drawing.Point(0, 0);
             this.btnStatus2.Name = "btnStatus2";
             this.btnStatus2.Size = new System.Drawing.Size(74, 40);
-            this.btnStatus2.TabIndex = 1;
+            this.btnStatus2.TabIndex = 6;
             this.btnStatus2.Text = "2";
             this.btnStatus2.UseVisualStyleBackColor = false;
             // 
@@ -329,7 +329,7 @@ namespace ArcadeControlPanel
             this.btnStatus1.Location = new System.Drawing.Point(0, 0);
             this.btnStatus1.Name = "btnStatus1";
             this.btnStatus1.Size = new System.Drawing.Size(74, 40);
-            this.btnStatus1.TabIndex = 0;
+            this.btnStatus1.TabIndex = 2;
             this.btnStatus1.Text = "1";
             this.btnStatus1.UseVisualStyleBackColor = false;
             // 
@@ -380,7 +380,7 @@ namespace ArcadeControlPanel
             this.ChkBinds.Name = "ChkBinds";
             this.ChkBinds.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.ChkBinds.Size = new System.Drawing.Size(129, 29);
-            this.ChkBinds.TabIndex = 3;
+            this.ChkBinds.TabIndex = 1;
             this.ChkBinds.Text = "Binds Armed";
             this.ChkBinds.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ChkBinds.UseVisualStyleBackColor = false;
@@ -528,7 +528,7 @@ namespace ArcadeControlPanel
             this.txtDelay8.Location = new System.Drawing.Point(0, 23);
             this.txtDelay8.Name = "txtDelay8";
             this.txtDelay8.Size = new System.Drawing.Size(34, 20);
-            this.txtDelay8.TabIndex = 48;
+            this.txtDelay8.TabIndex = 32;
             this.txtDelay8.Tag = "7";
             this.txtDelay8.Text = "0";
             // 
@@ -557,7 +557,7 @@ namespace ArcadeControlPanel
             this.txtDelay7.Location = new System.Drawing.Point(0, 20);
             this.txtDelay7.Name = "txtDelay7";
             this.txtDelay7.Size = new System.Drawing.Size(34, 20);
-            this.txtDelay7.TabIndex = 31;
+            this.txtDelay7.TabIndex = 28;
             this.txtDelay7.Tag = "6";
             this.txtDelay7.Text = "50";
             // 
@@ -586,7 +586,7 @@ namespace ArcadeControlPanel
             this.txtDelay6.Location = new System.Drawing.Point(0, 20);
             this.txtDelay6.Name = "txtDelay6";
             this.txtDelay6.Size = new System.Drawing.Size(34, 20);
-            this.txtDelay6.TabIndex = 29;
+            this.txtDelay6.TabIndex = 24;
             this.txtDelay6.Tag = "5";
             this.txtDelay6.Text = "50";
             // 
@@ -615,7 +615,7 @@ namespace ArcadeControlPanel
             this.txtDelay5.Location = new System.Drawing.Point(0, 20);
             this.txtDelay5.Name = "txtDelay5";
             this.txtDelay5.Size = new System.Drawing.Size(34, 20);
-            this.txtDelay5.TabIndex = 27;
+            this.txtDelay5.TabIndex = 20;
             this.txtDelay5.Tag = "4";
             this.txtDelay5.Text = "0";
             // 
@@ -673,7 +673,7 @@ namespace ArcadeControlPanel
             this.txtDelay3.Location = new System.Drawing.Point(0, 20);
             this.txtDelay3.Name = "txtDelay3";
             this.txtDelay3.Size = new System.Drawing.Size(34, 20);
-            this.txtDelay3.TabIndex = 14;
+            this.txtDelay3.TabIndex = 12;
             this.txtDelay3.Tag = "2";
             this.txtDelay3.Text = "0";
             // 
@@ -702,7 +702,7 @@ namespace ArcadeControlPanel
             this.txtDelay2.Location = new System.Drawing.Point(0, 20);
             this.txtDelay2.Name = "txtDelay2";
             this.txtDelay2.Size = new System.Drawing.Size(34, 20);
-            this.txtDelay2.TabIndex = 12;
+            this.txtDelay2.TabIndex = 8;
             this.txtDelay2.Tag = "1";
             this.txtDelay2.Text = "0";
             // 
@@ -733,7 +733,7 @@ namespace ArcadeControlPanel
             this.chkSnd1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.chkSnd1.Name = "chkSnd1";
             this.chkSnd1.Size = new System.Drawing.Size(15, 14);
-            this.chkSnd1.TabIndex = 1;
+            this.chkSnd1.TabIndex = 5;
             this.chkSnd1.Tag = "0";
             this.chkSnd1.UseVisualStyleBackColor = true;
             this.chkSnd1.CheckedChanged += new System.EventHandler(this.Event_SetSoundEffect);
@@ -765,7 +765,7 @@ namespace ArcadeControlPanel
             this.chkSnd2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.chkSnd2.Name = "chkSnd2";
             this.chkSnd2.Size = new System.Drawing.Size(15, 14);
-            this.chkSnd2.TabIndex = 1;
+            this.chkSnd2.TabIndex = 9;
             this.chkSnd2.Tag = "1";
             this.chkSnd2.UseVisualStyleBackColor = true;
             this.chkSnd2.CheckedChanged += new System.EventHandler(this.Event_SetSoundEffect);
@@ -797,7 +797,7 @@ namespace ArcadeControlPanel
             this.chkSnd3.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.chkSnd3.Name = "chkSnd3";
             this.chkSnd3.Size = new System.Drawing.Size(15, 14);
-            this.chkSnd3.TabIndex = 1;
+            this.chkSnd3.TabIndex = 13;
             this.chkSnd3.Tag = "2";
             this.chkSnd3.UseVisualStyleBackColor = true;
             this.chkSnd3.CheckedChanged += new System.EventHandler(this.Event_SetSoundEffect);
@@ -829,7 +829,7 @@ namespace ArcadeControlPanel
             this.chkSnd4.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.chkSnd4.Name = "chkSnd4";
             this.chkSnd4.Size = new System.Drawing.Size(15, 14);
-            this.chkSnd4.TabIndex = 1;
+            this.chkSnd4.TabIndex = 17;
             this.chkSnd4.Tag = "3";
             this.chkSnd4.UseVisualStyleBackColor = true;
             this.chkSnd4.CheckedChanged += new System.EventHandler(this.Event_SetSoundEffect);
@@ -861,7 +861,7 @@ namespace ArcadeControlPanel
             this.chkSnd5.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.chkSnd5.Name = "chkSnd5";
             this.chkSnd5.Size = new System.Drawing.Size(15, 14);
-            this.chkSnd5.TabIndex = 1;
+            this.chkSnd5.TabIndex = 21;
             this.chkSnd5.Tag = "4";
             this.chkSnd5.UseVisualStyleBackColor = true;
             this.chkSnd5.CheckedChanged += new System.EventHandler(this.Event_SetSoundEffect);
@@ -893,7 +893,7 @@ namespace ArcadeControlPanel
             this.chkSnd6.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.chkSnd6.Name = "chkSnd6";
             this.chkSnd6.Size = new System.Drawing.Size(15, 14);
-            this.chkSnd6.TabIndex = 1;
+            this.chkSnd6.TabIndex = 25;
             this.chkSnd6.Tag = "5";
             this.chkSnd6.UseVisualStyleBackColor = true;
             this.chkSnd6.CheckedChanged += new System.EventHandler(this.Event_SetSoundEffect);
@@ -925,7 +925,7 @@ namespace ArcadeControlPanel
             this.chkSnd7.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.chkSnd7.Name = "chkSnd7";
             this.chkSnd7.Size = new System.Drawing.Size(15, 14);
-            this.chkSnd7.TabIndex = 1;
+            this.chkSnd7.TabIndex = 29;
             this.chkSnd7.Tag = "6";
             this.chkSnd7.UseVisualStyleBackColor = true;
             this.chkSnd7.CheckedChanged += new System.EventHandler(this.Event_SetSoundEffect);
@@ -957,7 +957,7 @@ namespace ArcadeControlPanel
             this.chkSnd8.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.chkSnd8.Name = "chkSnd8";
             this.chkSnd8.Size = new System.Drawing.Size(15, 14);
-            this.chkSnd8.TabIndex = 1;
+            this.chkSnd8.TabIndex = 33;
             this.chkSnd8.Tag = "7";
             this.chkSnd8.UseVisualStyleBackColor = true;
             this.chkSnd8.CheckedChanged += new System.EventHandler(this.Event_SetSoundEffect);
@@ -987,7 +987,7 @@ namespace ArcadeControlPanel
             this.txtDelay1.Location = new System.Drawing.Point(0, 20);
             this.txtDelay1.Name = "txtDelay1";
             this.txtDelay1.Size = new System.Drawing.Size(34, 20);
-            this.txtDelay1.TabIndex = 10;
+            this.txtDelay1.TabIndex = 4;
             this.txtDelay1.Tag = "0";
             this.txtDelay1.Text = "0";
             // 
@@ -1007,7 +1007,7 @@ namespace ArcadeControlPanel
             this.txtButton1.Location = new System.Drawing.Point(0, 20);
             this.txtButton1.Name = "txtButton1";
             this.txtButton1.Size = new System.Drawing.Size(254, 20);
-            this.txtButton1.TabIndex = 1;
+            this.txtButton1.TabIndex = 3;
             // 
             // label1
             // 
@@ -1034,7 +1034,7 @@ namespace ArcadeControlPanel
             this.txtButton2.Location = new System.Drawing.Point(0, 20);
             this.txtButton2.Name = "txtButton2";
             this.txtButton2.Size = new System.Drawing.Size(254, 20);
-            this.txtButton2.TabIndex = 3;
+            this.txtButton2.TabIndex = 7;
             // 
             // label3
             // 
@@ -1061,7 +1061,7 @@ namespace ArcadeControlPanel
             this.txtButton3.Location = new System.Drawing.Point(0, 20);
             this.txtButton3.Name = "txtButton3";
             this.txtButton3.Size = new System.Drawing.Size(254, 20);
-            this.txtButton3.TabIndex = 5;
+            this.txtButton3.TabIndex = 11;
             // 
             // label8
             // 
@@ -1088,7 +1088,7 @@ namespace ArcadeControlPanel
             this.txtButton4.Location = new System.Drawing.Point(0, 20);
             this.txtButton4.Name = "txtButton4";
             this.txtButton4.Size = new System.Drawing.Size(254, 20);
-            this.txtButton4.TabIndex = 7;
+            this.txtButton4.TabIndex = 155;
             // 
             // label6
             // 
@@ -1115,7 +1115,7 @@ namespace ArcadeControlPanel
             this.txtButton5.Location = new System.Drawing.Point(0, 20);
             this.txtButton5.Name = "txtButton5";
             this.txtButton5.Size = new System.Drawing.Size(254, 20);
-            this.txtButton5.TabIndex = 18;
+            this.txtButton5.TabIndex = 19;
             this.txtButton5.Text = "{5}";
             // 
             // label15
@@ -1143,7 +1143,7 @@ namespace ArcadeControlPanel
             this.txtButton6.Location = new System.Drawing.Point(0, 20);
             this.txtButton6.Name = "txtButton6";
             this.txtButton6.Size = new System.Drawing.Size(254, 20);
-            this.txtButton6.TabIndex = 20;
+            this.txtButton6.TabIndex = 23;
             this.txtButton6.Text = "%{F4}";
             // 
             // label13
@@ -1180,7 +1180,7 @@ namespace ArcadeControlPanel
             this.txtButton7.Location = new System.Drawing.Point(0, 20);
             this.txtButton7.Name = "txtButton7";
             this.txtButton7.Size = new System.Drawing.Size(254, 20);
-            this.txtButton7.TabIndex = 22;
+            this.txtButton7.TabIndex = 27;
             this.txtButton7.Text = "{Escape}";
             // 
             // panel15
@@ -1208,7 +1208,7 @@ namespace ArcadeControlPanel
             this.txtButton8.Location = new System.Drawing.Point(0, 23);
             this.txtButton8.Name = "txtButton8";
             this.txtButton8.Size = new System.Drawing.Size(254, 20);
-            this.txtButton8.TabIndex = 24;
+            this.txtButton8.TabIndex = 31;
             this.txtButton8.Text = "^%+{U}";
             // 
             // panel2
@@ -1302,7 +1302,6 @@ namespace ArcadeControlPanel
             this.Location = new System.Drawing.Point(2100, 100);
             this.MinimumSize = new System.Drawing.Size(739, 509);
             this.Name = "frmCpl";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Arcade Control Panel";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCpl_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmCpl_FormClosed);
