@@ -87,6 +87,10 @@ namespace ArcadeControlPanel
 
             this.Text = "Arcade Control Panel - " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
+            // This is required to allow the app to exist solely in the systray
+            // without an extremely unpleasant refactor.
+            FirstRun = true;
+
             DbgW("Init FT232");
             // Initialize device object
             ftdi = new FTDI();
@@ -99,10 +103,14 @@ namespace ArcadeControlPanel
                 // Print serial number; obvs. later we will need to add methods to select from multiple connected devices
                 ftdi.GetSerialNumber(out string SerialNumber);
                 DbgW("FT232 inited, SN " + SerialNumber);
+
+                // Turn on timers
+                tmrPoll.Enabled = true;
+                eventTimer.Enabled = true;
             } else
             {
-                MessageBox.Show(this, "No FT232 could be detected. Execution cannot continue.", "Error: Device not present", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
+                MessageBox.Show(this, "No FT232 could be detected. Please connect the device and restart.", "Error: Device not present", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                FirstRun = false; // Let the dialog appear so the user can at least see the app
             }
 
             // Set all pins (255 is a bitmask) to asynchronous GPIO mode
@@ -182,10 +190,6 @@ namespace ArcadeControlPanel
 
             // We need to do this to bump the static constructor in the raw input library; tune this up later
             Console.WriteLine(SendRawInput.YeahWereHere);
-
-            // This and the below are fairly cursed, and required to allow the app to exist solely in the systray
-            // without an extremely unpleasant refactor.
-            FirstRun = true;
         }
 
         private bool FirstRun = false;

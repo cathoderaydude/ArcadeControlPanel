@@ -186,7 +186,6 @@ namespace ArcadeControlPanel
             // 
             // tmrPoll
             // 
-            this.tmrPoll.Enabled = true;
             this.tmrPoll.Interval = 32;
             this.tmrPoll.Tick += new System.EventHandler(this.TmrPoll_Tick);
             // 
@@ -1251,7 +1250,6 @@ namespace ArcadeControlPanel
             // 
             // eventTimer
             // 
-            this.eventTimer.Enabled = true;
             this.eventTimer.Interval = 10;
             this.eventTimer.Tick += new System.EventHandler(this.EventTimer_Tick);
             // 
