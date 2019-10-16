@@ -1299,9 +1299,9 @@ namespace ArcadeControlPanel
             this.ClientSize = new System.Drawing.Size(723, 470);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = new System.Drawing.Point(2100, 100);
             this.MinimumSize = new System.Drawing.Size(739, 509);
             this.Name = "frmCpl";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Arcade Control Panel";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCpl_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmCpl_FormClosed);
