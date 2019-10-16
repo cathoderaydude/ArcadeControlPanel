@@ -85,7 +85,7 @@ Right now the application automatically detects the first FT232 it finds on star
 
 * Windows
   * Any version that supports .NET 4.6 should work. Developed on Windows 10.
-  * I don't know if there's a FT232 library for Linux but if so, compiling on Mono might work
+  * Linux support is almost certainly never going to happen due to missing libraries
 * FT232 USB device
   * There are multiple versions of this chip (FT232R, FT232RL, etc.) but all should work
   * Some boards only have six pins (*TX, RX, RTS, CTS,* power and ground) and you will _not_ be able to get full usage out of those, only the first four inputs. You want the ones that have two extra rows of pins with labels like *DTR#, DSR#*, etc. to get all eight inputs.
