@@ -93,9 +93,6 @@ namespace ArcadeControlPanel
         public static void SendKey(ushort scanKey, bool KeyDown, bool KeyUp, int delay = 0)
         {
             KEYBDINPUT keybdi;
-            Console.Out.Write("SendKey: " + scanKey);
-            Console.Out.Write(" " + KeyDown);
-            Console.Out.WriteLine(" " + KeyUp);
 
             // Special case for using virtual-key for windows keys since
             // it seems the direct scancode method is broken for them
