@@ -92,6 +92,41 @@ namespace ArcadeControlPanel
         // Send a single keystroke
         public static void SendKey(ushort scanKey, bool KeyDown, bool KeyUp, int delay = 0)
         {
+            KEYBDINPUT keybdi;
+
+            // Special case for using virtual-key for windows keys since
+            // it seems the direct scancode method is broken for them
+            if (scanKey == (ushort)KeyCodes.WIN || scanKey == (ushort)KeyCodes.RWIN)
+            {
+                ushort vk_code;
+
+                // assign virtual-key code
+                // https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
+                if (scanKey == (ushort)KeyCodes.WIN)
+                {
+                    vk_code = 0x5B;
+                } else // RWIN
+                {
+                    vk_code = 0x5C;
+                }
+
+                keybdi = new KEYBDINPUT
+                {
+                    wVk = vk_code,
+                    dwFlags = 0
+                };
+            } else // Direct scancode method
+            {
+                keybdi = new KEYBDINPUT
+                {
+                    wVk = 0,
+                    wScan = scanKey,
+                    dwFlags = KEYEVENTF_SCANCODE,
+                    dwExtraInfo = IntPtr.Zero,
+                };
+            }
+
+            
             // Not sure why this is an array; investigate later
             INPUT[] keyPress = new INPUT[]
             {
@@ -100,13 +135,7 @@ namespace ArcadeControlPanel
                     type = INPUT_KEYBOARD,
                     u = new InputUnion
                     {
-                        ki = new KEYBDINPUT
-                        {
-                            wVk = 0,
-                            wScan = scanKey,
-                            dwFlags = KEYEVENTF_SCANCODE,
-                            dwExtraInfo = IntPtr.Zero,
-                        }
+                        ki = keybdi
                     }
                 },
             };
@@ -126,7 +155,7 @@ namespace ArcadeControlPanel
             if (KeyUp == true)
             {
                 // key UP
-                keyPress[0].u.ki.dwFlags = KEYEVENTF_KEYUP | KEYEVENTF_SCANCODE;
+                keyPress[0].u.ki.dwFlags |= KEYEVENTF_KEYUP;
                 if (SendInput((uint)keyPress.Length, keyPress, Marshal.SizeOf(typeof(INPUT))) == 0)
                 {
                     throw new SendRawInputException("SendInput failed with code: " + Marshal.GetLastWin32Error().ToString());
